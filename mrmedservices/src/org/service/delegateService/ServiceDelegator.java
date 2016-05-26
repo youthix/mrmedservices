@@ -25,35 +25,35 @@ public class ServiceDelegator {
 	public ResponseObj fetchPages(RequestObj reqparam) {
 		ResponseObj responseObj = new ResponseObj();
 
-		for (SearchFields searchFields : reqparam.getSearchFieldsList()) {
+/*		for (SearchFields searchFields : reqparam.getSearchFieldsList()) {
 			userList = new UserList();
 			String tags = returnTags(searchFields);
 			String pageIds = repositoryDelegator.fetchPages(tags, searchFields.getAgeGroup(), searchFields.getGender());
 			userList = populatePages(userList, pageIds, searchFields.getChapterNo());
 			userList.setTag(tags);
 			responseObj.getListOfUsers().add(userList);
-		}
+		}*/
 		return responseObj;
 	}
 
 	public ResponseObj fetchUsers(RequestObj reqparam) {
 
 		ResponseObj responseObj = new ResponseObj();
-		for (SearchFields searchFields : reqparam.getSearchFieldsList()) {
+/*		for (SearchFields searchFields : reqparam.getSearchFieldsList()) {
 			userList = new UserList();
 			String tags = searchFields.getTag();
 			userList.setPageID(searchFields.getPageID());
 			userList.setTag(tags);
 			responseObj.getListOfUsers().add(repositoryDelegator.fetchUsers(tags, searchFields.getPageID(),
 					returnDbQualifier(tags), returnTableQualifier(tags)));
-		}
+		}*/
 		return responseObj;
 	}
 
 	public ResponseObj fetchUserCount(RequestObj reqparam) {
 		ResponseObj responseObj = new ResponseObj();
 
-		for (SearchFields searchFields : reqparam.getSearchFieldsList()) {
+/*		for (SearchFields searchFields : reqparam.getSearchFieldsList()) {
 			userList = new UserList();
 			String tags = returnTags(searchFields);
 			String userCount = repositoryDelegator.fetchUserCount(tags, searchFields.getAgeGroup(),
@@ -61,7 +61,7 @@ public class ServiceDelegator {
 			userList.setTag(tags);
 			userList.setTotalUserCount(userCount);
 			responseObj.getListOfUsers().add(userList);
-		}
+		}*/
 		return responseObj;
 	}
 
@@ -69,7 +69,7 @@ public class ServiceDelegator {
 		ResponseObj responseObj = new ResponseObj();
 		User userObj;
 
-		for (SearchFields searchFields : reqparam.getSearchFieldsList()) {
+/*		for (SearchFields searchFields : reqparam.getSearchFieldsList()) {
 
 			userObj = searchFields.getUser();
 			userObj = setAgeGroup(userObj);
@@ -79,7 +79,7 @@ public class ServiceDelegator {
 				userList.getUserList().add(user);
 				responseObj.getListOfUsers().add(userList);
 			}
-		}
+		}*/
 		return responseObj;
 	}
 
@@ -111,7 +111,7 @@ public class ServiceDelegator {
 
 		User userObj;
 		boolean success = false;
-		for (SearchFields searchFields : reqparam.getSearchFieldsList()) {
+/*		for (SearchFields searchFields : reqparam.getSearchFieldsList()) {
 
 			userObj = searchFields.getUser();
 			userObj = setAgeGroup(userObj);
@@ -119,7 +119,7 @@ public class ServiceDelegator {
 				success = repositoryDelegator.deactivateUser(userObj);
 
 			}
-		}
+		}*/
 		return success;
 
 	}

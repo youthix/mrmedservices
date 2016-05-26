@@ -7,19 +7,35 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "reqparam")
 public class RequestObj {
 	
-	private List<SearchFields> searchFieldsList;
+	private String una;
+	
+	private String pwd;
+	
+	private String pno;
 
-
-	public List<SearchFields> getSearchFieldsList() {
-		if (searchFieldsList == null) {
-			searchFieldsList = new ArrayList<SearchFields>();
-		}
-		return searchFieldsList;
+	public String getUna() {
+		return una;
 	}
 
-	public void setSearchFieldsList(List<SearchFields> searchFieldsList) {
-		this.searchFieldsList = searchFieldsList;
+	public void setUna(String una) {
+		this.una = una;
 	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public String getPno() {
+		return pno;
+	}
+
+	public void setPno(String pno) {
+		this.pno = pno;
+	}	
 	
 	
 

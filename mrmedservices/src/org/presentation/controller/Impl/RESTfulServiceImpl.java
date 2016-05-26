@@ -1,7 +1,6 @@
 package org.presentation.controller.Impl;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -9,63 +8,95 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.presentation.controller.Interface.RESTfulServiceInterface;
+import org.presentation.entities.Customer;
 import org.presentation.entities.RequestObj;
+import org.presentation.entities.ResObjCust;
+import org.presentation.entities.ResStatus;
 import org.presentation.entities.ResponseObj;
-import org.presentation.util.ServiceConstant;
 import org.presentation.util.ServiceException;
 import org.presentation.util.ServiceExceptionMapper;
 import org.service.delegateService.ServiceDelegator;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@Path("/hotornot")
+@Path("/mrmedservice")
 public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	public ServiceDelegator serviceDelegator;
 
 	@Override
 	@POST
-	@Path("/pages")
+	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResponseObj fetchPages(RequestObj reqparam) {
-		ResponseObj respObj = new ResponseObj();
+	public String login(RequestObj reqparam) {
+		String respStr ;
 		try {
-			respObj = serviceDelegator.fetchPages(reqparam);
-			respObj.setErrorStatus("SUCCESS");
+System.out.println("In");
+			respStr = "SUCCESS" ;
 		} catch (Exception excepObj) {
-			return ServiceExceptionMapper.toResponse(excepObj);
+			return ServiceExceptionMapper.toResponse(excepObj).toString();
 
 		}
-		return respObj;
+		return respStr;
 	}
 
 	@Override
 	@POST
-	@Path("/users")
+	@Path("/getCustomer")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResponseObj fetchUsers(RequestObj reqparam) {
+	public ResObjCust getCustomer(RequestObj reqparam) {
 
-		ResponseObj respObj = new ResponseObj();
-		try {
-			respObj = serviceDelegator.fetchUsers(reqparam);
+		ResObjCust respObj = new ResObjCust();
+		
+		Customer cusObj = null;
+		
+		ResStatus resStaObj = new ResStatus();
+		
+		String pno =  reqparam.getPno();
+		
+		if (null!=pno && pno!="" ){
+			
+			cusObj = new Customer();
+			
+			cusObj.setAdd("ShopNo 121, Kanpur");
+			cusObj.setCuID("1111");
+			cusObj.setCuTy("Chemist");
+			cusObj.seteM("ShpNo121@gmail.com");
+			cusObj.setfN("FirstName");
+			cusObj.setlN("LastName");
+			cusObj.setPaN("ABCD123456");
+			cusObj.setPhN(pno);
+			resStaObj.setStatus("SUCCESS");
+			respObj.setResStatusObj(resStaObj);
+			respObj.setCusObj(cusObj);
+		}
+		else {
+			
+			resStaObj.setStatus("FAILURE");
+			resStaObj.setMsg("No Such Customer Exists");
+			respObj.setResStatusObj(resStaObj);
+			respObj.setCusObj(cusObj);
+		}
+/*		try {
+			respObj = serviceDelegator.getCustomer(reqparam);
 			respObj.setErrorStatus("SUCCESS");
 		} catch (Exception excepObj) {
 			return ServiceExceptionMapper.toResponse(excepObj);
 
-		}
+		}*/
 		return respObj;
 
 	}
 
 	@Override
 	@POST
-	@Path("/users-count")
+	@Path("/saveCustomer")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResponseObj fetchUserCount(RequestObj reqparam) {
+	public String saveCustomer(RequestObj reqparam) {
 
-		ResponseObj respObj = new ResponseObj();
+/*		ResponseObj respObj = new ResponseObj();
 		try {
 			respObj = serviceDelegator.fetchUserCount(reqparam);
 			respObj.setErrorStatus("SUCCESS");
@@ -73,15 +104,17 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 			return ServiceExceptionMapper.toResponse(excepObj);
 
 		}
-		return respObj;
+		return respObj;*/
+		
+		return "SUCCESS";
 	}
 
 	@Override
 	@POST
-	@Path("/register")
+	@Path("/stock")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResponseObj registerUser(RequestObj reqparam) {
+	public ResponseObj stock(RequestObj reqparam) {
 
 		ResponseObj respObj = new ResponseObj();
 		try {
@@ -93,34 +126,44 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 		}
 		return respObj;
 	}
-
+	
 	@Override
 	@POST
-	@Path("/index")
+	@Path("/updateInvoice")/*Includes update and delete*/
 	@Produces(MediaType.APPLICATION_JSON)
-	public String doIndexing(@FormParam("username") String username, @FormParam("password") String password,
-			@FormParam("dbQualifiers") String dbQualifiers) {
-		return serviceDelegator.doIndexing(username, password, dbQualifiers);
-	}
-
-	@Override
-	@POST
-	@Path("/logout")
-	@Produces(MediaType.APPLICATION_JSON)
-	public ResponseObj logout(@FormParam("fbID") String fbId) {
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResponseObj updateInvoice(RequestObj reqparam) {
 
 		ResponseObj respObj = new ResponseObj();
 		try {
-			serviceDelegator.logout(fbId);
+			respObj = serviceDelegator.registerUser(reqparam);
 			respObj.setErrorStatus("SUCCESS");
 		} catch (Exception excepObj) {
 			return ServiceExceptionMapper.toResponse(excepObj);
 
 		}
 		return respObj;
-	}
-
+	}	
+	
 	@Override
+	@POST
+	@Path("/getInvoice")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResponseObj getInvoice(RequestObj reqparam) {
+
+		ResponseObj respObj = new ResponseObj();
+		try {
+			respObj = serviceDelegator.registerUser(reqparam);
+			respObj.setErrorStatus("SUCCESS");
+		} catch (Exception excepObj) {
+			return ServiceExceptionMapper.toResponse(excepObj);
+
+		}
+		return respObj;
+	}	
+
+/*	@Override
 	@POST
 	@Path("/delete")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -142,9 +185,9 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 		}
 		return respObj;
-	}
+	}*/
 
-	@Override
+	
 	@GET
 	@Path("/hello")
 	public String helloWorld() {

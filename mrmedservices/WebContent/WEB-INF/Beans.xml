@@ -10,7 +10,7 @@
 
 	<context:property-placeholder
 		location="WEB-INF/properties/app-runtime.properties" />
-	<!-- <context:component-scan base-package="org.codeplay" /> -->
+	<!-- <context:component-scan base-package="org" /> -->
 
 	<!-- Initialization for data source -->
 	<bean id="dataSource"
@@ -22,28 +22,28 @@
 	</bean>
 
 	<!-- Definition for UserJDBCTemplate bean -->
-	<bean id="dao" class="org.codeplay.repository.DAOImpl.UserJDBCTemplate">
+	<bean id="dao" class="org.repository.DAOImpl.UserJDBCTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<bean id="connectionFactory" class="org.codeplay.repository.dbUtilities.ConnectionFactory">
+	<bean id="connectionFactory" class="org.repository.dbUtilities.ConnectionFactory">
 		<property name="driverManagerDataSource" ref="dataSource" />
 		<property name="baseUrl" value="${db.url}" />
 	</bean>
 
 	<bean id="repositoryDelegator"
-		class="org.codeplay.repository.RepositoryDelegate.RepositoryDelegator">
+		class="org.repository.RepositoryDelegate.RepositoryDelegator">
 		<property name="dao" ref="dao" />
 		<property name="connectionFactory" ref="connectionFactory" />
 	</bean>
 
-	<bean id="serviceDelegator" class="org.codeplay.service.delegateService.ServiceDelegator">
+	<bean id="serviceDelegator" class="org.service.delegateService.ServiceDelegator">
 		<property name="repositoryDelegator" ref="repositoryDelegator" />
 		<property name="cacheManager" ref="cacheManager" />
 	</bean>
 
 	<bean id="restfulService"
-		class="org.codeplay.presentation.controller.Impl.RESTfulServiceImpl">
+		class="org.presentation.controller.Impl.RESTfulServiceImpl">
 		<property name="serviceDelegator" ref="serviceDelegator" />
 	</bean>
 
