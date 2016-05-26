@@ -18,7 +18,7 @@ import org.presentation.util.ServiceExceptionMapper;
 import org.service.delegateService.ServiceDelegator;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@Path("/mrmedservice")
+@Path("/service")
 public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	public ServiceDelegator serviceDelegator;
@@ -28,16 +28,13 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String login(RequestObj reqparam) {
+	public ResStatus login(RequestObj reqparam) {
 		String respStr ;
-		try {
-System.out.println("In");
-			respStr = "SUCCESS" ;
-		} catch (Exception excepObj) {
-			return ServiceExceptionMapper.toResponse(excepObj).toString();
-
-		}
-		return respStr;
+		ResStatus resStaObj = new ResStatus();
+		
+		System.out.println("In");
+		resStaObj.setStatus("SUCCESS");
+		return resStaObj;
 	}
 
 	@Override
@@ -94,7 +91,15 @@ System.out.println("In");
 	@Path("/saveCustomer")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String saveCustomer(RequestObj reqparam) {
+	public ResObjCust saveCustomer(RequestObj reqparam) {
+		
+		ResObjCust respObj = new ResObjCust();
+		
+	
+		ResStatus resStaObj = new ResStatus();
+		
+		resStaObj.setStatus("SUCCESS");
+		respObj.setResStatusObj(resStaObj);
 
 /*		ResponseObj respObj = new ResponseObj();
 		try {
@@ -106,7 +111,7 @@ System.out.println("In");
 		}
 		return respObj;*/
 		
-		return "SUCCESS";
+		return respObj ;
 	}
 
 	@Override
