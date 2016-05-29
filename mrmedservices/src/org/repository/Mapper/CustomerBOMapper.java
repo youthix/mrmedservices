@@ -23,10 +23,11 @@ public class CustomerBOMapper implements RowMapper<CustomerBO>{
 		cbo.setjDate(rs.getString("joiningDate"));
 		cbo.setLastSeen(rs.getString("lastSeen"));
 		cbo.setlName(rs.getString("lastName"));
-		cbo.setlNo(rs.getString("dlNo"));		
+		cbo.setlNo(rs.getString("licenseNo"));		
 		cbo.setPan(rs.getString("pan"));
 		cbo.setTin(rs.getString("tin"));
 		cbo.setCusTy(rs.getString("type"));
+		cbo.setuId(rs.getString("uniqueId"));
 		return cbo;
 	}
 }

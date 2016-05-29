@@ -23,10 +23,11 @@ public class SupplierBOMapper implements RowMapper<SupplierBO>{
 		sbo.setjDate(rs.getString("joiningDate"));
 		sbo.setLastSeen(rs.getString("lastSeen"));
 		sbo.setlName(rs.getString("lastName"));
-		sbo.setlNo(rs.getString("dlNo"));		
+		sbo.setlNo(rs.getString("licenseNo"));		
 		sbo.setPan(rs.getString("pan"));
 		sbo.setTin(rs.getString("tin"));
 		sbo.setSuppTy(rs.getString("type"));
+		sbo.setuId(rs.getString("uniqueId"));
 		return sbo;
 	}
 

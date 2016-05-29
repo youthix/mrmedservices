@@ -25,7 +25,8 @@ public class UserBOMapper implements RowMapper<UserBO>{
 		ubo.setlName(rs.getString("lastName"));
 		ubo.setRole(rs.getString("role"));		
 		ubo.setLoginSt(rs.getString("loginStatus"));
-		ubo.setPwd(rs.getString("password"));		
+		ubo.setPwd(rs.getString("password"));
+		ubo.setuId(rs.getString("uniqueId"));
 		return ubo;
 	}
 
