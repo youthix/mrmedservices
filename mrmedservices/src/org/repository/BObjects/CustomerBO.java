@@ -16,6 +16,7 @@ public class CustomerBO {
 	private String email;
 	private String tin;
 	private String lNo;
+	private String uId;
 	private String pan;
 	private String cusTy;
 	private String lastSeen;
@@ -111,6 +112,10 @@ public class CustomerBO {
 	public void setActive(String active) {
 		this.active = active;
 	}
-
-		
+	public String getuId() {
+		return uId;
+	}
+	public void setuId(String uId) {
+		this.uId = uId;
+	}		
 }

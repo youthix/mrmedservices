@@ -19,6 +19,7 @@ public class SupplierBO {
 	private String tin;
 	private String lNo;
 	private String pan;
+	private String uId;
 	private String suppTy;
 	private String lastSeen;
 	private String active;
@@ -126,6 +127,10 @@ public class SupplierBO {
 	public void setActive(String active) {
 		this.active = active;
 	}
-
-		
+	public String getuId() {
+		return uId;
+	}
+	public void setuId(String uId) {
+		this.uId = uId;
+	}
 }

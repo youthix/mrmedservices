@@ -15,6 +15,7 @@ public class UserBO {
 	private String add;
 	private String conNu;
 	private String email;
+	private String uId;
 	private String role;
 	private String loginSt;
 	private String lastSeen;
@@ -103,6 +104,10 @@ public class UserBO {
 	public void setActive(String active) {
 		this.active = active;
 	}
-
-	
+	public String getuId() {
+		return uId;
+	}
+	public void setuId(String uId) {
+		this.uId = uId;
+	}
 }
