@@ -13,6 +13,10 @@ import org.presentation.entities.RequestObj;
 import org.presentation.entities.ResObjCust;
 import org.presentation.entities.ResStatus;
 import org.presentation.entities.ResponseObj;
+import org.presentation.entities.customer.ReqObjCustomerList;
+import org.presentation.entities.customer.ResObjCustomerList;
+import org.presentation.entities.user.ReqObjUserList;
+import org.presentation.entities.user.ResObjUserList;
 import org.presentation.util.ServiceException;
 import org.presentation.util.ServiceExceptionMapper;
 import org.service.delegateService.ServiceDelegator;
@@ -86,6 +90,8 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	}
 
+	
+	
 	@Override
 	@POST
 	@Path("/saveCustomer")
@@ -223,4 +229,29 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 		this.serviceDelegator = serviceDelegator;
 	}
 
+	@Override
+	public ResObjUserList saveUser(ReqObjUserList reqparam) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResObjUserList getUser(ReqObjUserList reqparam) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResObjCustomerList getCustomerFromDB(ReqObjCustomerList reqparam) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResObjCustomerList saveCustomerInDB(ReqObjCustomerList reqparam) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }
