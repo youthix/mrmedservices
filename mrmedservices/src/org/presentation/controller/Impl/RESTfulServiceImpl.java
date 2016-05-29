@@ -129,7 +129,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 		ResponseObj respObj = new ResponseObj();
 		try {
-			respObj = serviceDelegator.registerUser(reqparam);
+			//respObj = serviceDelegator.registerUser(reqparam);
 			respObj.setErrorStatus("SUCCESS");
 		} catch (Exception excepObj) {
 			return ServiceExceptionMapper.toResponse(excepObj);
@@ -147,7 +147,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 		ResponseObj respObj = new ResponseObj();
 		try {
-			respObj = serviceDelegator.registerUser(reqparam);
+			//respObj = serviceDelegator.registerUser(reqparam);
 			respObj.setErrorStatus("SUCCESS");
 		} catch (Exception excepObj) {
 			return ServiceExceptionMapper.toResponse(excepObj);
@@ -165,7 +165,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 		ResponseObj respObj = new ResponseObj();
 		try {
-			respObj = serviceDelegator.registerUser(reqparam);
+			//respObj = serviceDelegator.registerUser(reqparam);
 			respObj.setErrorStatus("SUCCESS");
 		} catch (Exception excepObj) {
 			return ServiceExceptionMapper.toResponse(excepObj);
@@ -232,12 +232,14 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Override
 	public ResObjUserList saveUser(ReqObjUserList reqparam) {
 		// TODO Auto-generated method stub
+		serviceDelegator.saveUser(reqparam);
 		return null;
 	}
 
 	@Override
 	public ResObjUserList getUser(ReqObjUserList reqparam) {
 		// TODO Auto-generated method stub
+		serviceDelegator.getUser(reqparam);
 		return null;
 	}
 
