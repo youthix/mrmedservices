@@ -17,7 +17,7 @@ public class ReqObjUser {
 	private String lst;
 	private String ls;
 	private String act;
-	
+		
 	public String getUn() {
 		return un;
 	}
@@ -108,5 +108,4 @@ public class ReqObjUser {
 	public void setAct(String act) {
 		this.act = act;
 	}
-	
 }

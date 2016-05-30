@@ -261,9 +261,8 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResObjUserList login(ReqObjUserList reqparam,
-			@FormParam("busId")String busId) {		
-		return serviceDelegator.doLogin(reqparam, busId);
+	public ResObjUserList login(ReqObjUserList reqparam) {		
+		return serviceDelegator.doLogin(reqparam);
 	}
 
 	

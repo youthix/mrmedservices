@@ -12,7 +12,7 @@ import org.presentation.entities.user.ResObjUserList;
 
 public interface RESTfulServiceInterface {	
 	
-	ResObjUserList login(ReqObjUserList reqparam,String busId);
+	ResObjUserList login(ReqObjUserList reqparam);
 	
 	ResObjCust getCustomer(RequestObj reqparam);
 	

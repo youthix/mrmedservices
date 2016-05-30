@@ -57,12 +57,12 @@ public class ServiceDelegator {
 		return res;
 	}
 	
-	public ResObjUserList doLogin(ReqObjUserList reqparam,String busId) {
+	public ResObjUserList doLogin(ReqObjUserList reqparam) {
 		res=new ResObjUserList();
 		resStatus=res.getResStatus();
 		List<ResObjUser> users = null;
 		for(ReqObjUser req: reqparam.getUl()){			
-				users=repositoryDelegator.doLogin(req,busId);					
+				users=repositoryDelegator.doLogin(req,reqparam.getBid());					
 		}
 		if(null!=users){
 			res.setUl(users);
