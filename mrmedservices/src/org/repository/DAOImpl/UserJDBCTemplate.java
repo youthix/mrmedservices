@@ -94,4 +94,11 @@ public class UserJDBCTemplate implements UserDAOInterface {
 		jdbcTemplateObject.update(SQL);
 	}
 
+	@Override
+	public List<UserBO> doLogin(UserBO ubo, String dbName) {
+		String SQL="select * from "+dbName+".user where username='"+ubo.getUserName()+"' and password='"+ubo.getPwd()+"'";
+		List<UserBO> users=jdbcTemplateObject.query(SQL, new UserBOMapper());
+		return users;
+	}
+
 }

@@ -4,12 +4,12 @@ import java.util.List;
 
 import net.sf.ehcache.CacheManager;
 
+import org.presentation.entities.ResStatus;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUser;
 import org.presentation.entities.user.ResObjUserList;
 import org.presentation.util.ServiceException;
-import org.repository.BObjects.UserBO;
 import org.repository.RepositoryDelegate.RepositoryDelegator;
 
 import com.googlecode.ehcache.annotations.Cacheable;
@@ -19,6 +19,7 @@ public class ServiceDelegator {
 	private RepositoryDelegator repositoryDelegator;	
 	private CacheManager cacheManager;
 	ResObjUserList res;
+	ResStatus resStatus;
 
 	@Cacheable(cacheName = "HelloCache")
 	public String doHello() {
@@ -53,6 +54,27 @@ public class ServiceDelegator {
 			}
 		}
 		res.setUl(users);
+		return res;
+	}
+	
+	public ResObjUserList doLogin(ReqObjUserList reqparam,String busId) {
+		res=new ResObjUserList();
+		resStatus=res.getResStatus();
+		List<ResObjUser> users = null;
+		for(ReqObjUser req: reqparam.getUl()){			
+				users=repositoryDelegator.doLogin(req,busId);					
+		}
+		if(null!=users){
+			res.setUl(users);
+			resStatus.setCode("SUCCESS");
+			resStatus.setMsg("Login Successful !!");
+			resStatus.setStatus("SUCCESS");
+		}
+		else{
+			resStatus.setCode("FAILURE");
+			resStatus.setMsg("Login Unsuccessful . Please check your credentials!!");
+			resStatus.setStatus("FAILURE");
+		}		
 		return res;
 	}
 	

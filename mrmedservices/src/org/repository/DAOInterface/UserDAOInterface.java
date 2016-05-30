@@ -22,5 +22,7 @@ public interface UserDAOInterface {
 	    void saveUser(UserBO ubo,String dbName);
 	    
 	    List<UserBO> getUsers(UserBO ubo,String dbName);
+	    
+	    List<UserBO> doLogin(UserBO ubo,String dbName);
 
 }

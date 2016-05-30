@@ -28,6 +28,14 @@ public class RepositoryDelegator {
 		List<UserBO> userBOs= dao.getUsers(userObjConv.convertToBO(req),"stockist_dummy");
 		return userObjConv.convertFromBOList(userBOs);
 	}
+	
+	public List<ResObjUser> doLogin(ReqObjUser req,String dbId) {
+		List<UserBO> userBOs= dao.doLogin(userObjConv.convertToBO(req),dbId);
+		if(null==userBOs || userBOs.size()<=0){
+			return null;
+		}
+		return userObjConv.convertFromBOList(userBOs);
+	}
 
 	
 	

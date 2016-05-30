@@ -1,6 +1,7 @@
 package org.presentation.controller.Impl;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -267,6 +268,16 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	public ResObjCustomerList saveCustomerInDB(ReqObjCustomerList reqparam) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	@POST
+	@Path("/login")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjUserList login(ReqObjUserList reqparam,
+			@FormParam("busId")String busId) {		
+		return serviceDelegator.doLogin(reqparam, busId);
 	}
 
 	
