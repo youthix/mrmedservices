@@ -2,17 +2,20 @@ package org.repository.RepositoryDelegate;
 
 import java.util.List;
 
+import org.presentation.entities.customer.ReqObjCustomer;
+import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ResObjUser;
+import org.repository.BObjects.CustomerBO;
 import org.repository.BObjects.UserBO;
 import org.repository.DAOInterface.UserDAOInterface;
-import org.repository.DomainConverter.UserObjConverter;
+import org.repository.DomainConverter.DomainObjConverter;
 import org.repository.dbUtilities.ConnectionFactory;
 
 public class RepositoryDelegator {
 
 	private UserDAOInterface dao;
-	private UserObjConverter userObjConv;
+	private DomainObjConverter domObjConv;
 	private ConnectionFactory connectionFactory;
 
 	
@@ -20,24 +23,46 @@ public class RepositoryDelegator {
 	
 
 	public void saveUser(ReqObjUser req,String dbId) {		
-		dao.saveUser(userObjConv.convertToBO(req),dbId);
+		dao.saveUser(domObjConv.convertToBO(req),dbId);
 		return;
 	}
 	
 	public List<ResObjUser> getUsers(ReqObjUser req,String dbId) {
-		List<UserBO> userBOs= dao.getUsers(userObjConv.convertToBO(req),dbId);
-		return userObjConv.convertFromBOList(userBOs);
+		List<UserBO> userBOs= dao.getUsers(domObjConv.convertToBO(req),dbId);
+		return domObjConv.convertFromBOList(userBOs);
 	}
 	
 	public List<ResObjUser> doLogin(ReqObjUser req,String dbId) {
-		List<UserBO> userBOs= dao.doLogin(userObjConv.convertToBO(req),dbId);
+		List<UserBO> userBOs= dao.doLogin(domObjConv.convertToBO(req),dbId);
 		if(null==userBOs || userBOs.size()<=0){
 			return null;
 		}
-		return userObjConv.convertFromBOList(userBOs);
+		return domObjConv.convertFromBOList(userBOs);
 	}
 
+	public void saveCustomer(ReqObjCustomerList reqparam) {	
+		for(ReqObjCustomer req:reqparam.getCl()){
+			dao.saveUser(domObjConv.convertToBO(req),"stockist_dummy");
+			}
 	
+		return;
+	}
+	
+	public List<ResObjUser> getCustomer(ReqObjCustomerList reqparam) {
+		
+		List<CustomerBO> custBOls = null; 
+		
+		for(ReqObjCustomer req: reqparam.getCl()){
+			if(null==users){
+				users=dao.getUsers(domObjConv.convertToBO(req),"stockist_dummy");
+			}
+			else{
+		    users.addAll(dao.getUsers(domObjConv.convertToBO(req),"stockist_dummy"));
+			}
+		}
+		
+		return doObjConv.convertFromBOList(custBOLs);
+	}	
 	
 	public UserDAOInterface getDao() {
 		return dao;
@@ -55,11 +80,13 @@ public class RepositoryDelegator {
 		this.connectionFactory = connectionFactory;
 	}
 
-	public UserObjConverter getUserObjConv() {
-		return userObjConv;
+	public DomainObjConverter getDomObjConv() {
+		return domObjConv;
 	}
 
-	public void setUserObjConv(UserObjConverter userObjConv) {
-		this.userObjConv = userObjConv;
+	public void setDomObjConv(DomainObjConverter domObjConv) {
+		this.domObjConv = domObjConv;
 	}
+
+
 }

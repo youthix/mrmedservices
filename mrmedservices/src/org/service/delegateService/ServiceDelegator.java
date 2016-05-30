@@ -2,9 +2,10 @@ package org.service.delegateService;
 
 import java.util.List;
 
-import net.sf.ehcache.CacheManager;
-
 import org.presentation.entities.ResStatus;
+import org.presentation.entities.customer.ReqObjCustomer;
+import org.presentation.entities.customer.ReqObjCustomerList;
+import org.presentation.entities.customer.ResObjCustomerList;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUser;
@@ -13,6 +14,8 @@ import org.presentation.util.ServiceException;
 import org.repository.RepositoryDelegate.RepositoryDelegator;
 
 import com.googlecode.ehcache.annotations.Cacheable;
+
+import net.sf.ehcache.CacheManager;
 
 public class ServiceDelegator {
 
@@ -56,6 +59,30 @@ public class ServiceDelegator {
 		res.setUl(users);
 		return res;
 	}
+	
+	public void saveCustomer(ReqObjCustomerList reqparam) {
+		
+		 repositoryDelegator.saveCustomer(reqparam);
+	
+		return;
+	}
+	
+	public ResObjCustomerList getCustomer(ReqObjCustomerList reqparam) {
+		
+		res=new ResObjUserList();
+		
+		List<ResObjUser> users = null;
+		for(ReqObjCustomer req: reqparam.getCl()){
+			if(null==users){
+				users=repositoryDelegator.getUsers(req);
+			}
+			else{
+		    users.addAll(repositoryDelegator.getUsers(req));
+			}
+		}
+		res.setUl(users);
+		return res;
+	}	
 	
 	public ResObjUserList doLogin(ReqObjUserList reqparam) {
 		res=new ResObjUserList();
