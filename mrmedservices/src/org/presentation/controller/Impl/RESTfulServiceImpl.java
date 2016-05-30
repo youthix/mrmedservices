@@ -230,6 +230,10 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	}
 
 	@Override
+	@POST
+	@Path("/save-users")/*Includes update and delete*/
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public void saveUser(ReqObjUserList reqparam) {
 		serviceDelegator.saveUser(reqparam);
 		return 
@@ -237,6 +241,10 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	}
 
 	@Override
+	@POST
+	@Path("/get-users")/*Includes update and delete*/
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjUserList getUsers(ReqObjUserList reqparam) {
 		// TODO Auto-generated method stub
 		serviceDelegator.getUsers(reqparam);
