@@ -10,7 +10,9 @@ import org.presentation.entities.user.ResObjUser;
 import org.repository.BObjects.CustomerBO;
 import org.repository.BObjects.UserBO;
 import org.repository.DAOInterface.UserDAOInterface;
-import org.repository.DomainConverter.DomainObjConverter;
+import org.repository.DomainConverter.DomainObjCustConverter;
+import org.repository.DomainConverter.DomainObjSuppConverter;
+import org.repository.DomainConverter.DomainObjUserConverter;
 import org.repository.dbUtilities.ConnectionFactory;
 
 public class RepositoryDelegator {
@@ -26,13 +28,13 @@ public class RepositoryDelegator {
 	
 
 	public void saveUser(ReqObjUser req,String dbId) {		
-		dao.saveUser(domObjConv.convertToBO(req),dbId);
+		dao.saveUser(domObjUserConv.convertToBO(req),dbId);
 		return;
 	}
 	
 	public List<ResObjUser> getUsers(ReqObjUser req,String dbId) {
-		List<UserBO> userBOs= dao.getUsers(domObjConv.convertToBO(req),dbId);
-		return domObjConv.convertFromBOList(userBOs);
+		List<UserBO> userBOs= dao.getUsers(domObjUserConv.convertToBO(req),dbId);
+		return domObjUserConv.convertFromBOList(userBOs);
 	}
 	
 	public List<ResObjUser> doLogin(ReqObjUser req,String dbId) {
@@ -45,7 +47,7 @@ public class RepositoryDelegator {
 
 	public void saveCustomer(ReqObjCustomerList reqparam) {	
 		for(ReqObjCustomer req:reqparam.getCl()){
-			dao.saveUser(domObjConv.convertToBO(req),"stockist_dummy");
+			dao.saveUser(domObjCusConv.convertToBO(req),"stockist_dummy");
 			}
 	
 		return;
@@ -58,14 +60,14 @@ public class RepositoryDelegator {
 		List<ResObjCustomer> respObjCusLs = null;
 		
 		for(ReqObjCustomer req: reqparam.getCl()){
-			custBOls = dao.getUsers(domObjConv.convertToBO(req),dbId);
+			custBOls = dao.getUsers(domObjCusConv.convertToBO(req),dbId);
 			
 			
 			if(null==respObjCusLs){
-				respObjCusLs=domObjConv.convertFromBOList(custBOls);
+				respObjCusLs=domObjCusConv.convertFromBOList(custBOls);
 			}
 			else{
-				respObjCusLs.addAll(domObjConv.convertFromBOList(custBOls));
+				respObjCusLs.addAll(domObjCusConv.convertFromBOList(custBOls));
 			}
 		}
 		

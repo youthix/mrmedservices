@@ -34,11 +34,17 @@
 	<bean id="repositoryDelegator"
 		class="org.repository.RepositoryDelegate.RepositoryDelegator">
 		<property name="dao" ref="dao" />
-		<property name="userObjConv" ref="userObjConv" />
+		<property name="domObjUserConv" ref="userObjConv" />
+		<property name="domObjCusConv" ref="custObjConv" />
+		<property name="domObjSuppConv" ref="suppObjConv" />
 		<property name="connectionFactory" ref="connectionFactory" />
 	</bean>
 	
-	<bean id="userObjConv" class="org.repository.DomainConverter.UserObjConverter">
+	<bean id="userObjConv" class="org.repository.DomainConverter.DomainObjUserConverter">
+	</bean>
+	<bean id="custObjConv" class="org.repository.DomainConverter.DomainObjCustConverter">
+	</bean>
+	<bean id="suppObjConv" class="org.repository.DomainConverter.DomainObjSuppConverter">
 	</bean>
 
 	<bean id="serviceDelegator" class="org.service.delegateService.ServiceDelegator">
