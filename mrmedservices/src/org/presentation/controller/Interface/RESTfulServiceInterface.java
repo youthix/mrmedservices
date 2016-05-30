@@ -25,7 +25,7 @@ public interface RESTfulServiceInterface {
 	
 	ResponseObj getInvoice(RequestObj reqparam);
 	
-	ResObjUserList saveUser(ReqObjUserList reqparam);
+	void saveUser(ReqObjUserList reqparam);
 	ResObjUserList getUser(ReqObjUserList reqparam);
 	
 	ResObjCustomerList getCustomerFromDB(ReqObjCustomerList reqparam);

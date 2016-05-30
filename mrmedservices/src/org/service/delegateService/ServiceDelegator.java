@@ -2,6 +2,7 @@ package org.service.delegateService;
 
 import net.sf.ehcache.CacheManager;
 
+import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUserList;
 import org.presentation.util.ServiceException;
@@ -28,10 +29,11 @@ public class ServiceDelegator {
 
 	}
 	
-	public ResObjUserList saveUser(ReqObjUserList reqparam) {
-		// TODO Auto-generated method stub
-		
-		return null;
+	public void saveUser(ReqObjUserList reqparam) {
+		for(ReqObjUser req:reqparam.getUl()){
+		 repositoryDelegator.saveUser(req);
+		}	
+		return;
 	}
 	
 	public ResObjUserList getUser(ReqObjUserList reqparam) {

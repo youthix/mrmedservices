@@ -12,6 +12,7 @@ import org.repository.BObjects.IndexingInfo;
 import org.repository.BObjects.Page;
 import org.repository.BObjects.TagPage;
 import org.repository.BObjects.User;
+import org.repository.BObjects.UserBO;
 import org.repository.DAOInterface.UserDAOInterface;
 import org.repository.Mapper.IndexingInfoMapper;
 import org.repository.Mapper.PageIDDetailsMapper;
@@ -351,6 +352,12 @@ public class UserJDBCTemplate implements UserDAOInterface {
 		jdbcTemplateObject.update(SQL);
 		System.out.println("InsertTagPageObj  : EndTime >>" + System.currentTimeMillis());
 		return;
+	}
+
+	@Override
+	public void saveUser(UserBO ubo) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

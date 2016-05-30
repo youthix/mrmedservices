@@ -8,7 +8,7 @@ public class UserObjConverter {
 	private UserBO ubo;
 	private ReqObjUser reqObj;
 	
-	public void convertToBO(ReqObjUser req){
+	public UserBO convertToBO(ReqObjUser req){
 		ubo=new UserBO();
 		ubo.setActive(req.getAct());
 		ubo.setAdd(req.getAdd());
@@ -25,9 +25,10 @@ public class UserObjConverter {
 		ubo.setRole(req.getRo());
 		ubo.setuId(req.getuId());
 		ubo.setUserName(req.getUn());
+		return ubo;
 	}
 	
-	public void convertFromBO(UserBO uBObj){
+	public ReqObjUser convertFromBO(UserBO uBObj){
 		reqObj=new ReqObjUser();
 		reqObj.setAct(uBObj.getActive());
 		reqObj.setAdd(uBObj.getAdd());
@@ -44,5 +45,6 @@ public class UserObjConverter {
 		reqObj.setRo(uBObj.getPwd());
 		reqObj.setuId(uBObj.getuId());
 		reqObj.setUn(uBObj.getUserName());
+		return reqObj;
 	}
 }

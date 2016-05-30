@@ -8,6 +8,7 @@ import org.repository.BObjects.IndexingInfo;
 import org.repository.BObjects.Page;
 import org.repository.BObjects.TagPage;
 import org.repository.BObjects.User;
+import org.repository.BObjects.UserBO;
 
 public interface UserDAOInterface {
 	
@@ -115,5 +116,7 @@ public interface UserDAOInterface {
 	   
 	   public void insertTagPageObj(TagPage tagPageObj,
 				String dbQualifier, String tableQualifier);
+	   
+	   public void saveUser(UserBO ubo);
 
 }

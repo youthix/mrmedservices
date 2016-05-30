@@ -230,10 +230,10 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	}
 
 	@Override
-	public ResObjUserList saveUser(ReqObjUserList reqparam) {
-		// TODO Auto-generated method stub
+	public void saveUser(ReqObjUserList reqparam) {
 		serviceDelegator.saveUser(reqparam);
-		return null;
+		return 
+				;
 	}
 
 	@Override
