@@ -37,7 +37,7 @@ public class UserJDBCTemplate implements UserDAOInterface {
 
 	@Override
 	public void saveUser(UserBO ubo,String dbName) {
-		String SQL="select count(*) from "+dbName+".user where username='"+ubo.getUserName()+"'";
+		String SQL="select * from "+dbName+".user where username='"+ubo.getUserName()+"'";
 		List<UserBO> users=jdbcTemplateObject.query(SQL, new UserBOMapper());
 		if(null !=users && users.size()>0){
 			updateUser( ubo, dbName);
@@ -70,8 +70,8 @@ public class UserJDBCTemplate implements UserDAOInterface {
 				+"`role`='"+ubo.getRole()+"',"
 				+"`loginStatus`='"+ubo.getLoginSt()+"',"
 				+"`lastSeentimestamp`= CURRENT_TIMESTAMP,"
-				+"`active`='"+ubo.getActive()
-				+"where where username='"+ubo.getUserName()+"'";
+				+"`active`='"+ubo.getActive()+"' "
+				+"where username='"+ubo.getUserName()+"'";
 		jdbcTemplateObject.update(SQL);
 	}
 	
@@ -89,7 +89,7 @@ public class UserJDBCTemplate implements UserDAOInterface {
 				+"'"+ubo.getConNu()+"',"
 				+"'"+ubo.getEmail()+"',"
 				+"'"+ubo.getuId()+"',"
-				+"'"+ubo.getRole()
+				+"'"+ubo.getRole()+"'"
 				+ ")"	;
 		jdbcTemplateObject.update(SQL);
 	}

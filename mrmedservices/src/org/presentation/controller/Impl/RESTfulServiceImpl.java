@@ -231,18 +231,21 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	@Override
 	@POST
-	@Path("/save-users")/*Includes update and delete*/
+	@Path("/save-users")/*Includes create and update*/
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void saveUser(ReqObjUserList reqparam) {
+	public ResStatus saveUser(ReqObjUserList reqparam) {
+		ResStatus respObj = new ResStatus();
 		serviceDelegator.saveUser(reqparam);
-		return 
-				;
+		respObj.setStatus("SUCCESS");
+		respObj.setCode("SUCCESS");
+		respObj.setMsg("NO error occured while processing this transation !");
+		return respObj;
 	}
 
 	@Override
 	@POST
-	@Path("/get-users")/*Includes update and delete*/
+	@Path("/get-users")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjUserList getUsers(ReqObjUserList reqparam) {

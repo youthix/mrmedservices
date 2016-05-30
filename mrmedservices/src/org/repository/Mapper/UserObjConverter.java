@@ -6,7 +6,7 @@ import java.util.List;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ResObjUser;
 import org.repository.BObjects.UserBO;
-
+import org.springframework.stereotype.Component;
 public class UserObjConverter {
 
 	private UserBO ubo;

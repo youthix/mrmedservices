@@ -2,6 +2,7 @@ package org.repository.RepositoryDelegate;
 
 import java.util.List;
 
+import org.presentation.entities.ResponseObj;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ResObjUser;
 import org.repository.BObjects.UserBO;
@@ -18,7 +19,8 @@ public class RepositoryDelegator {
 	
 	//@Cacheable(cacheName = "fetchPagesCache", keyGenerator = @KeyGenerator(name = "HashCodeCacheKeyGenerator", properties = @Property(name = "includeMethod", value = "false") ) )
 	
-	public void saveUser(ReqObjUser req) {
+
+	public void saveUser(ReqObjUser req) {		
 		dao.saveUser(userObjConv.convertToBO(req),"stockist_dummy");
 		return;
 	}
@@ -46,4 +48,11 @@ public class RepositoryDelegator {
 		this.connectionFactory = connectionFactory;
 	}
 
+	public UserObjConverter getUserObjConv() {
+		return userObjConv;
+	}
+
+	public void setUserObjConv(UserObjConverter userObjConv) {
+		this.userObjConv = userObjConv;
+	}
 }

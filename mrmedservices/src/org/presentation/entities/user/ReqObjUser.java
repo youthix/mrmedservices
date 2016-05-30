@@ -1,8 +1,5 @@
 package org.presentation.entities.user;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "reqparamuser")
 public class ReqObjUser {
 	
 	private String un;
