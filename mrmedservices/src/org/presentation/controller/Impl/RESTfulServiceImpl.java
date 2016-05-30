@@ -1,7 +1,6 @@
 package org.presentation.controller.Impl;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -9,9 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.presentation.controller.Interface.RESTfulServiceInterface;
-import org.presentation.entities.Customer;
 import org.presentation.entities.RequestObj;
-import org.presentation.entities.ResObjCust;
 import org.presentation.entities.ResStatus;
 import org.presentation.entities.ResponseObj;
 import org.presentation.entities.customer.ReqObjCustomerList;
@@ -28,85 +25,77 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	public ServiceDelegator serviceDelegator;
 
-	@Override
-	@POST
-	@Path("/getCustomer")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public ResObjCust getCustomer(RequestObj reqparam) {
-
-		ResObjCust respObj = new ResObjCust();
-		
-		Customer cusObj = null;
-		
-		ResStatus resStaObj = new ResStatus();
-		
-		String pno =  reqparam.getPno();
-		
-		if (null!=pno && pno!="" ){
-			
-			cusObj = new Customer();
-			
-			cusObj.setAdd("ShopNo 121, Kanpur");
-			cusObj.setCuID("1111");
-			cusObj.setCuTy("Chemist");
-			cusObj.seteM("ShpNo121@gmail.com");
-			cusObj.setfN("FirstName");
-			cusObj.setlN("LastName");
-			cusObj.setPaN("ABCD123456");
-			cusObj.setPhN(pno);
-			resStaObj.setStatus("SUCCESS");
-			respObj.setResStatusObj(resStaObj);
-			respObj.setCusObj(cusObj);
-		}
-		else {
-			
-			resStaObj.setStatus("FAILURE");
-			resStaObj.setMsg("No Such Customer Exists");
-			respObj.setResStatusObj(resStaObj);
-			respObj.setCusObj(cusObj);
-		}
-/*		try {
-			respObj = serviceDelegator.getCustomer(reqparam);
-			respObj.setErrorStatus("SUCCESS");
-		} catch (Exception excepObj) {
-			return ServiceExceptionMapper.toResponse(excepObj);
-
-		}*/
-		return respObj;
-
-	}
-
-	
-	
-	@Override
-	@POST
-	@Path("/saveCustomer")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public ResObjCust saveCustomer(RequestObj reqparam) {
-		
-		ResObjCust respObj = new ResObjCust();
-		
-	
-		ResStatus resStaObj = new ResStatus();
-		
-		resStaObj.setStatus("SUCCESS");
-		respObj.setResStatusObj(resStaObj);
-
-/*		ResponseObj respObj = new ResponseObj();
-		try {
-			respObj = serviceDelegator.fetchUserCount(reqparam);
-			respObj.setErrorStatus("SUCCESS");
-		} catch (Exception excepObj) {
-			return ServiceExceptionMapper.toResponse(excepObj);
-
-		}
-		return respObj;*/
-		
-		return respObj ;
-	}
-
+	/*
+	 * @Override
+	 * 
+	 * @POST
+	 * 
+	 * @Path("/getCustomer")
+	 * 
+	 * @Produces(MediaType.APPLICATION_JSON)
+	 * 
+	 * @Consumes(MediaType.APPLICATION_JSON) public ResObjCust
+	 * getCustomer(RequestObj reqparam) {
+	 * 
+	 * ResObjCust respObj = new ResObjCust();
+	 * 
+	 * Customer cusObj = null;
+	 * 
+	 * ResStatus resStaObj = new ResStatus();
+	 * 
+	 * String pno = reqparam.getPno();
+	 * 
+	 * if (null!=pno && pno!="" ){
+	 * 
+	 * cusObj = new Customer();
+	 * 
+	 * cusObj.setAdd("ShopNo 121, Kanpur"); cusObj.setCuID("1111");
+	 * cusObj.setCuTy("Chemist"); cusObj.seteM("ShpNo121@gmail.com");
+	 * cusObj.setfN("FirstName"); cusObj.setlN("LastName");
+	 * cusObj.setPaN("ABCD123456"); cusObj.setPhN(pno);
+	 * resStaObj.setStatus("SUCCESS"); respObj.setResStatusObj(resStaObj);
+	 * respObj.setCusObj(cusObj); } else {
+	 * 
+	 * resStaObj.setStatus("FAILURE"); resStaObj.setMsg(
+	 * "No Such Customer Exists"); respObj.setResStatusObj(resStaObj);
+	 * respObj.setCusObj(cusObj); } try { respObj =
+	 * serviceDelegator.getCustomer(reqparam);
+	 * respObj.setErrorStatus("SUCCESS"); } catch (Exception excepObj) { return
+	 * ServiceExceptionMapper.toResponse(excepObj);
+	 * 
+	 * } return respObj;
+	 * 
+	 * }
+	 * 
+	 * 
+	 * 
+	 * @Override
+	 * 
+	 * @POST
+	 * 
+	 * @Path("/saveCustomer")
+	 * 
+	 * @Produces(MediaType.APPLICATION_JSON)
+	 * 
+	 * @Consumes(MediaType.APPLICATION_JSON) public ResObjCust
+	 * saveCustomer(RequestObj reqparam) {
+	 * 
+	 * ResObjCust respObj = new ResObjCust();
+	 * 
+	 * 
+	 * ResStatus resStaObj = new ResStatus();
+	 * 
+	 * resStaObj.setStatus("SUCCESS"); respObj.setResStatusObj(resStaObj);
+	 * 
+	 * ResponseObj respObj = new ResponseObj(); try { respObj =
+	 * serviceDelegator.fetchUserCount(reqparam);
+	 * respObj.setErrorStatus("SUCCESS"); } catch (Exception excepObj) { return
+	 * ServiceExceptionMapper.toResponse(excepObj);
+	 * 
+	 * } return respObj;
+	 * 
+	 * return respObj ; }
+	 */
 	@Override
 	@POST
 	@Path("/stock")
@@ -116,7 +105,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 		ResponseObj respObj = new ResponseObj();
 		try {
-			//respObj = serviceDelegator.registerUser(reqparam);
+			// respObj = serviceDelegator.registerUser(reqparam);
 			respObj.setErrorStatus("SUCCESS");
 		} catch (Exception excepObj) {
 			return ServiceExceptionMapper.toResponse(excepObj);
@@ -124,25 +113,25 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 		}
 		return respObj;
 	}
-	
+
 	@Override
 	@POST
-	@Path("/updateInvoice")/*Includes update and delete*/
+	@Path("/updateInvoice") /* Includes update and delete */
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResponseObj updateInvoice(RequestObj reqparam) {
 
 		ResponseObj respObj = new ResponseObj();
 		try {
-			//respObj = serviceDelegator.registerUser(reqparam);
+			// respObj = serviceDelegator.registerUser(reqparam);
 			respObj.setErrorStatus("SUCCESS");
 		} catch (Exception excepObj) {
 			return ServiceExceptionMapper.toResponse(excepObj);
 
 		}
 		return respObj;
-	}	
-	
+	}
+
 	@Override
 	@POST
 	@Path("/getInvoice")
@@ -152,40 +141,39 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 		ResponseObj respObj = new ResponseObj();
 		try {
-			//respObj = serviceDelegator.registerUser(reqparam);
+			// respObj = serviceDelegator.registerUser(reqparam);
 			respObj.setErrorStatus("SUCCESS");
 		} catch (Exception excepObj) {
 			return ServiceExceptionMapper.toResponse(excepObj);
 
 		}
 		return respObj;
-	}	
+	}
 
-/*	@Override
-	@POST
-	@Path("/delete")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public ResponseObj deleteUser(RequestObj reqparam) {
+	/*
+	 * @Override
+	 * 
+	 * @POST
+	 * 
+	 * @Path("/delete")
+	 * 
+	 * @Produces(MediaType.APPLICATION_JSON)
+	 * 
+	 * @Consumes(MediaType.APPLICATION_JSON) public ResponseObj
+	 * deleteUser(RequestObj reqparam) {
+	 * 
+	 * ResponseObj respObj = new ResponseObj(); try { boolean success =
+	 * serviceDelegator.deleteUser(reqparam); if (success) {
+	 * respObj.setErrorStatus("SUCCESS"); } else {
+	 * respObj.setErrorStatus("FAILURE");
+	 * respObj.setErrorCode(ServiceConstant.GENERIC_ERROR); }
+	 * 
+	 * } catch (Exception excepObj) { return
+	 * ServiceExceptionMapper.toResponse(excepObj);
+	 * 
+	 * } return respObj; }
+	 */
 
-		ResponseObj respObj = new ResponseObj();
-		try {
-			boolean success = serviceDelegator.deleteUser(reqparam);
-			if (success) {
-				respObj.setErrorStatus("SUCCESS");
-			} else {
-				respObj.setErrorStatus("FAILURE");
-				respObj.setErrorCode(ServiceConstant.GENERIC_ERROR);
-			}
-
-		} catch (Exception excepObj) {
-			return ServiceExceptionMapper.toResponse(excepObj);
-
-		}
-		return respObj;
-	}*/
-
-	
 	@GET
 	@Path("/hello")
 	public String helloWorld() {
@@ -218,16 +206,19 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	@Override
 	@POST
-	@Path("/save/users")/*Includes create and update*/
+	@Path("/save/users") /* Includes create and update */
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResStatus saveUser(ReqObjUserList reqparam) {
-		ResStatus respObj = new ResStatus();
+	public ResObjUserList saveUser(ReqObjUserList reqparam) {
+		
+		ResObjUserList res = new ResObjUserList();
+		ResStatus respStObj = new ResStatus();
 		serviceDelegator.saveUser(reqparam);
-		respObj.setStatus("SUCCESS");
-		respObj.setCode("SUCCESS");
-		respObj.setMsg("NO error occured while processing this transation !");
-		return respObj;
+		respStObj.setStatus("SUCCESS");
+		respStObj.setCode("SUCCESS");
+		respStObj.setMsg("NO error occured while processing this transation !");
+		res.setResStatus(respStObj);
+		return res;
 	}
 
 	@Override
@@ -235,9 +226,9 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Path("/get/users")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResObjUserList getUsers(ReqObjUserList reqparam) {	
-		ResObjUserList res=serviceDelegator.getUsers(reqparam);
-		ResStatus resStatus=res.getResStatus();
+	public ResObjUserList getUsers(ReqObjUserList reqparam) {
+		ResObjUserList res = serviceDelegator.getUsers(reqparam);
+		ResStatus resStatus = res.getResStatus();
 		resStatus.setStatus("SUCCESS");
 		resStatus.setCode("SUCCESS");
 		resStatus.setMsg("Users successfully fetched !");
@@ -245,13 +236,21 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	}
 
 	@Override
-	public ResObjCustomerList getCustomerFromDB(ReqObjCustomerList reqparam) {
-		// TODO Auto-generated method stub
+	public ResObjCustomerList getCustomer(ReqObjCustomerList reqparam) {
+		
+		ResObjCustomerList res=serviceDelegator.getUsers(reqparam);
+		
+		ResStatus resStatus= new ResStatus();
+		resStatus.setStatus("SUCCESS");
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Users successfully fetched !");
+		res.set
+		
 		return null;
 	}
 
 	@Override
-	public ResObjCustomerList saveCustomerInDB(ReqObjCustomerList reqparam) {
+	public ResObjCustomerList saveCustomer(ReqObjCustomerList reqparam) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -261,9 +260,8 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResObjUserList login(ReqObjUserList reqparam) {		
+	public ResObjUserList login(ReqObjUserList reqparam) {
 		return serviceDelegator.doLogin(reqparam);
 	}
 
-	
 }

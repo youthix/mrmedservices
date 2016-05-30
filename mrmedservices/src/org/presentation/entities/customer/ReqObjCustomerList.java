@@ -10,7 +10,7 @@ import org.presentation.entities.ResStatus;
 public class ReqObjCustomerList {
 	
 	private List<ReqObjCustomer> cl;
-	private ResStatus resStatusObj ;
+	
 
 	public List<ReqObjCustomer> getCl() {
 		if(null==this.cl){
@@ -23,12 +23,5 @@ public class ReqObjCustomerList {
 		this.cl = cl;
 	}
 
-	public ResStatus getResStatusObj() {
-		return resStatusObj;
-	}
-
-	public void setResStatusObj(ResStatus resStatusObj) {
-		this.resStatusObj = resStatusObj;
-	}
 	
 }
