@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 @XmlRootElement(name = "resparamuser")
-@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class ResObjUserList {
 	
 	List<ResObjUser> ul;

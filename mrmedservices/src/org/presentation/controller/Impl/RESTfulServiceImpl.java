@@ -248,10 +248,8 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Path("/get-users")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResObjUserList getUsers(ReqObjUserList reqparam) {
-		// TODO Auto-generated method stub
-		serviceDelegator.getUsers(reqparam);
-		return null;
+	public ResObjUserList getUsers(ReqObjUserList reqparam) {				
+		return serviceDelegator.getUsers(reqparam);
 	}
 
 	@Override

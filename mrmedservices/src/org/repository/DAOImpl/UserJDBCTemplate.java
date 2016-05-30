@@ -50,7 +50,7 @@ public class UserJDBCTemplate implements UserDAOInterface {
 	
 	@Override
 	public List<UserBO> getUsers(UserBO ubo,String dbName) {
-		String SQL="select count(*) from "+dbName+".user where username='"+ubo.getUserName()+"' or contactNo='"+ubo.getConNu()+"'";
+		String SQL="select * from "+dbName+".user where username='"+ubo.getUserName()+"' or contactNo='"+ubo.getConNu()+"'";
 		List<UserBO> users=jdbcTemplateObject.query(SQL, new UserBOMapper());
 		return users;
 	}
