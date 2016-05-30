@@ -10,9 +10,8 @@ import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUserList;
 
 
-public interface RESTfulServiceInterface {
+public interface RESTfulServiceInterface {	
 	
-	ResStatus login(RequestObj reqparam);
 	ResObjUserList login(ReqObjUserList reqparam,String busId);
 	
 	ResObjCust getCustomer(RequestObj reqparam);

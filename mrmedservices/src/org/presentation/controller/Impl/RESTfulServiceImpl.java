@@ -30,20 +30,6 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	@Override
 	@POST
-	@Path("/login")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public ResStatus login(RequestObj reqparam) {
-		String respStr ;
-		ResStatus resStaObj = new ResStatus();
-		
-		System.out.println("In");
-		resStaObj.setStatus("SUCCESS");
-		return resStaObj;
-	}
-
-	@Override
-	@POST
 	@Path("/getCustomer")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
