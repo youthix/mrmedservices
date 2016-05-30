@@ -13,10 +13,6 @@ public interface RESTfulServiceInterface {
 
 	ResObjUserList login(ReqObjUserList reqparam);
 
-	ResObjCust getCustomer(RequestObj reqparam);
-
-	ResObjCust saveCustomer(RequestObj reqparam);
-
 	ResponseObj stock(RequestObj reqparam);
 
 	ResponseObj updateInvoice(RequestObj reqparam);
