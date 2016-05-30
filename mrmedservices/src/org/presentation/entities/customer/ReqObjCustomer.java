@@ -2,7 +2,7 @@ package org.presentation.entities.customer;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "customer")
+
 public class ReqObjCustomer {
 	
 	private String cId;

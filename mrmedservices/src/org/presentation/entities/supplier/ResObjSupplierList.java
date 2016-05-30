@@ -1,4 +1,4 @@
-package org.presentation.entities.user;
+package org.presentation.entities.supplier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,21 +7,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.presentation.entities.ResStatus;
 
-@XmlRootElement(name = "resparamuser")
+@XmlRootElement(name = "resparamsupp")
 public class ResObjSupplierList {
 	
-	List<ResObjUser> ul;
+	List<ResObjSupplier> sl;
 	ResStatus resStatus;
 
-	public List<ResObjUser> getUl() {
-		if(null==this.ul){
-			ul=new ArrayList<ResObjUser>();
+	
+	public List<ResObjSupplier> getSl() {
+		
+		if(null==this.sl){
+			sl=new ArrayList<ResObjSupplier>();
 		}
-		return ul;
+		return sl;
 	}
 
-	public void setUl(List<ResObjUser> ul) {
-		this.ul = ul;
+	public void setSl(List<ResObjSupplier> sl) {
+		this.sl = sl;
 	}
 
 	public ResStatus getResStatus() {

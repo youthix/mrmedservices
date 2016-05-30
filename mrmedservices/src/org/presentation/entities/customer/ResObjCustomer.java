@@ -1,7 +1,9 @@
 package org.presentation.entities.customer;
 
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+import javax.xml.bind.annotation.XmlRootElement;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+@XmlRootElement(name = "customer")
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class ResObjCustomer {
 	

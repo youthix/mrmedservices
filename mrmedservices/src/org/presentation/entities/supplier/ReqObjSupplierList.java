@@ -1,26 +1,29 @@
-package org.presentation.entities.user;
+package org.presentation.entities.supplier;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "reqparamuser")
+@XmlRootElement(name = "reqparamsupp")
 public class ReqObjSupplierList {
 	
-	private List<ReqObjUser> ul;
+	private List<ReqObjSupplier> sl;
 	private String bid;
 
-	public List<ReqObjUser> getUl() {
-		if(null==this.ul){
-			ul=new ArrayList<ReqObjUser>();
+	
+	public List<ReqObjSupplier> getSl() {
+		
+		if(null==this.sl){
+			sl=new ArrayList<ReqObjSupplier>();
 		}
-		return ul;
+		return sl;
 	}
 
-	public void setUl(List<ReqObjUser> ul) {
-		this.ul = ul;
+	public void setSl(List<ReqObjSupplier> sl) {
+		this.sl = sl;
 	}
+
 
 	public String getBid() {
 		return bid;

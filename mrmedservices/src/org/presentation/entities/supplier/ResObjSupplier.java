@@ -1,40 +1,36 @@
-package org.presentation.entities.user;
+package org.presentation.entities.supplier;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-@XmlRootElement(name = "user")
+@XmlRootElement(name = "supplier")
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class ResObjSupplier {
 	
-	private String un;
-	private String pwd;
+	private String sId;
 	private String fn;
 	private String ln;
 	private String jd;
 	private String age;
 	private String gen;
 	private String add;
-	private String con;
+	private String conPer;
+	private String conNu;
+	private String comN;
 	private String em;
+	private String tin;
+	private String lNo;
+	private String pan;
 	private String uId;
-	private String ro;
-	private String lst;
+	private String sTy;
 	private String ls;
 	private String act;
-	
-	public String getUn() {
-		return un;
+	public String getsId() {
+		return sId;
 	}
-	public void setUn(String un) {
-		this.un = un;
-	}
-	public String getPwd() {
-		return pwd;
-	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setsId(String sId) {
+		this.sId = sId;
 	}
 	public String getFn() {
 		return fn;
@@ -72,11 +68,23 @@ public class ResObjSupplier {
 	public void setAdd(String add) {
 		this.add = add;
 	}
-	public String getCon() {
-		return con;
+	public String getConPer() {
+		return conPer;
 	}
-	public void setCon(String con) {
-		this.con = con;
+	public void setConPer(String conPer) {
+		this.conPer = conPer;
+	}
+	public String getConNu() {
+		return conNu;
+	}
+	public void setConNu(String conNu) {
+		this.conNu = conNu;
+	}
+	public String getComN() {
+		return comN;
+	}
+	public void setComN(String comN) {
+		this.comN = comN;
 	}
 	public String getEm() {
 		return em;
@@ -84,23 +92,35 @@ public class ResObjSupplier {
 	public void setEm(String em) {
 		this.em = em;
 	}
+	public String getTin() {
+		return tin;
+	}
+	public void setTin(String tin) {
+		this.tin = tin;
+	}
+	public String getlNo() {
+		return lNo;
+	}
+	public void setlNo(String lNo) {
+		this.lNo = lNo;
+	}
+	public String getPan() {
+		return pan;
+	}
+	public void setPan(String pan) {
+		this.pan = pan;
+	}
 	public String getuId() {
 		return uId;
 	}
 	public void setuId(String uId) {
 		this.uId = uId;
 	}
-	public String getRo() {
-		return ro;
+	public String getsTy() {
+		return sTy;
 	}
-	public void setRo(String ro) {
-		this.ro = ro;
-	}
-	public String getLst() {
-		return lst;
-	}
-	public void setLst(String lst) {
-		this.lst = lst;
+	public void setsTy(String sTy) {
+		this.sTy = sTy;
 	}
 	public String getLs() {
 		return ls;
@@ -114,5 +134,6 @@ public class ResObjSupplier {
 	public void setAct(String act) {
 		this.act = act;
 	}
+	
 	
 }
