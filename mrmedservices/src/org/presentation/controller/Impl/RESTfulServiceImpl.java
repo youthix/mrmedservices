@@ -260,7 +260,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Path("/get/supplier")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResObjSupplierList getCustomer(ReqObjSupplierList reqparam) {
+	public ResObjSupplierList getSupplier(ReqObjSupplierList reqparam) {
 
 		ResObjSupplierList res = serviceDelegator.getSupplier(reqparam);
 
@@ -292,8 +292,6 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 		return res;
 	}
-
-
 	
 	
 	public ServiceDelegator getServiceDelegator() {

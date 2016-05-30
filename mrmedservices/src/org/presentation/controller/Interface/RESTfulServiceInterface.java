@@ -29,7 +29,7 @@ public interface RESTfulServiceInterface {
 	
 	ResObjSupplierList getSupplier(ReqObjSupplierList reqparam);
 	
-	ResObjSupplierList saveCustomer(ReqObjSupplierList reqparam);
+	ResObjSupplierList saveSupplier(ReqObjSupplierList reqparam);
 
 	/* ResponseObj deleteUser(RequestObj reqparam); */
 
