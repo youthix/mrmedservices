@@ -69,7 +69,7 @@ public class UserJDBCTemplate implements UserDAOInterface {
 				+"`uniqueId`='"+ubo.getuId()+"',"
 				+"`role`='"+ubo.getRole()+"',"
 				+"`loginStatus`='"+ubo.getLoginSt()+"',"
-				+"`lastSeentimestamp`= CURRENT_TIMESTAMP,"
+				+"`lastSeen`= CURRENT_TIMESTAMP,"
 				+"`active`='"+ubo.getActive()+"' "
 				+"where username='"+ubo.getUserName()+"'";
 		jdbcTemplateObject.update(SQL);
