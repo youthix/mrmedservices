@@ -5,27 +5,20 @@ import java.util.List;
 
 import org.presentation.entities.customer.ReqObjCustomer;
 import org.presentation.entities.customer.ResObjCustomer;
-import org.presentation.entities.user.ReqObjUser;
-import org.presentation.entities.user.ResObjUser;
 import org.repository.BObjects.CustomerBO;
-import org.repository.BObjects.UserBO;
+
 public class DomainObjCustConverter {
 
-	private UserBO ubo;
-	private ResObjUser resObj;
-	
-	public List<ResObjUser> convertFromBOList(List<UserBO> ubos){
-		List<ResObjUser> resList=new ArrayList<ResObjUser>();
-		for(UserBO ubo:ubos){
-			resList.add(convertFromBO(ubo));
+	public List<ResObjCustomer> convertFromBOList(List<CustomerBO> cubols) {
+		List<ResObjCustomer> resList = new ArrayList<ResObjCustomer>();
+		for (CustomerBO cubo : cubols) {
+			resList.add(convertFromBO(cubo));
 		}
-		return resList;		
+		return resList;
 	}
-	
 
-	
-	public CustomerBO convertToBO(ReqObjCustomer req){
-		CustomerBO cbo=new CustomerBO();
+	public CustomerBO convertToBO(ReqObjCustomer req) {
+		CustomerBO cbo = new CustomerBO();
 		cbo.setActive(req.getAct());
 		cbo.setAdd(req.getAdd());
 		cbo.setAge(req.getAge());
@@ -42,14 +35,14 @@ public class DomainObjCustConverter {
 		cbo.setPan(req.getPan());
 		cbo.setTin(req.getTin());
 		cbo.setuId(req.getuId());
-		
+
 		return cbo;
 	}
-	
-	public ResObjCustomer convertFromBO(CustomerBO cBObj){
-		
-		ResObjCustomer resObjCust=new ResObjCustomer();
-		
+
+	public ResObjCustomer convertFromBO(CustomerBO cBObj) {
+
+		ResObjCustomer resObjCust = new ResObjCustomer();
+
 		resObjCust.setAct(cBObj.getActive());
 		resObjCust.setAdd(cBObj.getAdd());
 		resObjCust.setAge(cBObj.getAge());
@@ -66,7 +59,7 @@ public class DomainObjCustConverter {
 		resObjCust.setPan(cBObj.getPan());
 		resObjCust.setTin(cBObj.getTin());
 		resObjCust.setuId(cBObj.getuId());
-		
+
 		return resObjCust;
-	}	
+	}
 }

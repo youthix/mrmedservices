@@ -3,8 +3,8 @@ package org.service.delegateService;
 import java.util.List;
 
 import org.presentation.entities.ResStatus;
-import org.presentation.entities.customer.ReqObjCustomer;
 import org.presentation.entities.customer.ReqObjCustomerList;
+import org.presentation.entities.customer.ResObjCustomer;
 import org.presentation.entities.customer.ResObjCustomerList;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ReqObjUserList;
@@ -19,7 +19,7 @@ import net.sf.ehcache.CacheManager;
 
 public class ServiceDelegator {
 
-	private RepositoryDelegator repositoryDelegator;	
+	private RepositoryDelegator repositoryDelegator;
 	private CacheManager cacheManager;
 	ResObjUserList res;
 	ResStatus resStatus;
@@ -36,76 +36,64 @@ public class ServiceDelegator {
 		throw new ServiceException("ExceptionTest");
 		// return null;
 
-	}	
-	
+	}
+
 	public void saveUser(ReqObjUserList reqparam) {
-		for(ReqObjUser req:reqparam.getUl()){
-		 repositoryDelegator.saveUser(req,reqparam.getBid());
-		}	
+
+		repositoryDelegator.saveUser(reqparam);
+
 		return;
 	}
-	
+
 	public ResObjUserList getUsers(ReqObjUserList reqparam) {
-		res=new ResObjUserList();
+		res = new ResObjUserList();
 		List<ResObjUser> users = null;
-		for(ReqObjUser req: reqparam.getUl()){
-			if(null==users){
-				users=repositoryDelegator.getUsers(req,reqparam.getBid());
-			}
-			else{
-		    users.addAll(repositoryDelegator.getUsers(req,reqparam.getBid()));
-			}
-		}
+
+		users = repositoryDelegator.getUsers(reqparam, reqparam.getBid());
 		res.setUl(users);
 		return res;
 	}
-	
+
 	public void saveCustomer(ReqObjCustomerList reqparam) {
-		
-		 repositoryDelegator.saveCustomer(reqparam);
-	
+
+		repositoryDelegator.saveCustomer(reqparam);
+
 		return;
 	}
-	
+
 	public ResObjCustomerList getCustomer(ReqObjCustomerList reqparam) {
-		
-		res=new ResObjUserList();
-		
-		List<ResObjUser> users = null;
-		
-		for(ReqObjCustomer req: reqparam.getCl()){
-			if(null==users){
-				users=repositoryDelegator.getUsers(req);
-			}
-			else{
-		    users.addAll(repositoryDelegator.getUsers(req));
-			}
-		}
-		res.setUl(users);
+
+		ResObjCustomerList res = new ResObjCustomerList();
+
+		List<ResObjCustomer> customers = null;
+
+		customers = repositoryDelegator.getCustomer(reqparam);
+
+		res.setCl(customers);
+
 		return res;
-	}	
-	
+	}
+
 	public ResObjUserList doLogin(ReqObjUserList reqparam) {
-		res=new ResObjUserList();
-		resStatus=res.getResStatus();
+		res = new ResObjUserList();
+		resStatus = res.getResStatus();
 		List<ResObjUser> users = null;
-		for(ReqObjUser req: reqparam.getUl()){			
-				users=repositoryDelegator.doLogin(req,reqparam.getBid());					
+		for (ReqObjUser req : reqparam.getUl()) {
+			users = repositoryDelegator.doLogin(req, reqparam.getBid());
 		}
-		if(null!=users){
+		if (null != users) {
 			res.setUl(users);
 			resStatus.setCode("SUCCESS");
 			resStatus.setMsg("Login Successful !!");
 			resStatus.setStatus("SUCCESS");
-		}
-		else{
+		} else {
 			resStatus.setCode("FAILURE");
 			resStatus.setMsg("Login Unsuccessful . Please check your credentials!!");
 			resStatus.setStatus("FAILURE");
-		}		
+		}
 		return res;
 	}
-	
+
 	public RepositoryDelegator getRepositoryDelegator() {
 		return repositoryDelegator;
 	}

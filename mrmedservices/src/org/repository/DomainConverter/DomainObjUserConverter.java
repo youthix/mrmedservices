@@ -11,8 +11,7 @@ import org.repository.BObjects.CustomerBO;
 import org.repository.BObjects.UserBO;
 public class DomainObjUserConverter {
 
-	private UserBO ubo;
-	private ResObjUser resObj;
+
 	
 	public List<ResObjUser> convertFromBOList(List<UserBO> ubos){
 		List<ResObjUser> resList=new ArrayList<ResObjUser>();
@@ -23,7 +22,7 @@ public class DomainObjUserConverter {
 	}
 	
 	public UserBO convertToBO(ReqObjUser req){
-		ubo=new UserBO();
+		UserBO ubo=new UserBO();
 		ubo.setActive(req.getAct());
 		ubo.setAdd(req.getAdd());
 		ubo.setAge(req.getAge());
@@ -43,7 +42,7 @@ public class DomainObjUserConverter {
 	}
 	
 	public ResObjUser convertFromBO(UserBO uBObj){
-		resObj=new ResObjUser();
+		ResObjUser resObj=new ResObjUser();
 		resObj.setAct(uBObj.getActive());
 		resObj.setAdd(uBObj.getAdd());
 		resObj.setAge(uBObj.getAge());
