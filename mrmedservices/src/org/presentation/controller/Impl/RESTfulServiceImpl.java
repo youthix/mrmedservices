@@ -237,9 +237,9 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	}
 
 	@Override
-	public ResObjUserList getUser(ReqObjUserList reqparam) {
+	public ResObjUserList getUsers(ReqObjUserList reqparam) {
 		// TODO Auto-generated method stub
-		serviceDelegator.getUser(reqparam);
+		serviceDelegator.getUsers(reqparam);
 		return null;
 	}
 

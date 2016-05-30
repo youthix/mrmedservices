@@ -1,11 +1,15 @@
 package org.service.delegateService;
 
+import java.util.List;
+
 import net.sf.ehcache.CacheManager;
 
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ReqObjUserList;
+import org.presentation.entities.user.ResObjUser;
 import org.presentation.entities.user.ResObjUserList;
 import org.presentation.util.ServiceException;
+import org.repository.BObjects.UserBO;
 import org.repository.RepositoryDelegate.RepositoryDelegator;
 
 import com.googlecode.ehcache.annotations.Cacheable;
@@ -14,6 +18,7 @@ public class ServiceDelegator {
 
 	private RepositoryDelegator repositoryDelegator;	
 	private CacheManager cacheManager;
+	ResObjUserList res;
 
 	@Cacheable(cacheName = "HelloCache")
 	public String doHello() {
@@ -27,7 +32,7 @@ public class ServiceDelegator {
 		throw new ServiceException("ExceptionTest");
 		// return null;
 
-	}
+	}	
 	
 	public void saveUser(ReqObjUserList reqparam) {
 		for(ReqObjUser req:reqparam.getUl()){
@@ -36,12 +41,21 @@ public class ServiceDelegator {
 		return;
 	}
 	
-	public ResObjUserList getUser(ReqObjUserList reqparam) {
-		// TODO Auto-generated method stub
-		
-		return null;
+	public ResObjUserList getUsers(ReqObjUserList reqparam) {
+		res=new ResObjUserList();
+		List<ResObjUser> users = null;
+		for(ReqObjUser req: reqparam.getUl()){
+			if(null==users){
+				users=repositoryDelegator.getUsers(req);
+			}
+			else{
+		    users.addAll(repositoryDelegator.getUsers(req));
+			}
+		}
+		res.setUl(users);
+		return res;
 	}
-
+	
 	public RepositoryDelegator getRepositoryDelegator() {
 		return repositoryDelegator;
 	}

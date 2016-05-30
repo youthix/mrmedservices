@@ -1,12 +1,24 @@
 package org.repository.Mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.presentation.entities.user.ReqObjUser;
+import org.presentation.entities.user.ResObjUser;
 import org.repository.BObjects.UserBO;
 
 public class UserObjConverter {
 
 	private UserBO ubo;
-	private ReqObjUser reqObj;
+	private ResObjUser resObj;
+	
+	public List<ResObjUser> convertFromBOList(List<UserBO> ubos){
+		List<ResObjUser> resList=new ArrayList<ResObjUser>();
+		for(UserBO ubo:ubos){
+			resList.add(convertFromBO(ubo));
+		}
+		return resList;		
+	}
 	
 	public UserBO convertToBO(ReqObjUser req){
 		ubo=new UserBO();
@@ -28,23 +40,23 @@ public class UserObjConverter {
 		return ubo;
 	}
 	
-	public ReqObjUser convertFromBO(UserBO uBObj){
-		reqObj=new ReqObjUser();
-		reqObj.setAct(uBObj.getActive());
-		reqObj.setAdd(uBObj.getAdd());
-		reqObj.setAge(uBObj.getAge());
-		reqObj.setCon(uBObj.getConNu());
-		reqObj.setEm(uBObj.getEmail());
-		reqObj.setFn(uBObj.getfName());
-		reqObj.setGen(uBObj.getGender());
-		reqObj.setJd(uBObj.getjDate());
-		reqObj.setLn(uBObj.getlName());
-		reqObj.setLs(uBObj.getLastSeen());
-		reqObj.setLst(uBObj.getLoginSt());
-		reqObj.setPwd(uBObj.getPwd());
-		reqObj.setRo(uBObj.getPwd());
-		reqObj.setuId(uBObj.getuId());
-		reqObj.setUn(uBObj.getUserName());
-		return reqObj;
+	private ResObjUser convertFromBO(UserBO uBObj){
+		resObj=new ResObjUser();
+		resObj.setAct(uBObj.getActive());
+		resObj.setAdd(uBObj.getAdd());
+		resObj.setAge(uBObj.getAge());
+		resObj.setCon(uBObj.getConNu());
+		resObj.setEm(uBObj.getEmail());
+		resObj.setFn(uBObj.getfName());
+		resObj.setGen(uBObj.getGender());
+		resObj.setJd(uBObj.getjDate());
+		resObj.setLn(uBObj.getlName());
+		resObj.setLs(uBObj.getLastSeen());
+		resObj.setLst(uBObj.getLoginSt());
+		resObj.setPwd(uBObj.getPwd());
+		resObj.setRo(uBObj.getPwd());
+		resObj.setuId(uBObj.getuId());
+		resObj.setUn(uBObj.getUserName());
+		return resObj;
 	}
 }

@@ -17,6 +17,7 @@ import org.repository.DAOInterface.UserDAOInterface;
 import org.repository.Mapper.IndexingInfoMapper;
 import org.repository.Mapper.PageIDDetailsMapper;
 import org.repository.Mapper.TagsPageIDMapper;
+import org.repository.Mapper.UserBOMapper;
 import org.repository.Mapper.UserMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -34,332 +35,63 @@ public class UserJDBCTemplate implements UserDAOInterface {
 		this.jdbcTemplateObject = new JdbcTemplate(dataSource);
 	}
 
-	public void create() {
-		/*
-		 * String SQL =
-		 * "insert into tags_pages_mapping_male (name, age) values (?, ?)";
-		 * 
-		 * jdbcTemplateObject.update("name","age"); System.out.println(
-		 * "Created Record Name = " + name + " Age = " + age); return;
-		 */
-	}
-
-	public void create(String sqlQueryString) {
-		/*
-		 * String SQL =
-		 * "insert into tags_pages_mapping_male (name, age) values (?, ?)";
-		 */
-
-		jdbcTemplateObject.update(sqlQueryString);
-
-		return;
-	}
-	
-	public void createUser(User user) {
-		
-		  String SQL =
-		  "insert into hotornot.users_sorted (`name`, `profile_picture`,"
-		  + " `fbId`, `gender`, `lives_in`, `live_in_id`, `lives_in_country`, `home_town`, "
-		  + "`home_town_id`, `home_town_country`, `currently_at`, `currently_at_id`, `date_of_birth`, "
-		  + " `app_name`, `raw_data`,`email`,`key`,`logouttime`) values ('"+user.getName()+"',' "
-		  + user.getProfilePicture()+"','"+user.getFbId()+"','"+ user.getGender()+"','"+ user.getLivesIn()+"','"+ user.getLivesInId()+"','"
-		  + user.getLivesInCountry()+"','"+ user.getHomeTown()+"','"+ user.getHomeTownId()+"','"+ user.getHomeTownCountry()+"','"+ user.getCurrentlyAt()+"','"
-		  + user.getCurrentlyAtId()+"','"+ user.getDateOfBirth()+"','"+ user.getAppName()+"','"+ user.getRawData()+"','"+ user.getEmail()+"','"+ user.getSeckey()
-		  		+ "',null)";	 
-
-		jdbcTemplateObject.update(SQL);
-
-		return;
-	}
-	
-	public void deleteUser(User user) {
-		
-		  String SQL =
-		  "delete from hotornot.users_sorted where fbid='"+user.getFbId()+"'";
-		  jdbcTemplateObject.update(SQL);
-		  
-		  SQL =
-		  "delete from hotornot_"+user.getAgeGroup()+".users_sorted_"+user.getGender()+" where fbid='"+user.getFbId()+"'";
-		  jdbcTemplateObject.update(SQL);
-
-		 return;
-	}
-	
-	
-	public void updateUser(User user) {
-		
-		  String SQL =
-		  "update hotornot.users_sorted set `name`='"+user.getName()+"',"
-		  +"`profile_picture`='"+user.getProfilePicture()+"',`gender`='"+user.getGender()+"',`lives_in`='"+user.getLivesIn()+"',"
-		  +"`live_in_id`='"+user.getLivesInId()+"', `lives_in_country`='"+user.getLivesInCountry()+"',`home_town`='"+user.getHomeTown()+"',`home_town_id`='"+user.getHomeTownId()+"',"
-		  +"`home_town_country`='"+user.getHomeTownCountry()+"',`currently_at`='"+user.getCurrentlyAt()+"',`currently_at_id`='"+user.getCurrentlyAtId()
-		  +"',`date_of_birth`='"+user.getDateOfBirth()+"',"
-		  +"`age`='"+user.getAge()+"',"
-		  +"`key`='"+user.getSeckey()+"',"
-		  +"`active`='Y',"
-		  +"`app_name`='"+user.getAppName()+"',`raw_data`='"+user.getRawData()+"',`email`='"+user.getEmail()+"',`logintime`=CURRENT_TIMESTAMP WHERE fbId='"
-		  +user.getFbId()+"'";
-		  jdbcTemplateObject.update(SQL);
-		  
-		  SQL =
-		  "update hotornot_"+user.getAgeGroup()+".users_sorted_"+user.getGender()+" set `name`='"+user.getName()+"',"
-		  +"`profile_picture`='"+user.getProfilePicture()+"',`gender`='"+user.getGender()+"',`lives_in`='"+user.getLivesIn()+"',"
-		  +"`live_in_id`='"+user.getLivesInId()+"', `lives_in_country`='"+user.getLivesInCountry()+"',`home_town`='"+user.getHomeTown()+"',`home_town_id`='"+user.getHomeTownId()+"',"
-		  +"`home_town_country`='"+user.getHomeTownCountry()+"',`currently_at`='"+user.getCurrentlyAt()+"',`currently_at_id`='"+user.getCurrentlyAtId()
-		  +"',`date_of_birth`='"+user.getDateOfBirth()+"',"
-		  +"`age`='"+user.getAge()+"',"
-		  +"`active`='Y',"
-		  +"`app_name`='"+user.getAppName()+"',`raw_data`='"+user.getRawData()+"',`email`='"+user.getEmail()+"' WHERE fbId='"+user.getFbId()+"'";
-		  jdbcTemplateObject.update(SQL);
-				  
-		return;
-	}
-	
-	public void deactivateUser(User user) {
-		
-		  String SQL =
-		  "update hotornot.users_sorted set `active`='N' WHERE fbId='"+user.getFbId()+"' AND seckey='"+user.getSeckey()+"' AND date_of_birth='"+user.getDateOfBirth()+"'";
-		
-/*		String SQL =
-				  "update hotornot.users_sorted set `active`='N' WHERE fbId='"+user.getFbId()+"' AND date_of_birth='"+user.getDateOfBirth()+"'";*/
-		  jdbcTemplateObject.update(SQL);
-		  
-		  SQL =		 
-		  "update hotornot_"+user.getAgeGroup()+".users_sorted_"+user.getGender()+" set `active`='N' WHERE fbId='"+user.getFbId()+"' AND date_of_birth='"+user.getDateOfBirth()+"'";
-		  jdbcTemplateObject.update(SQL);
-				  
-		return;
-	}
-	
-	public void updateLogOut(String fbIdParam) {
-		
-		  String SQL =
-		  "update hotornot.users_sorted set `logintime`=CURRENT_TIMESTAMP WHERE fbId='"
-		  +fbIdParam+"'";
-		  jdbcTemplateObject.update(SQL);
-		  
-
-	}	
-
-	public void insertBatchTagsToPageID(final List<TagPage> tagPagesBatchList, String dbQualifier,
-			String tableQualifier) {
-		try {
-			Connection con = jdbcTemplateObject.getDataSource().getConnection();
-			con.setAutoCommit(false);
-			Statement stmt = con.createStatement();
-			for (TagPage tp : tagPagesBatchList) {
-
-				stmt.addBatch("insert into " + "tags_pages_mapping_" + tableQualifier + "(`tags`, `page_ids`) values ('"
-						+ tp.getTags() + "','" + tp.getPageIds() + "')");
-
-			}
-			// Create an int[] to hold returned values
-			int[] count = stmt.executeBatch();
-
-			// Explicitly commit statements to apply changes
-			con.commit();
-			con.setAutoCommit(true);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	
-	public void insertBatchPageIDToFBID(final List<Page> pagesBatchList, String dbQualifier,
-			String tableQualifier) {
-
-		try {
-			Connection con = jdbcTemplateObject.getDataSource().getConnection();
-			con.setAutoCommit(false);
-			Statement stmt = con.createStatement();
-			for (Page p : pagesBatchList) {
-				stmt.addBatch("insert into page_details_" + tableQualifier + "(`page_id`, `fbids`,`table`) values ('"
-						+ p.getId() + "','" + p.getFbIds() + "','" + p.getTable() + "')");
-			}
-			// Create an int[] to hold returned values
-			int[] count = stmt.executeBatch();
-
-			// Explicitly commit statements to apply changes
-			con.commit();
-			con.setAutoCommit(true);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public IndexingInfo selectIndexingInfo(String db){
-		db="hotornot_"+db;
-		String SQL="select * from hotornot.indexing_info where id = '"+db+"'";
-		List<IndexingInfo> indexingInfo=jdbcTemplateObject.query(SQL,new IndexingInfoMapper());		  
-		return indexingInfo.get(0);
-	}
-	
-	public void insertIndexingInfo(String db,String pageId){
-		String SQL="insert into hotornot.indexing_info (`id`,`lastPageId`) values ('"+db+"','"+pageId+"')";
-		jdbcTemplateObject.update(SQL);		  
-		return;
-	}
-	
-	public void updateIndexingInfo(String db,String pageId){
-		String SQL="update hotornot.indexing_info set `lastPageId`= '"+pageId+"',executionDate=CURRENT_TIMESTAMP where id='"+db+"'";
-		jdbcTemplateObject.update(SQL);		  
-		return;
-	}
-
-	public User getUser(Integer id) {
-		String SQL = "select * from users_sorted_male where id = ?";
-		User user = jdbcTemplateObject.queryForObject(SQL, new Object[] { id }, new UserMapper());
-		return null;
-	}
-
-	public User getUser(User userParam) {
-		
-		User userRetObj = null;
-		
-		String SQL = "select * from hotornot.users_sorted where fbId ='" +userParam.getFbId() + "'";
-		
-		List<User> users = jdbcTemplateObject.query(SQL, new UserMapper());
-		if (null!=users && users.size()>0){
-			userRetObj = users.get(0);
-		}
-		return userRetObj;
-	}
-
-	public List<User> listUsers(String sqlQueryString) {
-		/*
-		 * //String SQL = "select * from users_sorted_male"; String SQL =
-		 * "select * from users_sorted_male group by tags";
-		 */
-		List<User> users = jdbcTemplateObject.query(sqlQueryString, new UserMapper());
-		return users;
-	}
-
-	public List<User> listUsers(String tags, String dbQualifier, String tableQualifier) {
-		String SQL = "select * from hotornot_" + dbQualifier + ".users_sorted_" + tableQualifier + " where tags like '%"
-				+ tags + "%'";
-		List<User> users = jdbcTemplateObject.query(SQL, new UserMapper());
-		return users;
-	}
-
-	public void delete(Integer id) {
-		String SQL = "delete from tags_pages_mapping_male where id = ?";
-		/* jdbcTemplateObject.update(SQL, id); */
-		System.out.println("Deleted Record with ID = " + id);
-		return;
-	}
-
-	public void emptyIndexTables(String dbName) {
-		String SQL = "truncate table "+dbName+".page_details_female;";
-		jdbcTemplateObject.update(SQL);
-		SQL = "truncate table "+dbName+".page_details_male;";
-		jdbcTemplateObject.update(SQL);
-		SQL = "truncate table "+dbName+".tags_pages_mapping_male;";
-		jdbcTemplateObject.update(SQL);
-		SQL = "truncate table "+dbName+".tags_pages_mapping_female;";
-		jdbcTemplateObject.update(SQL);
-		SQL = "delete from hotornot.indexing_info where id='"+dbName+"';";
-		jdbcTemplateObject.update(SQL);
-		return;
-	}
-
-	public void update(Integer id, Integer age) {
-		String SQL = "update tags_pages_mapping_male set age = ? where id = ?";
-		/* jdbcTemplateObject.update(SQL, age, id); */
-		System.out.println("Updated Record with ID = " + id);
-		return;
-	}
-
-	public List<TagPage> listPages(String tags, String dbQualifier, String tableQualifier) {
-		String SQL = "select * from hotornot_" + dbQualifier + ".tags_pages_mapping_" + tableQualifier
-				+ " where tags like '%" + tags + "%'";
-		System.out.println("Fetch listPages : StartTime >>" + System.currentTimeMillis());
-		System.out.println("Query in listPages >> " + SQL);
-		List<TagPage> pages = jdbcTemplateObject.query(SQL, new TagsPageIDMapper());
-		System.out.println("Fetch listPages size>>" + pages.size());
-		System.out.println("Fetch listPages : Endtime >>" + System.currentTimeMillis());
-		return pages;
-	}
-
-	public List<Page> listPagesWithFbIds(String ids, String dbQualifier, String tableQualifier) {
-		String dbName = "hotornot_" + dbQualifier;
-		String tableName = "page_details_" + tableQualifier;
-		System.out.println("Fetch listPagesWithFbIds : StartTime >>" + System.currentTimeMillis());
-		String SQL = "SELECT * FROM " + dbName + "." + tableName + " WHERE FIND_IN_SET(page_id,'" + ids + "')";
-		System.out.println("Query in listPagesWithFbIds >> " + SQL);
-
-		List<Page> pages = jdbcTemplateObject.query(SQL, new PageIDDetailsMapper());
-		System.out.println("Fetch listPagesWithFbIds : EndTime >>" + System.currentTimeMillis());
-		return pages;
-	}
-	
-	public List<Page> listPageWithFbId(String ids, String dbQualifier, String tableQualifier) {
-		String dbName = "hotornot_" + dbQualifier;
-		String tableName = "page_details_" + tableQualifier;
-		System.out.println("Fetch listPageWithFbId : StartTime >>" + System.currentTimeMillis());
-		String SQL = "SELECT * FROM " + dbName + "." + tableName + " WHERE fbIds like '%"+ids+"%'";
-		System.out.println("Query in listPageWithFbId >> " + SQL);
-
-		List<Page> pages = jdbcTemplateObject.query(SQL, new PageIDDetailsMapper());
-		System.out.println("Fetch listPageWithFbId : EndTime >>" + System.currentTimeMillis());
-		return pages;
-	}
-
-	public List<User> listUsersWithFbIds(String fbIds, String dbQualifier, String tableQualifier) {
-		String dbName = "hotornot_" + dbQualifier;
-		String tableName = "users_sorted_" + tableQualifier;
-		String SQL = "SELECT * FROM " + dbName + "." + tableName + " WHERE FIND_IN_SET(fbId,'" + fbIds + "') AND active='Y'";
-		System.out.println("Query in listUsersWithFbIds >> " + SQL);
-		List<User> users = jdbcTemplateObject.query(SQL, new UserMapper());
-		return users;
-	}
-
-	
-	public void updateFbUsersList(String oldPageId, String newUserList,
-			String dbQualifier, String tableQualifier) {
-		String dbName = "hotornot_" + dbQualifier;
-		String tableName = "page_details_" + tableQualifier;
-		System.out.println("UpdateFbUsersList : StartTime >>" + System.currentTimeMillis());
-		String SQL = "UPDATE " + dbName + "." + tableName + " SET fbIds='"+newUserList+"' WHERE page_id='"+oldPageId+"'";
-		System.out.println("Query in UpdateFbUsersList >> " + SQL);
-		jdbcTemplateObject.update(SQL);
-		System.out.println("UpdateFbUsersList : EndTime >>" + System.currentTimeMillis());
-		return ;
-	}
-	
-	public void updatePageIdList(String tags, String newPageList,
-			String dbQualifier, String tableQualifier){
-		String dbName = "hotornot_" + dbQualifier;
-		String tableName = "tags_pages_mapping_" + tableQualifier;
-		System.out.println("UpdatePageIdList : StartTime >>" + System.currentTimeMillis());
-		String SQL = "UPDATE " + dbName + "." + tableName + " SET page_ids='"+newPageList+"' WHERE tags='"+tags+"'";
-		System.out.println("Query in UpdatePageIdList >> " + SQL);
-		jdbcTemplateObject.update(SQL);
-		System.out.println("UpdatePageIdList : EndTime >>" + System.currentTimeMillis());
-		return;
-	}
-	
-	public void insertTagPageObj(TagPage tagPageObj,
-			String dbQualifier, String tableQualifier){
-		String dbName = "hotornot_" + dbQualifier;
-		String tableName = "tags_pages_mapping_" + tableQualifier;
-		System.out.println("InsertTagPageObj : StartTime >>" + System.currentTimeMillis());
-	
-		String SQL ="insert into " + dbName +"." + tableName + "(`tags`, `page_ids`) values ('"
-				+ tagPageObj.getTags() + "','" + tagPageObj.getPageIds() + "')";
-		System.out.println("Query in InsertTagPageObj  >> " + SQL);
-		jdbcTemplateObject.update(SQL);
-		System.out.println("InsertTagPageObj  : EndTime >>" + System.currentTimeMillis());
-		return;
-	}
-
 	@Override
-	public void saveUser(UserBO ubo) {
-		// TODO Auto-generated method stub
-		
+	public void saveUser(UserBO ubo,String dbName) {
+		String SQL="select count(*) from "+dbName+".user where username='"+ubo.getUserName()+"'";
+		List<UserBO> users=jdbcTemplateObject.query(SQL, new UserBOMapper());
+		if(null !=users && users.size()>0){
+			updateUser( ubo, dbName);
+		}
+		else{
+			createUser( ubo, dbName);
+		}
+		return;
 	}
 	
-
+	@Override
+	public List<UserBO> getUsers(UserBO ubo,String dbName) {
+		String SQL="select count(*) from "+dbName+".user where username='"+ubo.getUserName()+"' or contactNo='"+ubo.getConNu()+"'";
+		List<UserBO> users=jdbcTemplateObject.query(SQL, new UserBOMapper());
+		return users;
+	}
+	
+	
+	private void updateUser(UserBO ubo,String dbName){
+		String SQL="update "+ dbName +".user set "
+				+"`password`='"+ubo.getPwd()+"',"	
+				+"`firstName`='"+ubo.getfName()+"',"
+				+"`lastName`='"+ubo.getlName()+"',"
+				+"`gender`='"+ubo.getGender()+"',"
+				+"`age`='"+ubo.getAge()+"',"
+				+"`address`='"+ubo.getAdd()+"',"
+				+"`contactNo`='"+ubo.getConNu()+"',"
+				+"`email`='"+ubo.getEmail()+"',"
+				+"`uniqueId`='"+ubo.getuId()+"',"
+				+"`role`='"+ubo.getRole()+"',"
+				+"`loginStatus`='"+ubo.getLoginSt()+"',"
+				+"`lastSeentimestamp`= CURRENT_TIMESTAMP,"
+				+"`active`='"+ubo.getActive()
+				+"where where username='"+ubo.getUserName()+"'";
+		jdbcTemplateObject.update(SQL);
+	}
+	
+	private void createUser(UserBO ubo,String dbName){
+		String SQL="insert into " + dbName +".user"
+				+ " (`username`,`password`,`firstName`,`lastName`,`gender`,"
+				+ "`age`,`address`,`contactNo`,`email`,`uniqueId`,`role`) values ("
+				+"'"+ubo.getUserName()+"',"
+				+"'"+ubo.getPwd()+"',"
+				+"'"+ubo.getfName()+"',"
+				+"'"+ubo.getlName()+"',"
+				+"'"+ubo.getGender()+"',"
+				+"'"+ubo.getAge()+"',"
+				+"'"+ubo.getAdd()+"',"
+				+"'"+ubo.getConNu()+"',"
+				+"'"+ubo.getEmail()+"',"
+				+"'"+ubo.getuId()+"',"
+				+"'"+ubo.getRole()
+				+ ")"	;
+		jdbcTemplateObject.update(SQL);
+	}
 
 }
