@@ -6,8 +6,7 @@ import java.util.List;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ResObjUser;
 import org.repository.BObjects.UserBO;
-import org.springframework.stereotype.Component;
-public class UserObjConverter {
+public class DomainObjConverter {
 
 	private UserBO ubo;
 	private ResObjUser resObj;

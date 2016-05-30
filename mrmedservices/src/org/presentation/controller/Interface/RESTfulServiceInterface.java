@@ -9,28 +9,28 @@ import org.presentation.entities.customer.ResObjCustomerList;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUserList;
 
+public interface RESTfulServiceInterface {
 
-public interface RESTfulServiceInterface {	
-	
 	ResObjUserList login(ReqObjUserList reqparam);
-	
+
 	ResObjCust getCustomer(RequestObj reqparam);
-	
-	
+
 	ResObjCust saveCustomer(RequestObj reqparam);
-	
+
 	ResponseObj stock(RequestObj reqparam);
-	
+
 	ResponseObj updateInvoice(RequestObj reqparam);
-	
+
 	ResponseObj getInvoice(RequestObj reqparam);
-	
+
 	ResObjUserList saveUser(ReqObjUserList reqparam);
+
 	ResObjUserList getUsers(ReqObjUserList reqparam);
-	
-	ResObjCustomerList getCustomerFromDB(ReqObjCustomerList reqparam);
-	ResObjCustomerList saveCustomerInDB(ReqObjCustomerList reqparam);
-	
-/*	ResponseObj deleteUser(RequestObj reqparam);*/
-	
+
+	ResObjCustomerList getCustomer(ReqObjCustomerList reqparam);
+
+	ResObjCustomerList saveCustomer(ReqObjCustomerList reqparam);
+
+	/* ResponseObj deleteUser(RequestObj reqparam); */
+
 }

@@ -206,7 +206,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	@Override
 	@POST
-	@Path("/save/users") /* Includes create and update */
+	@Path("/save/user") /* Includes create and update */
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjUserList saveUser(ReqObjUserList reqparam) {
@@ -223,7 +223,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	@Override
 	@POST
-	@Path("/get/users")
+	@Path("/get/user")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjUserList getUsers(ReqObjUserList reqparam) {
@@ -235,10 +235,17 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 		return res;
 	}
 
+	
+
 	@Override
+	@POST
+	@Path("/get/customer")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)	
+	
 	public ResObjCustomerList getCustomer(ReqObjCustomerList reqparam) {
 		
-		ResObjCustomerList res=serviceDelegator.getUsers(reqparam);
+		ResObjCustomerList res=serviceDelegator.getCustomer(reqparam);
 		
 		ResStatus resStatus= new ResStatus();
 		resStatus.setStatus("SUCCESS");
@@ -250,6 +257,11 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	}
 
 	@Override
+	@POST
+	@Path("/save/customer") 
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	/* Includes create and update */
 	public ResObjCustomerList saveCustomer(ReqObjCustomerList reqparam) {
 		// TODO Auto-generated method stub
 		return null;
