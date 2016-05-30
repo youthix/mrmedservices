@@ -37,7 +37,7 @@ public class ServiceDelegator {
 	
 	public void saveUser(ReqObjUserList reqparam) {
 		for(ReqObjUser req:reqparam.getUl()){
-		 repositoryDelegator.saveUser(req);
+		 repositoryDelegator.saveUser(req,reqparam.getBid());
 		}	
 		return;
 	}
@@ -47,10 +47,10 @@ public class ServiceDelegator {
 		List<ResObjUser> users = null;
 		for(ReqObjUser req: reqparam.getUl()){
 			if(null==users){
-				users=repositoryDelegator.getUsers(req);
+				users=repositoryDelegator.getUsers(req,reqparam.getBid());
 			}
 			else{
-		    users.addAll(repositoryDelegator.getUsers(req));
+		    users.addAll(repositoryDelegator.getUsers(req,reqparam.getBid()));
 			}
 		}
 		res.setUl(users);

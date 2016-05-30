@@ -19,13 +19,13 @@ public class RepositoryDelegator {
 	//@Cacheable(cacheName = "fetchPagesCache", keyGenerator = @KeyGenerator(name = "HashCodeCacheKeyGenerator", properties = @Property(name = "includeMethod", value = "false") ) )
 	
 
-	public void saveUser(ReqObjUser req) {		
-		dao.saveUser(userObjConv.convertToBO(req),"stockist_dummy");
+	public void saveUser(ReqObjUser req,String dbId) {		
+		dao.saveUser(userObjConv.convertToBO(req),dbId);
 		return;
 	}
 	
-	public List<ResObjUser> getUsers(ReqObjUser req) {
-		List<UserBO> userBOs= dao.getUsers(userObjConv.convertToBO(req),"stockist_dummy");
+	public List<ResObjUser> getUsers(ReqObjUser req,String dbId) {
+		List<UserBO> userBOs= dao.getUsers(userObjConv.convertToBO(req),dbId);
 		return userObjConv.convertFromBOList(userBOs);
 	}
 	
