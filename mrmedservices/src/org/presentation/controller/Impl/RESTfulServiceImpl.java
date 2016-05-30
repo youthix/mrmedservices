@@ -13,6 +13,8 @@ import org.presentation.entities.ResStatus;
 import org.presentation.entities.ResponseObj;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomerList;
+import org.presentation.entities.supplier.ReqObjSupplierList;
+import org.presentation.entities.supplier.ResObjSupplierList;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUserList;
 import org.presentation.util.ServiceException;
@@ -150,29 +152,6 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 		return respObj;
 	}
 
-	/*
-	 * @Override
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/delete")
-	 * 
-	 * @Produces(MediaType.APPLICATION_JSON)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_JSON) public ResponseObj
-	 * deleteUser(RequestObj reqparam) {
-	 * 
-	 * ResponseObj respObj = new ResponseObj(); try { boolean success =
-	 * serviceDelegator.deleteUser(reqparam); if (success) {
-	 * respObj.setErrorStatus("SUCCESS"); } else {
-	 * respObj.setErrorStatus("FAILURE");
-	 * respObj.setErrorCode(ServiceConstant.GENERIC_ERROR); }
-	 * 
-	 * } catch (Exception excepObj) { return
-	 * ServiceExceptionMapper.toResponse(excepObj);
-	 * 
-	 * } return respObj; }
-	 */
 
 	@GET
 	@Path("/hello")
@@ -196,14 +175,16 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	}
 
-	public ServiceDelegator getServiceDelegator() {
-		return serviceDelegator;
+	
+	@Override
+	@POST
+	@Path("/login")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjUserList login(ReqObjUserList reqparam) {
+		return serviceDelegator.doLogin(reqparam);
 	}
-
-	public void setServiceDelegator(ServiceDelegator serviceDelegator) {
-		this.serviceDelegator = serviceDelegator;
-	}
-
+	
 	@Override
 	@POST
 	@Path("/save/user") /* Includes create and update */
@@ -273,13 +254,54 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 		return res;
 	}
 
+
 	@Override
 	@POST
-	@Path("/login")
+	@Path("/get/supplier")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResObjUserList login(ReqObjUserList reqparam) {
-		return serviceDelegator.doLogin(reqparam);
+	public ResObjSupplierList getCustomer(ReqObjSupplierList reqparam) {
+
+		ResObjSupplierList res = serviceDelegator.getSupplier(reqparam);
+
+		ResStatus resStatus = new ResStatus();
+		resStatus.setStatus("SUCCESS");
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Users successfully fetched !");
+		res.setResStatus(resStatus);
+
+		return res;
 	}
+
+	@Override
+	@POST
+	@Path("/save/supplier")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	/* Includes create and update */
+	public ResObjSupplierList saveSupplier(ReqObjSupplierList reqparam) {
+		ResObjSupplierList res = new ResObjSupplierList();
+
+		serviceDelegator.saveSupplier(reqparam);
+
+		ResStatus resStatus = new ResStatus();
+		resStatus.setStatus("SUCCESS");
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Users successfully fetched !");
+		res.setResStatus(resStatus);
+
+		return res;
+	}
+
+
+	
+	
+	public ServiceDelegator getServiceDelegator() {
+		return serviceDelegator;
+	}
+
+	public void setServiceDelegator(ServiceDelegator serviceDelegator) {
+		this.serviceDelegator = serviceDelegator;
+	}	
 
 }

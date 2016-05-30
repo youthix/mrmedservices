@@ -1,11 +1,11 @@
 package org.presentation.controller.Interface;
 
 import org.presentation.entities.RequestObj;
-import org.presentation.entities.ResObjCust;
-import org.presentation.entities.ResStatus;
 import org.presentation.entities.ResponseObj;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomerList;
+import org.presentation.entities.supplier.ReqObjSupplierList;
+import org.presentation.entities.supplier.ResObjSupplierList;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUserList;
 
@@ -26,6 +26,10 @@ public interface RESTfulServiceInterface {
 	ResObjCustomerList getCustomer(ReqObjCustomerList reqparam);
 
 	ResObjCustomerList saveCustomer(ReqObjCustomerList reqparam);
+	
+	ResObjSupplierList getSupplier(ReqObjSupplierList reqparam);
+	
+	ResObjSupplierList saveCustomer(ReqObjSupplierList reqparam);
 
 	/* ResponseObj deleteUser(RequestObj reqparam); */
 
