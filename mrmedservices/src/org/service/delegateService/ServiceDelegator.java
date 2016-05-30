@@ -72,6 +72,7 @@ public class ServiceDelegator {
 		res=new ResObjUserList();
 		
 		List<ResObjUser> users = null;
+		
 		for(ReqObjCustomer req: reqparam.getCl()){
 			if(null==users){
 				users=repositoryDelegator.getUsers(req);
