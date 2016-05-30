@@ -2,12 +2,11 @@ package org.repository.RepositoryDelegate;
 
 import java.util.List;
 
-import org.presentation.entities.ResponseObj;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ResObjUser;
 import org.repository.BObjects.UserBO;
 import org.repository.DAOInterface.UserDAOInterface;
-import org.repository.Mapper.UserObjConverter;
+import org.repository.DomainConverter.UserObjConverter;
 import org.repository.dbUtilities.ConnectionFactory;
 
 public class RepositoryDelegator {

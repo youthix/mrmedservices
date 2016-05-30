@@ -1,4 +1,4 @@
-package org.repository.Mapper;
+package org.repository.DomainConverter;
 
 import java.util.ArrayList;
 import java.util.List;

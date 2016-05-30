@@ -12,7 +12,7 @@ public class ResObjCustomerList {
 
 	
 	private List<ResObjCustomer> cl;
-	private ResStatus resStatusObj ;
+	private ResStatus resStatus ;
 
 	public List<ResObjCustomer> getCl() {
 		if(null==this.cl){
@@ -25,13 +25,15 @@ public class ResObjCustomerList {
 		this.cl = cl;
 	}
 
-	public ResStatus getResStatusObj() {
-		return resStatusObj;
+	public ResStatus getResStatus() {
+		if(null==this.resStatus){
+			resStatus= new ResStatus();	
+		}
+		return resStatus;
 	}
 
-	public void setResStatusObj(ResStatus resStatusObj) {
-		this.resStatusObj = resStatusObj;
+	public void setResStatus(ResStatus resStatus) {
+		this.resStatus = resStatus;
 	}
-	
 
 }

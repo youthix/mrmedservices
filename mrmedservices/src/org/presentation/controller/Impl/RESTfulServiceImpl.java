@@ -231,7 +231,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	@Override
 	@POST
-	@Path("/save-users")/*Includes create and update*/
+	@Path("/save/users")/*Includes create and update*/
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResStatus saveUser(ReqObjUserList reqparam) {
@@ -245,11 +245,16 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	@Override
 	@POST
-	@Path("/get-users")
+	@Path("/get/users")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResObjUserList getUsers(ReqObjUserList reqparam) {				
-		return serviceDelegator.getUsers(reqparam);
+	public ResObjUserList getUsers(ReqObjUserList reqparam) {	
+		ResObjUserList res=serviceDelegator.getUsers(reqparam);
+		ResStatus resStatus=res.getResStatus();
+		resStatus.setStatus("SUCCESS");
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Users successfully fetched !");
+		return res;
 	}
 
 	@Override
