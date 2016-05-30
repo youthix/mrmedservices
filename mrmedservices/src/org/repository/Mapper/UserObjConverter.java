@@ -9,6 +9,7 @@ public class UserObjConverter {
 	private ReqObjUser reqObj;
 	
 	public void convertToBO(ReqObjUser req){
+		ubo=new UserBO();
 		ubo.setActive(req.getAct());
 		ubo.setAdd(req.getAdd());
 		ubo.setAge(req.getAge());
@@ -27,6 +28,7 @@ public class UserObjConverter {
 	}
 	
 	public void convertFromBO(UserBO uBObj){
+		reqObj=new ReqObjUser();
 		reqObj.setAct(uBObj.getActive());
 		reqObj.setAdd(uBObj.getAdd());
 		reqObj.setAge(uBObj.getAge());
