@@ -3,108 +3,66 @@ package org.repository.DomainConverter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.presentation.entities.customer.ReqObjCustomer;
-import org.presentation.entities.customer.ResObjCustomer;
-import org.presentation.entities.user.ReqObjUser;
-import org.presentation.entities.user.ResObjUser;
-import org.repository.BObjects.CustomerBO;
-import org.repository.BObjects.UserBO;
+import org.presentation.entities.supplier.ReqObjSupplier;
+import org.presentation.entities.supplier.ResObjSupplier;
+import org.repository.BObjects.SupplierBO;
 public class DomainObjSuppConverter {
 
-	private UserBO ubo;
-	private ResObjUser resObj;
 	
-	public List<ResObjUser> convertFromBOList(List<UserBO> ubos){
-		List<ResObjUser> resList=new ArrayList<ResObjUser>();
-		for(UserBO ubo:ubos){
-			resList.add(convertFromBO(ubo));
+	public List<ResObjSupplier> convertFromBOList(List<SupplierBO> sbos){
+		List<ResObjSupplier> resList=new ArrayList<ResObjSupplier>();
+		for(SupplierBO sbo:sbos){
+			resList.add(convertFromBO(sbo));
 		}
 		return resList;		
 	}
 	
-	public UserBO convertToBO(ReqObjUser req){
-		ubo=new UserBO();
-		ubo.setActive(req.getAct());
-		ubo.setAdd(req.getAdd());
-		ubo.setAge(req.getAge());
-		ubo.setConNu(req.getCon());
-		ubo.setEmail(req.getEm());
-		ubo.setfName(req.getFn());
-		ubo.setGender(req.getGen());
-		ubo.setjDate(req.getJd());
-		ubo.setLastSeen(req.getLs());
-		ubo.setlName(req.getLn());
-		ubo.setLoginSt(req.getLst());
-		ubo.setPwd(req.getPwd());
-		ubo.setRole(req.getRo());
-		ubo.setuId(req.getuId());
-		ubo.setUserName(req.getUn());
-		return ubo;
+	public SupplierBO convertToBO(ReqObjSupplier req){
+		SupplierBO sbo =new SupplierBO();
+		sbo.setActive(req.getAct());
+		sbo.setAdd(req.getAdd());
+		sbo.setAge(req.getAge());
+		sbo.setCompany(req.getComN());
+		sbo.setConNu(req.getConNu());
+		sbo.setContPer(req.getConPer());
+		sbo.setEmail(req.getEm());;
+		sbo.setfName(req.getFn());
+		sbo.setGender(req.getGen());
+		sbo.setjDate(req.getJd());
+		sbo.setLastSeen(req.getLs());
+		sbo.setlName(req.getLn());
+		sbo.setlNo(req.getlNo());
+		sbo.setPan(req.getPan());
+		sbo.setSuppID(req.getsId());
+		sbo.setSuppTy(req.getsTy());
+		sbo.setTin(req.getTin());
+		sbo.setuId(req.getuId());
+		
+		return sbo;
 	}
 	
-	public ResObjUser convertFromBO(UserBO uBObj){
-		resObj=new ResObjUser();
-		resObj.setAct(uBObj.getActive());
-		resObj.setAdd(uBObj.getAdd());
-		resObj.setAge(uBObj.getAge());
-		resObj.setCon(uBObj.getConNu());
-		resObj.setEm(uBObj.getEmail());
-		resObj.setFn(uBObj.getfName());
-		resObj.setGen(uBObj.getGender());
-		resObj.setJd(uBObj.getjDate());
-		resObj.setLn(uBObj.getlName());
-		resObj.setLs(uBObj.getLastSeen());
-		resObj.setLst(uBObj.getLoginSt());
-		resObj.setPwd(uBObj.getPwd());
-		resObj.setRo(uBObj.getPwd());
-		resObj.setuId(uBObj.getuId());
-		resObj.setUn(uBObj.getUserName());
+	public ResObjSupplier convertFromBO(SupplierBO sBObj){
+		ResObjSupplier resObj=new ResObjSupplier();
+		resObj.setAct(sBObj.getActive());
+		resObj.setAdd(sBObj.getAdd());
+		resObj.setAge(sBObj.getAge());
+		resObj.setComN(sBObj.getCompany());
+		resObj.setConNu(sBObj.getConNu());
+		resObj.setConPer(sBObj.getContPer());
+		resObj.setEm(sBObj.getEmail());
+		resObj.setFn(sBObj.getfName());
+		resObj.setGen(sBObj.getGender());
+		resObj.setJd(sBObj.getjDate());
+		resObj.setLn(sBObj.getlName());
+		resObj.setlNo(sBObj.getlNo());
+		resObj.setLs(sBObj.getLastSeen());
+		resObj.setPan(sBObj.getPan());
+		resObj.setsId(sBObj.getSuppID());
+		resObj.setsTy(sBObj.getSuppTy());
+		resObj.setTin(sBObj.getTin());
+		resObj.setuId(sBObj.getuId());
+
 		return resObj;
 	}
 	
-	public CustomerBO convertToBO(ReqObjCustomer req){
-		CustomerBO cbo=new CustomerBO();
-		cbo.setActive(req.getAct());
-		cbo.setAdd(req.getAdd());
-		cbo.setAge(req.getAge());
-		cbo.setConNu(req.getCon());
-		cbo.setCusID(req.getcId());
-		cbo.setCusTy(req.getcTy());
-		cbo.setEmail(req.getEm());
-		cbo.setfName(req.getFn());
-		cbo.setGender(req.getGen());
-		cbo.setjDate(req.getJd());
-		cbo.setLastSeen(req.getLs());
-		cbo.setlName(req.getLn());
-		cbo.setlNo(req.getlNo());
-		cbo.setPan(req.getPan());
-		cbo.setTin(req.getTin());
-		cbo.setuId(req.getuId());
-		
-		return cbo;
-	}
-	
-	public ResObjCustomer convertFromBO(CustomerBO cBObj){
-		
-		ResObjCustomer resObjCust=new ResObjCustomer();
-		
-		resObjCust.setAct(cBObj.getActive());
-		resObjCust.setAdd(cBObj.getAdd());
-		resObjCust.setAge(cBObj.getAge());
-		resObjCust.setcId(cBObj.getCusID());
-		resObjCust.setCon(cBObj.getConNu());
-		resObjCust.setcTy(cBObj.getCusTy());
-		resObjCust.setEm(cBObj.getEmail());
-		resObjCust.setFn(cBObj.getfName());
-		resObjCust.setGen(cBObj.getGender());
-		resObjCust.setJd(cBObj.getjDate());
-		resObjCust.setLn(cBObj.getlName());
-		resObjCust.setlNo(cBObj.getlNo());
-		resObjCust.setLs(cBObj.getLastSeen());
-		resObjCust.setPan(cBObj.getPan());
-		resObjCust.setTin(cBObj.getTin());
-		resObjCust.setuId(cBObj.getuId());
-		
-		return resObjCust;
-	}	
 }

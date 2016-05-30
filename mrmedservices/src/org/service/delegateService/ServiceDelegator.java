@@ -6,6 +6,9 @@ import org.presentation.entities.ResStatus;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomer;
 import org.presentation.entities.customer.ResObjCustomerList;
+import org.presentation.entities.supplier.ReqObjSupplierList;
+import org.presentation.entities.supplier.ResObjSupplier;
+import org.presentation.entities.supplier.ResObjSupplierList;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUser;
@@ -73,6 +76,26 @@ public class ServiceDelegator {
 
 		return res;
 	}
+	
+	public void saveSupplier(ReqObjSupplierList reqparam) {
+
+		repositoryDelegator.saveSupplier(reqparam);
+
+		return;
+	}
+
+	public ResObjSupplierList getSupplier(ReqObjSupplierList reqparam) {
+
+		ResObjSupplierList res = new ResObjSupplierList();
+
+		List<ResObjSupplier> suppliers = null;
+
+		suppliers = repositoryDelegator.getSupplier(reqparam);
+
+		res.setSl(suppliers);
+
+		return res;
+	}	
 
 	public ResObjUserList doLogin(ReqObjUserList reqparam) {
 		res = new ResObjUserList();

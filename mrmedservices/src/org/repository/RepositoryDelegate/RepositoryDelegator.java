@@ -6,10 +6,14 @@ import java.util.List;
 import org.presentation.entities.customer.ReqObjCustomer;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomer;
+import org.presentation.entities.supplier.ReqObjSupplier;
+import org.presentation.entities.supplier.ReqObjSupplierList;
+import org.presentation.entities.supplier.ResObjSupplier;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUser;
 import org.repository.BObjects.CustomerBO;
+import org.repository.BObjects.SupplierBO;
 import org.repository.BObjects.UserBO;
 import org.repository.DAOInterface.UserDAOInterface;
 import org.repository.DomainConverter.DomainObjCustConverter;
@@ -84,6 +88,30 @@ public class RepositoryDelegator {
 
 		return respObjCusls;
 	}
+	
+	public void saveSupplier(ReqObjSupplierList reqparam) {
+		for (ReqObjSupplier req : reqparam.getSl()) {
+			// dao.saveSupplier(domObjSuppConv.convertToBO(req),
+			// "stockist_dummy");
+		}
+
+		return;
+	}
+
+	public List<ResObjSupplier> getSupplier(ReqObjSupplierList reqparam) {
+
+		List<SupplierBO> suppBOls = null;
+
+		List<ResObjSupplier> respObjSuppls = new ArrayList<ResObjSupplier>();
+
+		for (ReqObjSupplier req : reqparam.getSl()) {
+
+			//suppBOls = dao.getSupplier(domObjSuppConv.convertToBO(req));
+			//respObjSuppls.addAll(domObjSuppConv.convertFromBOList(custBOls));
+		}
+
+		return respObjSuppls;
+	}	
 
 	public UserDAOInterface getDao() {
 		return dao;
