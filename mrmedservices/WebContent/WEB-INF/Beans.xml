@@ -38,7 +38,7 @@
 		<property name="connectionFactory" ref="connectionFactory" />
 	</bean>
 	
-	<bean id="userObjConv" class="org.repository.Mapper.UserObjConverter">
+	<bean id="userObjConv" class="org.repository.DomainConverter.UserObjConverter">
 	</bean>
 
 	<bean id="serviceDelegator" class="org.service.delegateService.ServiceDelegator">
