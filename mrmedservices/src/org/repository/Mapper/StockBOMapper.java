@@ -18,7 +18,9 @@ public class StockBOMapper implements RowMapper<StockBO>{
 		sbo.setMfgDt(rs.getString("manufacturing"));
 		sbo.setPrice(rs.getString("price"));
 		sbo.setProductID(rs.getString("productId"));
-		sbo.setQuantity(rs.getString("quantity"));
+		sbo.setBuyQty(rs.getString("buyQty"));
+		sbo.setLeftQty(rs.getString("leftQty"));
+		sbo.setLocator(rs.getString("locator"));
 		sbo.setStockID(rs.getString("stockId"));
 		sbo.setUnitID(rs.getString("unitId"));
 		return sbo;

@@ -10,9 +10,11 @@ public class StockBO {
 	private String batch;
 	private String mfgDt;
 	private String expDt;
-	private String quantity;
+	private String buyQty;
+	private String leftQty;
 	private String unitID;
 	private String price;
+	private String locator;
 	private String active;
 	public String getStockID() {
 		return stockID;
@@ -43,13 +45,7 @@ public class StockBO {
 	}
 	public void setExpDt(String expDt) {
 		this.expDt = expDt;
-	}
-	public String getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
-	}
+	}	
 	public String getUnitID() {
 		return unitID;
 	}
@@ -68,8 +64,23 @@ public class StockBO {
 	public void setActive(String active) {
 		this.active = active;
 	}
-	
-	
-	
+	public String getBuyQty() {
+		return buyQty;
+	}
+	public void setBuyQty(String buyQty) {
+		this.buyQty = buyQty;
+	}
+	public String getLeftQty() {
+		return leftQty;
+	}
+	public void setLeftQty(String leftQty) {
+		this.leftQty = leftQty;
+	}
+	public String getLocator() {
+		return locator;
+	}
+	public void setLocator(String locator) {
+		this.locator = locator;
+	}	
 
 }
