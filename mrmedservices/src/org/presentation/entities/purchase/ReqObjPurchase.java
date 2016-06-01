@@ -2,110 +2,112 @@ package org.presentation.entities.purchase;
 
 public class ReqObjPurchase {
 	
-	private String un;
-	private String pwd;
-	private String fn;
-	private String ln;
-	private String jd;
-	private String age;
-	private String gen;
-	private String add;
-	private String con;
-	private String em;
-	private String uId;
-	private String ro;
-	private String lst;
-	private String ls;
-	private String act;
-		
-	public String getUn() {
-		return un;
+	private String purID;
+	private String purDt;
+	private String suppID;
+	private String invDet;
+	private String stockInfo;
+	private String paymentStat;
+	private String payInfo;
+	private String userName;
+	private String disc;
+	private String addDisc;
+	private String taxID;
+	private String grossAmt;
+	private String netAmt;
+	private String remarks;
+	private String active;
+	
+	public String getPurID() {
+		return purID;
 	}
-	public void setUn(String un) {
-		this.un = un;
+	public void setPurID(String purID) {
+		this.purID = purID;
 	}
-	public String getPwd() {
-		return pwd;
+	public String getPurDt() {
+		return purDt;
 	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPurDt(String purDt) {
+		this.purDt = purDt;
 	}
-	public String getFn() {
-		return fn;
+	public String getSuppID() {
+		return suppID;
 	}
-	public void setFn(String fn) {
-		this.fn = fn;
+	public void setSuppID(String suppID) {
+		this.suppID = suppID;
 	}
-	public String getLn() {
-		return ln;
+	public String getInvDet() {
+		return invDet;
 	}
-	public void setLn(String ln) {
-		this.ln = ln;
+	public void setInvDet(String invDet) {
+		this.invDet = invDet;
 	}
-	public String getJd() {
-		return jd;
+	public String getStockInfo() {
+		return stockInfo;
 	}
-	public void setJd(String jd) {
-		this.jd = jd;
+	public void setStockInfo(String stockInfo) {
+		this.stockInfo = stockInfo;
 	}
-	public String getAge() {
-		return age;
+	public String getPaymentStat() {
+		return paymentStat;
 	}
-	public void setAge(String age) {
-		this.age = age;
+	public void setPaymentStat(String paymentStat) {
+		this.paymentStat = paymentStat;
 	}
-	public String getGen() {
-		return gen;
+	public String getPayInfo() {
+		return payInfo;
 	}
-	public void setGen(String gen) {
-		this.gen = gen;
+	public void setPayInfo(String payInfo) {
+		this.payInfo = payInfo;
 	}
-	public String getAdd() {
-		return add;
+	public String getUserName() {
+		return userName;
 	}
-	public void setAdd(String add) {
-		this.add = add;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getCon() {
-		return con;
+	public String getDisc() {
+		return disc;
 	}
-	public void setCon(String con) {
-		this.con = con;
+	public void setDisc(String disc) {
+		this.disc = disc;
 	}
-	public String getEm() {
-		return em;
+	public String getAddDisc() {
+		return addDisc;
 	}
-	public void setEm(String em) {
-		this.em = em;
+	public void setAddDisc(String addDisc) {
+		this.addDisc = addDisc;
 	}
-	public String getuId() {
-		return uId;
+	public String getTaxID() {
+		return taxID;
 	}
-	public void setuId(String uId) {
-		this.uId = uId;
+	public void setTaxID(String taxID) {
+		this.taxID = taxID;
 	}
-	public String getRo() {
-		return ro;
+	public String getGrossAmt() {
+		return grossAmt;
 	}
-	public void setRo(String ro) {
-		this.ro = ro;
+	public void setGrossAmt(String grossAmt) {
+		this.grossAmt = grossAmt;
 	}
-	public String getLst() {
-		return lst;
+	public String getNetAmt() {
+		return netAmt;
 	}
-	public void setLst(String lst) {
-		this.lst = lst;
+	public void setNetAmt(String netAmt) {
+		this.netAmt = netAmt;
 	}
-	public String getLs() {
-		return ls;
+	public String getRemarks() {
+		return remarks;
 	}
-	public void setLs(String ls) {
-		this.ls = ls;
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
-	public String getAct() {
-		return act;
+	public String getActive() {
+		return active;
 	}
-	public void setAct(String act) {
-		this.act = act;
+	public void setActive(String active) {
+		this.active = active;
 	}
+
+
 }
