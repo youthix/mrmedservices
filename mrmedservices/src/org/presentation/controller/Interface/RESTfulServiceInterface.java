@@ -4,6 +4,10 @@ import org.presentation.entities.RequestObj;
 import org.presentation.entities.ResponseObj;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomerList;
+import org.presentation.entities.purchase.ReqObjPurchaseList;
+import org.presentation.entities.purchase.ResObjPurchaseList;
+import org.presentation.entities.sale.ReqObjSaleList;
+import org.presentation.entities.sale.ResObjSaleList;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplierList;
 import org.presentation.entities.user.ReqObjUserList;
@@ -30,6 +34,14 @@ public interface RESTfulServiceInterface {
 	ResObjSupplierList getSupplier(ReqObjSupplierList reqparam);
 	
 	ResObjSupplierList saveSupplier(ReqObjSupplierList reqparam);
+	
+	ResObjSaleList getSaleInv(ReqObjSaleList reqparam);
+	
+	ResObjSaleList saveSaleInv(ReqObjSaleList reqparam);
+	
+	ResObjPurchaseList getPurchaseInv(ReqObjPurchaseList reqparam);
+	
+	ResObjPurchaseList savePurchaseInv(ReqObjPurchaseList reqparam);
 
 	/* ResponseObj deleteUser(RequestObj reqparam); */
 

@@ -13,6 +13,10 @@ import org.presentation.entities.ResStatus;
 import org.presentation.entities.ResponseObj;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomerList;
+import org.presentation.entities.purchase.ReqObjPurchaseList;
+import org.presentation.entities.purchase.ResObjPurchaseList;
+import org.presentation.entities.sale.ReqObjSaleList;
+import org.presentation.entities.sale.ResObjSaleList;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplierList;
 import org.presentation.entities.user.ReqObjUserList;
@@ -293,6 +297,81 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 		return res;
 	}
 	
+	@Override
+	@POST
+	@Path("/get/saleInv")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjSaleList getSaleInv(ReqObjSaleList reqparam) {
+
+/*		ResObjSupplierList res = serviceDelegator.getSupplier(reqparam);
+
+		ResStatus resStatus = new ResStatus();
+		resStatus.setStatus("SUCCESS");
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Users successfully fetched !");
+		res.setResStatus(resStatus);*/
+
+		return null;
+	}
+
+	@Override
+	@POST
+	@Path("/save/saleInv")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	/* Includes create and update */
+	public ResObjSaleList saveSaleInv(ReqObjSaleList reqparam) {
+		ResObjSaleList res = new ResObjSaleList();
+
+/*		serviceDelegator.saveSupplier(reqparam);
+
+		ResStatus resStatus = new ResStatus();
+		resStatus.setStatus("SUCCESS");
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Users successfully fetched !");
+		res.setResStatus(resStatus);*/
+
+		return res;
+	}	
+	
+	@Override
+	@POST
+	@Path("/get/purchaseInv")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjPurchaseList getPurchaseInv(ReqObjPurchaseList reqparam) {
+
+/*		ResObjSupplierList res = serviceDelegator.getSupplier(reqparam);
+
+		ResStatus resStatus = new ResStatus();
+		resStatus.setStatus("SUCCESS");
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Users successfully fetched !");
+		res.setResStatus(resStatus);*/
+
+		return null;
+	}
+
+	@Override
+	@POST
+	@Path("/save/purchaseInv")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	/* Includes create and update */
+	public ResObjPurchaseList savePurchaseInv(ReqObjPurchaseList reqparam) {
+		ResObjPurchaseList res = new ResObjPurchaseList();
+
+/*		serviceDelegator.saveSupplier(reqparam);
+
+		ResStatus resStatus = new ResStatus();
+		resStatus.setStatus("SUCCESS");
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Users successfully fetched !");
+		res.setResStatus(resStatus);*/
+
+		return res;
+	}
 	
 	public ServiceDelegator getServiceDelegator() {
 		return serviceDelegator;
