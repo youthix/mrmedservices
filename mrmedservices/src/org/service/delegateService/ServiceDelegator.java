@@ -6,6 +6,12 @@ import org.presentation.entities.ResStatus;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomer;
 import org.presentation.entities.customer.ResObjCustomerList;
+import org.presentation.entities.purchase.ReqObjPurchaseList;
+import org.presentation.entities.purchase.ResObjPurchase;
+import org.presentation.entities.purchase.ResObjPurchaseList;
+import org.presentation.entities.sale.ReqObjSaleList;
+import org.presentation.entities.sale.ResObjSale;
+import org.presentation.entities.sale.ResObjSaleList;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplier;
 import org.presentation.entities.supplier.ResObjSupplierList;
@@ -93,6 +99,46 @@ public class ServiceDelegator {
 		suppliers = repositoryDelegator.getSupplier(reqparam);
 
 		res.setSl(suppliers);
+
+		return res;
+	}	
+	
+	public void saveSaleInv(ReqObjSaleList reqparam) {
+
+		//repositoryDelegator.saveSupplier(reqparam);
+
+		return;
+	}
+
+	public ResObjSaleList getSaleInv(ReqObjSaleList reqparam) {
+
+		ResObjSaleList res = new ResObjSaleList();
+
+		List<ResObjSale> sl = null;
+
+		//sl = repositoryDelegator.getSupplier(reqparam);
+		
+		res.setSl(sl);
+
+		return res;
+	}
+	
+	public void savePurchaseInv(ReqObjPurchaseList reqparam) {
+
+		//repositoryDelegator.saveSupplier(reqparam);
+
+		return;
+	}
+
+	public ResObjPurchaseList getPurchaseInv(ReqObjPurchaseList reqparam) {
+
+		ResObjPurchaseList res = new ResObjPurchaseList();
+
+		List<ResObjPurchase> pl = null;
+
+		//sl = repositoryDelegator.getSupplier(reqparam);
+		
+		res.setPl(pl);
 
 		return res;
 	}	
