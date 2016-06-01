@@ -6,6 +6,12 @@ import java.util.List;
 import org.presentation.entities.customer.ReqObjCustomer;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomer;
+import org.presentation.entities.purchase.ReqObjPurchase;
+import org.presentation.entities.purchase.ReqObjPurchaseList;
+import org.presentation.entities.purchase.ResObjPurchase;
+import org.presentation.entities.sale.ReqObjSale;
+import org.presentation.entities.sale.ReqObjSaleList;
+import org.presentation.entities.sale.ResObjSale;
 import org.presentation.entities.supplier.ReqObjSupplier;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplier;
@@ -13,6 +19,8 @@ import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUser;
 import org.repository.BObjects.CustomerBO;
+import org.repository.BObjects.PurchaseBO;
+import org.repository.BObjects.SaleBO;
 import org.repository.BObjects.SupplierBO;
 import org.repository.BObjects.UserBO;
 import org.repository.DAOInterface.UserDAOInterface;
@@ -36,7 +44,7 @@ public class RepositoryDelegator {
 	public void saveUser(ReqObjUserList reqparam) {
 
 		for (ReqObjUser req : reqparam.getUl()) {
-			
+
 			dao.saveUser(domObjUserConv.convertToBO(req), reqparam.getBid());
 		}
 		return;
@@ -82,13 +90,13 @@ public class RepositoryDelegator {
 
 		for (ReqObjCustomer req : reqparam.getCl()) {
 
-			//custBOls = dao.getCustomer(domObjCusConv.convertToBO(req));
-			//respObjCusls.addAll(domObjCusConv.convertFromBOList(custBOls));
+			// custBOls = dao.getCustomer(domObjCusConv.convertToBO(req));
+			// respObjCusls.addAll(domObjCusConv.convertFromBOList(custBOls));
 		}
 
 		return respObjCusls;
 	}
-	
+
 	public void saveSupplier(ReqObjSupplierList reqparam) {
 		for (ReqObjSupplier req : reqparam.getSl()) {
 			// dao.saveSupplier(domObjSuppConv.convertToBO(req),
@@ -106,12 +114,60 @@ public class RepositoryDelegator {
 
 		for (ReqObjSupplier req : reqparam.getSl()) {
 
-			//suppBOls = dao.getSupplier(domObjSuppConv.convertToBO(req));
-			//respObjSuppls.addAll(domObjSuppConv.convertFromBOList(custBOls));
+			// suppBOls = dao.getSupplier(domObjSuppConv.convertToBO(req));
+			// respObjSuppls.addAll(domObjSuppConv.convertFromBOList(custBOls));
 		}
 
 		return respObjSuppls;
-	}	
+	}
+
+	public void saveSaleInv(ReqObjSaleList reqparam) {
+		for (ReqObjSale req : reqparam.getSl()) {
+			// dao.saveSupplier(domObjSuppConv.convertToBO(req),
+			// "stockist_dummy");
+		}
+
+		return;
+	}
+
+	public List<ResObjSale> getSaleInv(ReqObjSaleList reqparam) {
+
+		List<SaleBO> saBOLs = null;
+
+		List<ResObjSale> respObjSalels = new ArrayList<ResObjSale>();
+
+		for (ReqObjSale req : reqparam.getSl()) {
+
+			// suppBOls = dao.getSupplier(domObjSuppConv.convertToBO(req));
+			// respObjSuppls.addAll(domObjSuppConv.convertFromBOList(custBOls));
+		}
+
+		return respObjSalels;
+	}
+
+	public void savePurchaseInv(ReqObjPurchaseList reqparam) {
+		for (ReqObjPurchase req : reqparam.getPu()) {
+			// dao.saveSupplier(domObjSuppConv.convertToBO(req),
+			// "stockist_dummy");
+		}
+
+		return;
+	}
+
+	public List<ResObjPurchase> getPurchaseInv(ReqObjPurchaseList reqparam) {
+
+		List<PurchaseBO> puBOLs = null;
+
+		List<ResObjPurchase> respObjPurls = new ArrayList<ResObjPurchase>();
+
+		for (ReqObjPurchase req : reqparam.getPu()) {
+
+			// suppBOls = dao.getSupplier(domObjSuppConv.convertToBO(req));
+			// respObjSuppls.addAll(domObjSuppConv.convertFromBOList(custBOls));
+		}
+
+		return respObjPurls;
+	}
 
 	public UserDAOInterface getDao() {
 		return dao;
@@ -152,7 +208,5 @@ public class RepositoryDelegator {
 	public void setDomObjSuppConv(DomainObjSuppConverter domObjSuppConv) {
 		this.domObjSuppConv = domObjSuppConv;
 	}
-
-
 
 }
