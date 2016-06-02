@@ -12,9 +12,9 @@ public class UnitBOMapper implements RowMapper<UnitBO>{
 	public UnitBO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		
 		UnitBO ubo= new UnitBO();
-		ubo.setActive(rs.getString(""));
-		ubo.setUnitDet(rs.getString(""));
-		ubo.setUnitID(rs.getString(""));
+		ubo.setActive(rs.getString("active"));
+		ubo.setUnitDet(rs.getString("unitDetails"));
+		ubo.setUnitID(rs.getString("unitId"));
 		return ubo;
 	}
 
