@@ -1,8 +1,6 @@
 package org.repository.BObjects;
 
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class CustomerBO {
 	
 	private String cusID;
