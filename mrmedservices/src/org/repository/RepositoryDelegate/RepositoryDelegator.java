@@ -39,6 +39,10 @@ import org.repository.DomainConverter.DomainObjUnitConverter;
 import org.repository.DomainConverter.DomainObjUserConverter;
 import org.repository.dbUtilities.ConnectionFactory;
 
+import com.googlecode.ehcache.annotations.Cacheable;
+import com.googlecode.ehcache.annotations.KeyGenerator;
+import com.googlecode.ehcache.annotations.Property;
+
 public class RepositoryDelegator {
 
 	private UserDAOInterface udao;
@@ -80,10 +84,12 @@ public class RepositoryDelegator {
 	}
 
 	public List<ResObjUser> doLogin(ReqObjUser req, String dbId) {
-		List<UserBO> userBOs = udao.doLogin(domObjUserConv.convertToBO(req), dbId);
+		UserBO ubo=domObjUserConv.convertToBO(req);
+		List<UserBO> userBOs = udao.doLogin(ubo, dbId);
 		if (null == userBOs || userBOs.size() <= 0) {
 			return null;
 		}
+		udao.updateUserLastSeen(ubo, dbId);
 		return domObjUserConv.convertFromBOList(userBOs);
 	}
 
@@ -183,20 +189,21 @@ public class RepositoryDelegator {
 		return respObjPurls;
 	}
 	
+	@Cacheable(cacheName = "payModeCache", keyGenerator = @KeyGenerator(name = "HashCodeCacheKeyGenerator", properties = @Property(name = "includeMethod", value = "false") ) )
 	public List<ResObjPayMode> getPaymentMode(String dbId) {
 		List<PaymentModeBO> pmBOls = null;
 		pmBOls = sdao.getPaymentMode(dbId);		
 		return domObjPayModeConv.convertFromBOList(pmBOls);
 	}
 
-	
+	@Cacheable(cacheName = "unitCache", keyGenerator = @KeyGenerator(name = "HashCodeCacheKeyGenerator", properties = @Property(name = "includeMethod", value = "false") ) )
 	public List<ResObjUnit> getUnit(String dbId) {
 		List<UnitBO> uBOls = null;		
 		uBOls = sdao.getUnit(dbId);		
 		return domObjUnitConv.convertFromBOList(uBOls);
 	}
 
-	
+	@Cacheable(cacheName = "taxCache", keyGenerator = @KeyGenerator(name = "HashCodeCacheKeyGenerator", properties = @Property(name = "includeMethod", value = "false") ) )
 	public List<ResObjTaxation> getTax(String dbId) {
 		List<TaxationBO> tBOls = null;		
 		tBOls = sdao.getTaxation(dbId);		

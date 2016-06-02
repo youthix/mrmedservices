@@ -75,6 +75,13 @@ public class UserJDBCTemplate implements UserDAOInterface {
 		jdbcTemplateObject.update(SQL);
 	}
 	
+	public void updateUserLastSeen(UserBO ubo,String dbName){
+		String SQL="update "+ dbName +".user set "				
+				+"`lastSeen`= CURRENT_TIMESTAMP "
+				+"where username='"+ubo.getUserName()+"'";
+		jdbcTemplateObject.update(SQL);
+	}
+	
 	private void createUser(UserBO ubo,String dbName){
 		String SQL="insert into " + dbName +".user"
 				+ " (`username`,`password`,`firstName`,`lastName`,`gender`,"

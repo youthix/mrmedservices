@@ -3,8 +3,8 @@
          xsi:noNamespaceSchemaLocation="../../main/config/ehcache.xsd http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring
     http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd" updateCheck="false">
     
-    <cache name="fetchPagesCache"
-           maxElementsInMemory="1000"
+    <cache name="unitCache"
+           maxElementsInMemory="100"
            maxElementsOnDisk="0"
            eternal="false"
            overflowToDisk="false"
@@ -12,9 +12,9 @@
            timeToLiveSeconds="3600"
            memoryStoreEvictionPolicy="LFU"
            statistics="true"
-            />
-     <cache name="fetchUsersCache"
-           maxElementsInMemory="1000"
+         />
+    <cache name="taxCache"
+           maxElementsInMemory="100"
            maxElementsOnDisk="0"
            eternal="false"
            overflowToDisk="false"
@@ -22,9 +22,9 @@
            timeToLiveSeconds="3600"
            memoryStoreEvictionPolicy="LFU"
            statistics="true"
-            /> 
-      <cache name="fetchUserCount"
-           maxElementsInMemory="1000"
+         />
+    <cache name="payModeCache"
+           maxElementsInMemory="100"
            maxElementsOnDisk="0"
            eternal="false"
            overflowToDisk="false"
@@ -32,10 +32,9 @@
            timeToLiveSeconds="3600"
            memoryStoreEvictionPolicy="LFU"
            statistics="true"
-            />
-               
-     <cache name="HelloCache"
-           maxElementsInMemory="1000"
+         />
+    <cache name="HelloCache"
+           maxElementsInMemory="100"
            maxElementsOnDisk="0"
            eternal="false"
            overflowToDisk="false"
@@ -43,8 +42,8 @@
            timeToLiveSeconds="3600"
            memoryStoreEvictionPolicy="LFU"
            statistics="true"
-            />            
-         <defaultCache
+         />
+      <defaultCache
             maxElementsInMemory="10000"
             eternal="false"
             timeToIdleSeconds="300"

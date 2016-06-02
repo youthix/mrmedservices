@@ -24,5 +24,7 @@ public interface UserDAOInterface {
 	    List<UserBO> getUsers(UserBO ubo,String dbName);
 	    
 	    List<UserBO> doLogin(UserBO ubo,String dbName);
+	    
+	    void updateUserLastSeen(UserBO ubo,String dbName);
 
 }
