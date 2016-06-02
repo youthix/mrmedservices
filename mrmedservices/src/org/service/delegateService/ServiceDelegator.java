@@ -172,7 +172,7 @@ public class ServiceDelegator {
 	
 	public ResObjPayModeList getPaymentMode(String busId) {
 		resPM= new ResObjPayModeList();		
-		resStatus = res.getResStatus();
+		resStatus = resPM.getResStatus();
 		resPM.setPml(repositoryDelegator.getPaymentMode(busId));
 		resStatus.setCode("SUCCESS");
 		resStatus.setMsg("Successful !!");
@@ -183,7 +183,7 @@ public class ServiceDelegator {
 	
 	public ResObjUnitList getUnit(String busId) {
 		resU= new ResObjUnitList();		
-		resStatus = res.getResStatus();
+		resStatus = resU.getResStatus();
 		resU.setUl(repositoryDelegator.getUnit(busId));
 		resStatus.setCode("SUCCESS");
 		resStatus.setMsg("Successful !!");
@@ -194,7 +194,7 @@ public class ServiceDelegator {
 	
 	public ResObjTaxList getTax(String busId) {
 		resT= new ResObjTaxList();		
-		resStatus = res.getResStatus();
+		resStatus = resT.getResStatus();
 		resT.setTl(repositoryDelegator.getTax(busId));
 		resStatus.setCode("SUCCESS");
 		resStatus.setMsg("Successful !!");

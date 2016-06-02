@@ -389,8 +389,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@GET
 	@Path("/get/payment/mode")
 	@Produces(MediaType.APPLICATION_JSON)	
-	public ResObjPayModeList getPaymentMode(@QueryParam("busId") String busId) {
-		// TODO Auto-generated method stub
+	public ResObjPayModeList getPaymentMode(@QueryParam("bid") String busId) {		
 		return serviceDelegator.getPaymentMode(busId);
 	}
 
@@ -398,8 +397,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@GET
 	@Path("/get/unit")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ResObjUnitList getUnit(@QueryParam("busId") String busId) {
-		// TODO Auto-generated method stub
+	public ResObjUnitList getUnit(@QueryParam("bid") String busId) {		
 		return serviceDelegator.getUnit(busId);
 	}
 
@@ -407,8 +405,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@GET
 	@Path("/get/tax")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ResObjTaxList getTax(@QueryParam("busId") String busId) {
-		// TODO Auto-generated method stub
+	public ResObjTaxList getTax(@QueryParam("bid") String busId) {
 		return serviceDelegator.getTax(busId);
 	}	
 
