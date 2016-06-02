@@ -22,7 +22,11 @@
 	</bean>
 
 	<!-- Definition for UserJDBCTemplate bean -->
-	<bean id="dao" class="org.repository.DAOImpl.UserJDBCTemplate">
+	<bean id="udao" class="org.repository.DAOImpl.UserJDBCTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="sdao" class="org.repository.DAOImpl.SharedJDBCTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
@@ -33,10 +37,14 @@
 
 	<bean id="repositoryDelegator"
 		class="org.repository.RepositoryDelegate.RepositoryDelegator">
-		<property name="dao" ref="dao" />
+		<property name="udao" ref="udao" />
+		<property name="sdao" ref="sdao" />
 		<property name="domObjUserConv" ref="userObjConv" />
 		<property name="domObjCusConv" ref="custObjConv" />
 		<property name="domObjSuppConv" ref="suppObjConv" />
+		<property name="domObjUnitConv" ref="unitObjConv" />
+		<property name="domObjPayModeConv" ref="payModeObjConv" />
+		<property name="domObjTaxConv" ref="taxObjConv" />
 		<property name="connectionFactory" ref="connectionFactory" />
 	</bean>
 	
@@ -45,6 +53,12 @@
 	<bean id="custObjConv" class="org.repository.DomainConverter.DomainObjCustConverter">
 	</bean>
 	<bean id="suppObjConv" class="org.repository.DomainConverter.DomainObjSuppConverter">
+	</bean>	
+	<bean id="taxObjConv" class="org.repository.DomainConverter.DomainObjTaxConverter">
+	</bean>
+	<bean id="payModeObjConv" class="org.repository.DomainConverter.DomainObjPaymentModeConverter">
+	</bean>
+	<bean id="unitObjConv" class="org.repository.DomainConverter.DomainObjUnitConverter">
 	</bean>
 
 	<bean id="serviceDelegator" class="org.service.delegateService.ServiceDelegator">
