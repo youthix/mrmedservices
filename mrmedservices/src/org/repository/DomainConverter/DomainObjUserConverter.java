@@ -3,11 +3,8 @@ package org.repository.DomainConverter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.presentation.entities.customer.ReqObjCustomer;
-import org.presentation.entities.customer.ResObjCustomer;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ResObjUser;
-import org.repository.BObjects.CustomerBO;
 import org.repository.BObjects.UserBO;
 public class DomainObjUserConverter {
 

@@ -5,6 +5,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.presentation.controller.Interface.RESTfulServiceInterface;
@@ -13,12 +14,15 @@ import org.presentation.entities.ResStatus;
 import org.presentation.entities.ResponseObj;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomerList;
+import org.presentation.entities.payment.ResObjPayModeList;
 import org.presentation.entities.purchase.ReqObjPurchaseList;
 import org.presentation.entities.purchase.ResObjPurchaseList;
 import org.presentation.entities.sale.ReqObjSaleList;
 import org.presentation.entities.sale.ResObjSaleList;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplierList;
+import org.presentation.entities.tax.ResObjTaxList;
+import org.presentation.entities.unit.ResObjUnitList;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUserList;
 import org.presentation.util.ServiceException;
@@ -379,6 +383,33 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	public void setServiceDelegator(ServiceDelegator serviceDelegator) {
 		this.serviceDelegator = serviceDelegator;
+	}
+
+	@Override
+	@GET
+	@Path("/get/payment/mode")
+	@Produces(MediaType.APPLICATION_JSON)	
+	public ResObjPayModeList getPaymentMode(@QueryParam("busId") String busId) {
+		// TODO Auto-generated method stub
+		return serviceDelegator.getPaymentMode(busId);
+	}
+
+	@Override
+	@GET
+	@Path("/get/unit")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResObjUnitList getUnit(@QueryParam("busId") String busId) {
+		// TODO Auto-generated method stub
+		return serviceDelegator.getUnit(busId);
+	}
+
+	@Override
+	@GET
+	@Path("/get/tax")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResObjTaxList getTax(@QueryParam("busId") String busId) {
+		// TODO Auto-generated method stub
+		return serviceDelegator.getTax(busId);
 	}	
 
 }

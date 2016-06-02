@@ -6,6 +6,7 @@ import java.util.List;
 import org.presentation.entities.customer.ReqObjCustomer;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomer;
+import org.presentation.entities.payment.ResObjPayMode;
 import org.presentation.entities.purchase.ReqObjPurchase;
 import org.presentation.entities.purchase.ReqObjPurchaseList;
 import org.presentation.entities.purchase.ResObjPurchase;
@@ -15,26 +16,39 @@ import org.presentation.entities.sale.ResObjSale;
 import org.presentation.entities.supplier.ReqObjSupplier;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplier;
+import org.presentation.entities.tax.ResObjTaxation;
+import org.presentation.entities.unit.ResObjUnit;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUser;
 import org.repository.BObjects.CustomerBO;
+import org.repository.BObjects.PaymentModeBO;
 import org.repository.BObjects.PurchaseBO;
 import org.repository.BObjects.SaleBO;
 import org.repository.BObjects.SupplierBO;
+import org.repository.BObjects.TaxationBO;
+import org.repository.BObjects.UnitBO;
 import org.repository.BObjects.UserBO;
+import org.repository.DAOInterface.SharedDAOInterface;
 import org.repository.DAOInterface.UserDAOInterface;
 import org.repository.DomainConverter.DomainObjCustConverter;
+import org.repository.DomainConverter.DomainObjPaymentModeConverter;
 import org.repository.DomainConverter.DomainObjSuppConverter;
+import org.repository.DomainConverter.DomainObjTaxConverter;
+import org.repository.DomainConverter.DomainObjUnitConverter;
 import org.repository.DomainConverter.DomainObjUserConverter;
 import org.repository.dbUtilities.ConnectionFactory;
 
 public class RepositoryDelegator {
 
-	private UserDAOInterface dao;
+	private UserDAOInterface udao;
+	private SharedDAOInterface sdao;
 	private DomainObjUserConverter domObjUserConv;
 	private DomainObjCustConverter domObjCusConv;
 	private DomainObjSuppConverter domObjSuppConv;
+	private DomainObjUnitConverter domObjUnitConv;
+	private DomainObjPaymentModeConverter domObjPayModeConv;
+	private DomainObjTaxConverter domObjTaxConv;
 	private ConnectionFactory connectionFactory;
 
 	// @Cacheable(cacheName = "fetchPagesCache", keyGenerator =
@@ -45,7 +59,7 @@ public class RepositoryDelegator {
 
 		for (ReqObjUser req : reqparam.getUl()) {
 
-			dao.saveUser(domObjUserConv.convertToBO(req), reqparam.getBid());
+			udao.saveUser(domObjUserConv.convertToBO(req), reqparam.getBid());
 		}
 		return;
 	}
@@ -58,7 +72,7 @@ public class RepositoryDelegator {
 
 		for (ReqObjUser reqObj : reqparam.getUl()) {
 
-			userBOls = dao.getUsers(domObjUserConv.convertToBO(reqObj), dbId);
+			userBOls = udao.getUsers(domObjUserConv.convertToBO(reqObj), dbId);
 			respObjUserls.addAll(domObjUserConv.convertFromBOList(userBOls));
 		}
 
@@ -66,7 +80,7 @@ public class RepositoryDelegator {
 	}
 
 	public List<ResObjUser> doLogin(ReqObjUser req, String dbId) {
-		List<UserBO> userBOs = dao.doLogin(domObjUserConv.convertToBO(req), dbId);
+		List<UserBO> userBOs = udao.doLogin(domObjUserConv.convertToBO(req), dbId);
 		if (null == userBOs || userBOs.size() <= 0) {
 			return null;
 		}
@@ -168,13 +182,33 @@ public class RepositoryDelegator {
 
 		return respObjPurls;
 	}
-
-	public UserDAOInterface getDao() {
-		return dao;
+	
+	public List<ResObjPayMode> getPaymentMode(String dbId) {
+		List<PaymentModeBO> pmBOls = null;
+		pmBOls = sdao.getPaymentMode(dbId);		
+		return domObjPayModeConv.convertFromBOList(pmBOls);
 	}
 
-	public void setDao(UserDAOInterface dao) {
-		this.dao = dao;
+	
+	public List<ResObjUnit> getUnit(String dbId) {
+		List<UnitBO> uBOls = null;		
+		uBOls = sdao.getUnit(dbId);		
+		return domObjUnitConv.convertFromBOList(uBOls);
+	}
+
+	
+	public List<ResObjTaxation> getTax(String dbId) {
+		List<TaxationBO> tBOls = null;		
+		tBOls = sdao.getTaxation(dbId);		
+		return domObjTaxConv.convertFromBOList(tBOls);
+	}	
+
+	public UserDAOInterface getUdao() {
+		return udao;
+	}
+
+	public void setUdao(UserDAOInterface udao) {
+		this.udao = udao;
 	}
 
 	public ConnectionFactory getConnectionFactory() {
@@ -207,6 +241,38 @@ public class RepositoryDelegator {
 
 	public void setDomObjSuppConv(DomainObjSuppConverter domObjSuppConv) {
 		this.domObjSuppConv = domObjSuppConv;
+	}
+
+	public SharedDAOInterface getSdao() {
+		return sdao;
+	}
+
+	public void setSdao(SharedDAOInterface sdao) {
+		this.sdao = sdao;
+	}
+
+	public DomainObjUnitConverter getDomObjUnitConv() {
+		return domObjUnitConv;
+	}
+
+	public void setDomObjUnitConv(DomainObjUnitConverter domObjUnitConv) {
+		this.domObjUnitConv = domObjUnitConv;
+	}
+
+	public DomainObjPaymentModeConverter getDomObjPayModeConv() {
+		return domObjPayModeConv;
+	}
+
+	public void setDomObjPayModeConv(DomainObjPaymentModeConverter domObjPayModeConv) {
+		this.domObjPayModeConv = domObjPayModeConv;
+	}
+
+	public DomainObjTaxConverter getDomObjTaxConv() {
+		return domObjTaxConv;
+	}
+
+	public void setDomObjTaxConv(DomainObjTaxConverter domObjTaxConv) {
+		this.domObjTaxConv = domObjTaxConv;
 	}
 
 }

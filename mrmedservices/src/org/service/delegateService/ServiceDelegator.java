@@ -2,10 +2,13 @@ package org.service.delegateService;
 
 import java.util.List;
 
+import net.sf.ehcache.CacheManager;
+
 import org.presentation.entities.ResStatus;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomer;
 import org.presentation.entities.customer.ResObjCustomerList;
+import org.presentation.entities.payment.ResObjPayModeList;
 import org.presentation.entities.purchase.ReqObjPurchaseList;
 import org.presentation.entities.purchase.ResObjPurchase;
 import org.presentation.entities.purchase.ResObjPurchaseList;
@@ -15,6 +18,8 @@ import org.presentation.entities.sale.ResObjSaleList;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplier;
 import org.presentation.entities.supplier.ResObjSupplierList;
+import org.presentation.entities.tax.ResObjTaxList;
+import org.presentation.entities.unit.ResObjUnitList;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUser;
@@ -24,13 +29,14 @@ import org.repository.RepositoryDelegate.RepositoryDelegator;
 
 import com.googlecode.ehcache.annotations.Cacheable;
 
-import net.sf.ehcache.CacheManager;
-
 public class ServiceDelegator {
 
 	private RepositoryDelegator repositoryDelegator;
 	private CacheManager cacheManager;
 	ResObjUserList res;
+	ResObjTaxList resT;
+	ResObjUnitList resU;
+	ResObjPayModeList resPM;
 	ResStatus resStatus;
 
 	@Cacheable(cacheName = "HelloCache")
@@ -161,6 +167,39 @@ public class ServiceDelegator {
 			resStatus.setStatus("FAILURE");
 		}
 		return res;
+	}
+	
+	
+	public ResObjPayModeList getPaymentMode(String busId) {
+		resPM= new ResObjPayModeList();		
+		resStatus = res.getResStatus();
+		resPM.setPml(repositoryDelegator.getPaymentMode(busId));
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Successful !!");
+		resStatus.setStatus("SUCCESS");
+		return resPM;
+	}
+
+	
+	public ResObjUnitList getUnit(String busId) {
+		resU= new ResObjUnitList();		
+		resStatus = res.getResStatus();
+		resU.setUl(repositoryDelegator.getUnit(busId));
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Successful !!");
+		resStatus.setStatus("SUCCESS");
+		return resU;
+	}
+
+	
+	public ResObjTaxList getTax(String busId) {
+		resT= new ResObjTaxList();		
+		resStatus = res.getResStatus();
+		resT.setTl(repositoryDelegator.getTax(busId));
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Successful !!");
+		resStatus.setStatus("SUCCESS");
+		return resT;
 	}
 
 	public RepositoryDelegator getRepositoryDelegator() {

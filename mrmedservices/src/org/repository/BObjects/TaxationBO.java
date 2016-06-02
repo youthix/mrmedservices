@@ -1,6 +1,5 @@
 package org.repository.BObjects;
 
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 public class TaxationBO {
 	
