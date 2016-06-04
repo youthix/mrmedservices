@@ -206,7 +206,7 @@ public class ServiceDelegator {
 	
 	public ResObjCompanyList getCompany(String busId) {
 		resCo= new ResObjCompanyList();		
-		resStatus = resT.getResStatus();
+		resStatus = resCo.getResStatus();
 		resCo.setCl(repositoryDelegator.getCompany(busId));
 		resStatus.setCode("SUCCESS");
 		resStatus.setMsg("Successful !!");
