@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.repository.BObjects.ProductBO;
 import org.springframework.jdbc.core.RowMapper;
 
-public class ProoductBOMapper implements RowMapper<ProductBO>{
+public class ProductBOMapper implements RowMapper<ProductBO>{
 
 	@Override
 	public ProductBO mapRow(ResultSet rs, int rowNum) throws SQLException {

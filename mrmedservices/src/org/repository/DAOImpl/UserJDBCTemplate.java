@@ -1,24 +1,13 @@
 
 package org.repository.DAOImpl;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.repository.BObjects.IndexingInfo;
-import org.repository.BObjects.Page;
-import org.repository.BObjects.TagPage;
-import org.repository.BObjects.User;
 import org.repository.BObjects.UserBO;
 import org.repository.DAOInterface.UserDAOInterface;
-import org.repository.Mapper.IndexingInfoMapper;
-import org.repository.Mapper.PageIDDetailsMapper;
-import org.repository.Mapper.TagsPageIDMapper;
 import org.repository.Mapper.UserBOMapper;
-import org.repository.Mapper.UserMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -34,7 +23,10 @@ public class UserJDBCTemplate implements UserDAOInterface {
 		this.dataSource = dataSource;
 		this.jdbcTemplateObject = new JdbcTemplate(dataSource);
 	}
-
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+	
 	@Override
 	public void saveUser(UserBO ubo,String dbName) {
 		String SQL="select * from "+dbName+".user where username='"+ubo.getUserName()+"'";
