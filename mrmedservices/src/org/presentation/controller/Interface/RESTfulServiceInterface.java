@@ -2,6 +2,7 @@ package org.presentation.controller.Interface;
 
 import org.presentation.entities.RequestObj;
 import org.presentation.entities.ResponseObj;
+import org.presentation.entities.company.ResObjCompanyList;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomerList;
 import org.presentation.entities.payment.ResObjPayModeList;
@@ -51,7 +52,7 @@ public interface RESTfulServiceInterface {
 	ResObjUnitList getUnit(String busId);
 	
 	ResObjTaxList getTax(String busId);
-
-	/* ResponseObj deleteUser(RequestObj reqparam); */
+	
+	ResObjCompanyList getCompany(String busId);
 
 }

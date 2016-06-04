@@ -3,6 +3,7 @@ package org.repository.RepositoryDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.presentation.entities.company.ResObjCompany;
 import org.presentation.entities.customer.ReqObjCustomer;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomer;
@@ -21,6 +22,7 @@ import org.presentation.entities.unit.ResObjUnit;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUser;
+import org.repository.BObjects.CompanyBO;
 import org.repository.BObjects.CustomerBO;
 import org.repository.BObjects.PaymentModeBO;
 import org.repository.BObjects.PurchaseBO;
@@ -30,7 +32,9 @@ import org.repository.BObjects.TaxationBO;
 import org.repository.BObjects.UnitBO;
 import org.repository.BObjects.UserBO;
 import org.repository.DAOInterface.SharedDAOInterface;
+import org.repository.DAOInterface.StockDAOInterface;
 import org.repository.DAOInterface.UserDAOInterface;
+import org.repository.DomainConverter.DomainObjCompConverter;
 import org.repository.DomainConverter.DomainObjCustConverter;
 import org.repository.DomainConverter.DomainObjPaymentModeConverter;
 import org.repository.DomainConverter.DomainObjSuppConverter;
@@ -47,10 +51,12 @@ public class RepositoryDelegator {
 
 	private UserDAOInterface udao;
 	private SharedDAOInterface sdao;
+	private StockDAOInterface stdao;
 	private DomainObjUserConverter domObjUserConv;
 	private DomainObjCustConverter domObjCusConv;
 	private DomainObjSuppConverter domObjSuppConv;
 	private DomainObjUnitConverter domObjUnitConv;
+	private DomainObjCompConverter domObjCompConv;
 	private DomainObjPaymentModeConverter domObjPayModeConv;
 	private DomainObjTaxConverter domObjTaxConv;
 	private ConnectionFactory connectionFactory;
@@ -208,7 +214,14 @@ public class RepositoryDelegator {
 		List<TaxationBO> tBOls = null;		
 		tBOls = sdao.getTaxation(dbId);		
 		return domObjTaxConv.convertFromBOList(tBOls);
-	}	
+	}
+	
+	@Cacheable(cacheName = "companyCache", keyGenerator = @KeyGenerator(name = "HashCodeCacheKeyGenerator", properties = @Property(name = "includeMethod", value = "false") ) )
+	public List<ResObjCompany> getCompany(String dbId) {
+		List<CompanyBO> cBOls = null;		
+		cBOls = sdao.getCompany(dbId);		
+		return domObjCompConv.convertFromBOList(cBOls);
+	}
 
 	public UserDAOInterface getUdao() {
 		return udao;
@@ -280,6 +293,22 @@ public class RepositoryDelegator {
 
 	public void setDomObjTaxConv(DomainObjTaxConverter domObjTaxConv) {
 		this.domObjTaxConv = domObjTaxConv;
+	}
+
+	public StockDAOInterface getStdao() {
+		return stdao;
+	}
+
+	public void setStdao(StockDAOInterface stdao) {
+		this.stdao = stdao;
+	}
+
+	public DomainObjCompConverter getDomObjCompConv() {
+		return domObjCompConv;
+	}
+
+	public void setDomObjCompConv(DomainObjCompConverter domObjCompConv) {
+		this.domObjCompConv = domObjCompConv;
 	}
 
 }

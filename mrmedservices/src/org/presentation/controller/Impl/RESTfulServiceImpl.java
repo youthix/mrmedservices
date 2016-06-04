@@ -12,6 +12,7 @@ import org.presentation.controller.Interface.RESTfulServiceInterface;
 import org.presentation.entities.RequestObj;
 import org.presentation.entities.ResStatus;
 import org.presentation.entities.ResponseObj;
+import org.presentation.entities.company.ResObjCompanyList;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomerList;
 import org.presentation.entities.payment.ResObjPayModeList;
@@ -407,6 +408,14 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResObjTaxList getTax(@QueryParam("bid") String busId) {
 		return serviceDelegator.getTax(busId);
+	}
+
+	@Override
+	@GET
+	@Path("/get/company")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResObjCompanyList getCompany(String busId) {
+		return serviceDelegator.getCompany(busId);
 	}	
 
 }

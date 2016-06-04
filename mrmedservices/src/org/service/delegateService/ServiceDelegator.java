@@ -5,6 +5,7 @@ import java.util.List;
 import net.sf.ehcache.CacheManager;
 
 import org.presentation.entities.ResStatus;
+import org.presentation.entities.company.ResObjCompanyList;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomer;
 import org.presentation.entities.customer.ResObjCustomerList;
@@ -37,6 +38,7 @@ public class ServiceDelegator {
 	ResObjTaxList resT;
 	ResObjUnitList resU;
 	ResObjPayModeList resPM;
+	ResObjCompanyList resCo;
 	ResStatus resStatus;
 
 	@Cacheable(cacheName = "HelloCache")
@@ -200,6 +202,16 @@ public class ServiceDelegator {
 		resStatus.setMsg("Successful !!");
 		resStatus.setStatus("SUCCESS");
 		return resT;
+	}
+	
+	public ResObjCompanyList getCompany(String busId) {
+		resCo= new ResObjCompanyList();		
+		resStatus = resT.getResStatus();
+		resCo.setCl(repositoryDelegator.getCompany(busId));
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Successful !!");
+		resStatus.setStatus("SUCCESS");
+		return resCo;
 	}
 
 	public RepositoryDelegator getRepositoryDelegator() {
