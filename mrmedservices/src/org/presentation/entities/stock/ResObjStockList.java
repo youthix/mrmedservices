@@ -3,8 +3,9 @@ package org.presentation.entities.stock;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.presentation.entities.ResStatus;
-
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class ResObjStockList {
 	List<ResObjStock> sl;
 	ResStatus resStatus;

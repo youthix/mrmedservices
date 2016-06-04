@@ -1,13 +1,14 @@
 package org.presentation.entities.sale;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.presentation.entities.ResStatus;
 
 @XmlRootElement(name = "resparamsale")
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class ResObjSaleList {
 	
 	List<ResObjSale> sl;

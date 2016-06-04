@@ -1,9 +1,6 @@
 package org.presentation.entities.stock;
 
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-
-@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
-public class ResObjStock {	
+public class ReqObjStock {	
 	private String sID;
 	private String pID;
 	private String bat;
