@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.repository.BObjects.CompanyBO;
 import org.repository.BObjects.PaymentModeBO;
 import org.repository.BObjects.TaxationBO;
 import org.repository.BObjects.UnitBO;
 import org.repository.DAOInterface.SharedDAOInterface;
+import org.repository.Mapper.CompanyBOMapper;
 import org.repository.Mapper.PaymentModeBOMapper;
 import org.repository.Mapper.TaxationBOMapper;
 import org.repository.Mapper.UnitBOMapper;
@@ -54,6 +56,13 @@ public class SharedJDBCTemplate implements SharedDAOInterface {
 		String SQL="select * from "+dbName+".paymentmode where active='y'";
 		List<PaymentModeBO> p=jdbcTemplateObject.query(SQL, new PaymentModeBOMapper());
 		return p;
+	}
+	
+	@Override
+	public List<CompanyBO> getCompany(String dbName) {
+		String SQL="select * from `mrmed_master`.`company`";
+		List<CompanyBO> c=jdbcTemplateObject.query(SQL, new CompanyBOMapper());
+		return c;
 	}
 
 }
