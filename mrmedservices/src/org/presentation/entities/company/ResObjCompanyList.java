@@ -1,22 +1,22 @@
-package org.presentation.entities.tax;
+package org.presentation.entities.company;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.presentation.entities.ResStatus;
+
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
-public class ResObjTaxList {
-	List<ResObjTaxation> tl;
+public class ResObjCompanyList {
+	List<ResObjCompany> cl;
 	ResStatus resStatus;
-	public List<ResObjTaxation> getTl() {
-		if(null==this.tl){
-			this.tl=new ArrayList<ResObjTaxation>();
+	public List<ResObjCompany> getCl() {
+		if(null==this.cl){
+			this.cl=new ArrayList<ResObjCompany>();
 		}
-		return tl;
+		return cl;
 	}
-	public void setTl(List<ResObjTaxation> tl) {
-		this.tl = tl;
+	public void setCl(List<ResObjCompany> cl) {
+		this.cl = cl;
 	}
 	public ResStatus getResStatus() {
 		if(null==this.resStatus){
@@ -27,4 +27,5 @@ public class ResObjTaxList {
 	public void setResStatus(ResStatus resStatus) {
 		this.resStatus = resStatus;
 	}
+	
 }

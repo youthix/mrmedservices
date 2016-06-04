@@ -1,6 +1,5 @@
 package org.presentation.entities.supplier;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
 
 public class ReqObjSupplier {

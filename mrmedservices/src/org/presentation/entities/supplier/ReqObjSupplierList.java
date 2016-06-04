@@ -5,7 +5,10 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 @XmlRootElement(name = "reqparamsupp")
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class ReqObjSupplierList {
 	
 	private List<ReqObjSupplier> sl;

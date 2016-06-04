@@ -1,6 +1,8 @@
 package org.presentation.entities.tax;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class ResObjTaxation {
 	private String tID;
 	private String tDet;
