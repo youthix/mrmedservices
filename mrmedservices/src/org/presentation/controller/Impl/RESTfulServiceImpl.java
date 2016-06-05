@@ -337,7 +337,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjStockList addStock(ReqObjectStockList reqparam) {
-		ResObjStockList res = serviceDelegator.addStock(reqparam, reqparam.getBid());		
+		ResObjStockList res = serviceDelegator.addStock(reqparam);		
 		return res;
 	}
 	
@@ -347,7 +347,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjStockList saveStock(ReqObjectStockList reqparam) {
-		ResObjStockList res = serviceDelegator.updateStock(reqparam, reqparam.getBid());		
+		ResObjStockList res = serviceDelegator.updateStock(reqparam);		
 		return res;
 	}
 	
@@ -357,7 +357,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjStockList updateStockQty(ReqObjectStockList reqparam) {
-		ResObjStockList res = serviceDelegator.updateStockQuanity(reqparam, reqparam.getBid());		
+		ResObjStockList res = serviceDelegator.updateStockQuanity(reqparam);		
 		return res;
 	}
 	
@@ -367,7 +367,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjStockList addProduct(ReqObjectStockList reqparam) {
-		ResObjStockList res = serviceDelegator.addProduct(reqparam, reqparam.getBid());		
+		ResObjStockList res = serviceDelegator.addProduct(reqparam);		
 		return res;
 	}
 
@@ -377,7 +377,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjStockList saveProduct(ReqObjectStockList reqparam) {
-		ResObjStockList res = serviceDelegator.updateProduct(reqparam, reqparam.getBid());		
+		ResObjStockList res = serviceDelegator.updateProduct(reqparam);		
 		return res;
 	}
 	

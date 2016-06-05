@@ -71,10 +71,10 @@ public class ServiceDelegator {
 		return res;
 	}
 
-	public ResObjStockList addStock(ReqObjectStockList reqList, String dbName) {
+	public ResObjStockList addStock(ReqObjectStockList reqList) {
 		ResObjStockList res = new ResObjStockList();
 		ResStatus respStObj = new ResStatus();
-		repositoryDelegator.addStock(reqList, dbName);
+		repositoryDelegator.addStock(reqList, reqList.getBid());
 		respStObj.setStatus("SUCCESS");
 		respStObj.setCode("SUCCESS");
 		respStObj.setMsg("NO error occured while processing this transation !");
@@ -82,10 +82,10 @@ public class ServiceDelegator {
 		return res;
 	}
 
-	public ResObjStockList updateStock(ReqObjectStockList reqList, String dbName) {
+	public ResObjStockList updateStock(ReqObjectStockList reqList) {
 		ResObjStockList res = new ResObjStockList();
 		ResStatus respStObj = new ResStatus();
-		repositoryDelegator.updateStock(reqList, dbName);
+		repositoryDelegator.updateStock(reqList, reqList.getBid());
 		respStObj.setStatus("SUCCESS");
 		respStObj.setCode("SUCCESS");
 		respStObj.setMsg("NO error occured while processing this transation !");
@@ -104,10 +104,10 @@ public class ServiceDelegator {
 		return res;
 	}
 
-	public ResObjStockList updateStockQuanity(ReqObjectStockList reqList, String dbName) {
+	public ResObjStockList updateStockQuanity(ReqObjectStockList reqList) {
 		ResObjStockList res = new ResObjStockList();
 		ResStatus respStObj = new ResStatus();
-		repositoryDelegator.updateStockQuantity(reqList, dbName);
+		repositoryDelegator.updateStockQuantity(reqList, reqList.getBid());
 		respStObj.setStatus("SUCCESS");
 		respStObj.setCode("SUCCESS");
 		respStObj.setMsg("NO error occured while processing this transation !");
@@ -115,10 +115,10 @@ public class ServiceDelegator {
 		return res;
 	}
 
-	public ResObjStockList addProduct(ReqObjectStockList reqList, String dbName) {
+	public ResObjStockList addProduct(ReqObjectStockList reqList) {
 		ResObjStockList res = new ResObjStockList();
 		ResStatus respStObj = new ResStatus();
-		repositoryDelegator.addProduct(reqList, dbName);
+		repositoryDelegator.addProduct(reqList, reqList.getBid());
 		respStObj.setStatus("SUCCESS");
 		respStObj.setCode("SUCCESS");
 		respStObj.setMsg("NO error occured while processing this transation !");
@@ -126,10 +126,10 @@ public class ServiceDelegator {
 		return res;
 	}
 
-	public ResObjStockList updateProduct(ReqObjectStockList reqList, String dbName) {
+	public ResObjStockList updateProduct(ReqObjectStockList reqList) {
 		ResObjStockList res = new ResObjStockList();
 		ResStatus respStObj = new ResStatus();
-		repositoryDelegator.updateProduct(reqList, dbName);
+		repositoryDelegator.updateProduct(reqList, reqList.getBid());
 		respStObj.setStatus("SUCCESS");
 		respStObj.setCode("SUCCESS");
 		respStObj.setMsg("NO error occured while processing this transation !");
