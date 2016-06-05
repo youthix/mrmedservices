@@ -36,77 +36,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	public ServiceDelegator serviceDelegator;
 
-	/*
-	 * @Override
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/getCustomer")
-	 * 
-	 * @Produces(MediaType.APPLICATION_JSON)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_JSON) public ResObjCust
-	 * getCustomer(RequestObj reqparam) {
-	 * 
-	 * ResObjCust respObj = new ResObjCust();
-	 * 
-	 * Customer cusObj = null;
-	 * 
-	 * ResStatus resStaObj = new ResStatus();
-	 * 
-	 * String pno = reqparam.getPno();
-	 * 
-	 * if (null!=pno && pno!="" ){
-	 * 
-	 * cusObj = new Customer();
-	 * 
-	 * cusObj.setAdd("ShopNo 121, Kanpur"); cusObj.setCuID("1111");
-	 * cusObj.setCuTy("Chemist"); cusObj.seteM("ShpNo121@gmail.com");
-	 * cusObj.setfN("FirstName"); cusObj.setlN("LastName");
-	 * cusObj.setPaN("ABCD123456"); cusObj.setPhN(pno);
-	 * resStaObj.setStatus("SUCCESS"); respObj.setResStatusObj(resStaObj);
-	 * respObj.setCusObj(cusObj); } else {
-	 * 
-	 * resStaObj.setStatus("FAILURE"); resStaObj.setMsg(
-	 * "No Such Customer Exists"); respObj.setResStatusObj(resStaObj);
-	 * respObj.setCusObj(cusObj); } try { respObj =
-	 * serviceDelegator.getCustomer(reqparam);
-	 * respObj.setErrorStatus("SUCCESS"); } catch (Exception excepObj) { return
-	 * ServiceExceptionMapper.toResponse(excepObj);
-	 * 
-	 * } return respObj;
-	 * 
-	 * }
-	 * 
-	 * 
-	 * 
-	 * @Override
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/saveCustomer")
-	 * 
-	 * @Produces(MediaType.APPLICATION_JSON)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_JSON) public ResObjCust
-	 * saveCustomer(RequestObj reqparam) {
-	 * 
-	 * ResObjCust respObj = new ResObjCust();
-	 * 
-	 * 
-	 * ResStatus resStaObj = new ResStatus();
-	 * 
-	 * resStaObj.setStatus("SUCCESS"); respObj.setResStatusObj(resStaObj);
-	 * 
-	 * ResponseObj respObj = new ResponseObj(); try { respObj =
-	 * serviceDelegator.fetchUserCount(reqparam);
-	 * respObj.setErrorStatus("SUCCESS"); } catch (Exception excepObj) { return
-	 * ServiceExceptionMapper.toResponse(excepObj);
-	 * 
-	 * } return respObj;
-	 * 
-	 * return respObj ; }
-	 */
+
 	@Override
 	@POST
 	@Path("/stock")
