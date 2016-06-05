@@ -387,8 +387,8 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjStockList searchStock(ReqObjectStockList reqparam) {
-		// TODO Auto-generated method stub
-		return null;
+		ResObjStockList res = serviceDelegator.searchStock(reqparam);		
+		return res;
 	}
 
 	public ServiceDelegator getServiceDelegator() {

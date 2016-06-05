@@ -17,8 +17,8 @@ public interface StockDAOInterface {
 	
 	void updateProduct(List<ProductBO> pboL,String dbName);
 	
-	List<ProductBO> searchProduct(ProductBO pbo,String dbName);
+	List<ProductBO> searchProduct(ProductBO pbo,String dbName,String filter);
 	
-	List<StockBO> searchStock(StockBO sbo,String dbName);
+	List<StockBO> searchStock(String prodIds,String dbName);
 	
 }

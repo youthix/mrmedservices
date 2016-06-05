@@ -10,7 +10,6 @@ import org.presentation.entities.customer.ResObjCustomer;
 import org.presentation.entities.payment.ReqObjPayDet;
 import org.presentation.entities.payment.ReqObjPayDetList;
 import org.presentation.entities.payment.ResObjPayDet;
-import org.presentation.entities.payment.ResObjPayDetList;
 import org.presentation.entities.payment.ResObjPayMode;
 import org.presentation.entities.purchase.ReqObjPurchase;
 import org.presentation.entities.purchase.ReqObjPurchaseList;
@@ -19,6 +18,8 @@ import org.presentation.entities.sale.ReqObjSale;
 import org.presentation.entities.sale.ReqObjSaleList;
 import org.presentation.entities.sale.ResObjSale;
 import org.presentation.entities.stock.ReqObjectStockList;
+import org.presentation.entities.stock.ResObjStock;
+import org.presentation.entities.stock.ResObjStockList;
 import org.presentation.entities.supplier.ReqObjSupplier;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplier;
@@ -241,6 +242,28 @@ public class RepositoryDelegator {
 		List<StockBO> sboL= domObjStockConv.convertToBOList(reqList.getSl());
 		stdao.updateStock(sboL, dbName);		
 	return;
+	}
+	
+	public List<ResObjStock> searchStock(ReqObjectStockList reqList){		
+		List<ResObjStock> resList=new ArrayList<ResObjStock>();
+		List<ProductBO> pboL= domObjProdConv.convertToBOList(reqList.getSl());
+		pboL=stdao.searchProduct(pboL.get(0), reqList.getBid(),reqList.getSp());		
+		resList = domObjProdConv.convertFromBOList(resList, pboL);
+		List<StockBO> sboL= stdao.searchStock(getProductIds(pboL), reqList.getBid());
+		resList=domObjStockConv.convertFromBOList(resList, sboL);		
+	return resList;
+	}
+	
+	private String getProductIds(List<ProductBO> ls){
+		String str="";
+		for(ProductBO p:ls){
+			str=str.concat(p.getProductID()).concat(",");
+		}
+		int index = str.lastIndexOf(",");
+		if (index != -1) {
+			str = str.substring(0, index);
+		}
+		return str;
 	}
 	
 	public void updateStockQuantity(ReqObjectStockList reqList,String dbName){				

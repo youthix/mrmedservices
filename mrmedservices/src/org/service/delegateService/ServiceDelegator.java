@@ -92,6 +92,17 @@ public class ServiceDelegator {
 		res.setResStatus(respStObj);
 		return res;
 	}
+	
+	public ResObjStockList searchStock(ReqObjectStockList reqList) {
+		ResObjStockList res = new ResObjStockList();
+		ResStatus respStObj = new ResStatus();
+		res.setSl(repositoryDelegator.searchStock(reqList));
+		respStObj.setStatus("SUCCESS");
+		respStObj.setCode("SUCCESS");
+		respStObj.setMsg("NO error occured while processing this transation !");
+		res.setResStatus(respStObj);
+		return res;
+	}
 
 	public ResObjStockList updateStockQuanity(ReqObjectStockList reqList, String dbName) {
 		ResObjStockList res = new ResObjStockList();
