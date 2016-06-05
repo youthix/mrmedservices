@@ -173,12 +173,18 @@ public class ServiceDelegator {
 	public ResObjSupplierList getSupplier(ReqObjSupplierList reqparam) {
 
 		ResObjSupplierList res = new ResObjSupplierList();
+		
+		ResStatus resStobj = res.getResStatus();
 
 		List<ResObjSupplier> suppliers = null;
 
 		suppliers = repositoryDelegator.getSupplier(reqparam);
 
 		res.setSl(suppliers);
+		
+		resStobj.setCode("SUCCESS");
+		resStobj.setMsg("Successful!!");
+		resStobj.setStatus("SUCCESS");
 
 		return res;
 	}

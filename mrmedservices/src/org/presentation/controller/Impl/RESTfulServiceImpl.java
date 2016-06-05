@@ -186,12 +186,6 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 		ResObjSupplierList res = serviceDelegator.getSupplier(reqparam);
 
-		ResStatus resStatus = new ResStatus();
-		resStatus.setStatus("SUCCESS");
-		resStatus.setCode("SUCCESS");
-		resStatus.setMsg("Users successfully fetched !");
-		res.setResStatus(resStatus);
-
 		return res;
 	}
 
@@ -206,7 +200,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 		serviceDelegator.saveSupplier(reqparam);
 
-		ResStatus resStatus = new ResStatus();
+		ResStatus resStatus = res.getResStatus();
 		resStatus.setStatus("SUCCESS");
 		resStatus.setCode("SUCCESS");
 		resStatus.setMsg("Users successfully fetched !");
