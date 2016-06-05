@@ -21,11 +21,11 @@ public interface RESTfulServiceInterface {
 
 	ResObjUserList login(ReqObjUserList reqparam);
 
-	ResponseObj stock(RequestObj reqparam);
+/*	ResponseObj stock(RequestObj reqparam);
 
 	ResponseObj updateInvoice(RequestObj reqparam);
 
-	ResponseObj getInvoice(RequestObj reqparam);
+	ResponseObj getInvoice(RequestObj reqparam);*/
 
 	ResObjUserList saveUser(ReqObjUserList reqparam);
 

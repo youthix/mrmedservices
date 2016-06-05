@@ -36,7 +36,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	public ServiceDelegator serviceDelegator;
 
-
+/*
 	@Override
 	@POST
 	@Path("/stock")
@@ -57,7 +57,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 	@Override
 	@POST
-	@Path("/updateInvoice") /* Includes update and delete */
+	@Path("/updateInvoice")  Includes update and delete 
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResponseObj updateInvoice(RequestObj reqparam) {
@@ -89,7 +89,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 		}
 		return respObj;
-	}
+	}*/
 
 
 	@GET
