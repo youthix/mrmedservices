@@ -390,6 +390,16 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	
 	@Override
 	@POST
+	@Path("/update/stockQty")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjStockList updateStockQty(ReqObjectStockList reqparam) {
+		ResObjStockList res = serviceDelegator.updateStockQuanity(reqparam, reqparam.getBid());		
+		return res;
+	}
+	
+	@Override
+	@POST
 	@Path("/add/product")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)

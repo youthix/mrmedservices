@@ -214,6 +214,12 @@ public class RepositoryDelegator {
 	return;
 	}
 	
+	public void updateStockQuantity(ReqObjectStockList reqList,String dbName){				
+		List<StockBO> sboL= domObjStockConv.convertToBOList(reqList.getSl());
+		stdao.updateStockQuantity(sboL, dbName);		
+	return;
+	}
+	
 	public void addProduct(ReqObjectStockList reqList,String dbName){				
 		List<ProductBO> pboL= domObjProdConv.convertToBOList(reqList.getSl());
 		stdao.insertProduct(pboL, dbName);		

@@ -28,6 +28,7 @@ import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUser;
 import org.presentation.entities.user.ResObjUserList;
 import org.presentation.util.ServiceException;
+import org.repository.BObjects.StockBO;
 import org.repository.RepositoryDelegate.RepositoryDelegator;
 
 import com.googlecode.ehcache.annotations.Cacheable;
@@ -83,6 +84,17 @@ public class ServiceDelegator {
 		ResObjStockList res = new ResObjStockList();
 		ResStatus respStObj = new ResStatus();
 		repositoryDelegator.updateStock(reqList, dbName);	
+		respStObj.setStatus("SUCCESS");
+		respStObj.setCode("SUCCESS");
+		respStObj.setMsg("NO error occured while processing this transation !");
+		res.setResStatus(respStObj);
+		return res;
+	}
+	
+	public ResObjStockList updateStockQuanity(ReqObjectStockList reqList,String dbName){		
+		ResObjStockList res = new ResObjStockList();
+		ResStatus respStObj = new ResStatus();
+		repositoryDelegator.updateStockQuantity(reqList, dbName);	
 		respStObj.setStatus("SUCCESS");
 		respStObj.setCode("SUCCESS");
 		respStObj.setMsg("NO error occured while processing this transation !");

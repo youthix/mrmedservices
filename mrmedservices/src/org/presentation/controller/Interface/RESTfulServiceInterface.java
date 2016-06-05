@@ -63,6 +63,7 @@ public interface RESTfulServiceInterface {
 	
 	ResObjStockList addStock(ReqObjectStockList reqparam);
 	ResObjStockList saveStock(ReqObjectStockList reqparam);
+	ResObjStockList updateStockQty(ReqObjectStockList reqparam);
 	
 	ResObjStockList addProduct(ReqObjectStockList reqparam);
 	ResObjStockList saveProduct(ReqObjectStockList reqparam);
