@@ -2,23 +2,14 @@ package org.repository.DAOInterface;
 
 import java.util.List;
 
-import org.repository.BObjects.ProductBO;
-import org.repository.BObjects.StockBO;
+import org.repository.BObjects.CustomerBO;
 
 public interface CustomerDAOInterface {
 		
-	void insertStock(List<StockBO> sboL,String dbName);
+	void insertCustomer(List<CustomerBO> cuBOli,String dbName);
 	
-	void updateStock(List<StockBO> sboL,String dbName);
+	void updateCustomer(List<CustomerBO> cuBOli,String dbName);
 	
-	void updateStockQuantity(List<StockBO> sboL,String dbName);
-	
-	void insertProduct(List<ProductBO> pboL,String dbName);
-	
-	void updateProduct(List<ProductBO> pboL,String dbName);
-	
-	List<ProductBO> searchProduct(ProductBO pbo,String dbName);
-	
-	List<StockBO> searchStock(StockBO sbo,String dbName);
+	List<CustomerBO> searchCustomer(CustomerBO sbo,String dbName);
 	
 }
