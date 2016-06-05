@@ -1,11 +1,15 @@
 package org.repository.DAOImpl;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.repository.BObjects.ProductBO;
 import org.repository.BObjects.StockBO;
+import org.repository.BObjects.TagPage;
 import org.repository.DAOInterface.StockDAOInterface;
 import org.repository.Mapper.ProductBOMapper;
 import org.repository.Mapper.StockBOMapper;
@@ -22,68 +26,145 @@ public class StockJDBCTemplate implements StockDAOInterface{
 		this.dataSource = dataSource;
 		this.jdbcTemplateObject = new JdbcTemplate(dataSource);
 	}
+	
+	
 	@Override
-	public void insertStock(StockBO sbo,String dbName){
-		String SQL="insert into " + dbName +".stock"
-				+ " (`productId`,`batch`,`manufacturing`,`expiry`,`leftQty`,"
-				+ "`buyQty`,`unitId`,`price`,`locator`) values ("
-				+"'"+sbo.getProductID()+"',"
-				+"'"+sbo.getBatch()+"',"
-				+"'"+sbo.getMfgDt()+"',"
-				+"'"+sbo.getExpDt()+"',"
-				+"'"+sbo.getLeftQty()+"',"
-				+"'"+sbo.getBuyQty()+"',"
-				+"'"+sbo.getUnitID()+"',"
-				+"'"+sbo.getPrice()+"',"
-				+"'"+sbo.getLocator()+"'"
-				+ ")"	;
-		jdbcTemplateObject.update(SQL);
+	public void insertStock(List<StockBO> sboL,String dbName){
+
+		try {
+			Connection con = jdbcTemplateObject.getDataSource().getConnection();
+			con.setAutoCommit(false);
+			Statement stmt = con.createStatement();
+			for (StockBO sbo : sboL) {
+				String SQL="insert into " + dbName +".stock"
+						+ " (`productId`,`batch`,`manufacturing`,`expiry`,`leftQty`,"
+						+ "`buyQty`,`unitId`,`price`,`locator`) values ("
+						+"'"+sbo.getProductID()+"',"
+						+"'"+sbo.getBatch()+"',"
+						+"'"+sbo.getMfgDt()+"',"
+						+"'"+sbo.getExpDt()+"',"
+						+"'"+sbo.getLeftQty()+"',"
+						+"'"+sbo.getBuyQty()+"',"
+						+"'"+sbo.getUnitID()+"',"
+						+"'"+sbo.getPrice()+"',"
+						+"'"+sbo.getLocator()+"'"
+						+ ")"	;
+				stmt.addBatch(SQL);
+			}
+			// Create an int[] to hold returned values
+			int[] count = stmt.executeBatch();
+
+			// Explicitly commit statements to apply changes
+			con.commit();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 	@Override
-	public void updateStock(StockBO sbo,String dbName){
-		String SQL="update "+ dbName +".stock set "
-				+"`productId`='"+sbo.getProductID()+"',"	
-				+"`batch`='"+sbo.getBatch()+"',"
-				+"`manufacturing`='"+sbo.getMfgDt()+"',"
-				+"`expiry`='"+sbo.getExpDt()+"',"
-				+"`leftQty`='"+sbo.getLeftQty()+"',"
-				+"`buyQty`='"+sbo.getBuyQty()+"',"
-				+"`unitId`='"+sbo.getUnitID()+"',"
-				+"`price`='"+sbo.getPrice()+"',"
-				+"`active`='"+sbo.getActive()+"',"
-				+"`locator`='"+sbo.getLocator()+"' "				
-				+"where id='"+sbo.getStockID()+"'";
-		jdbcTemplateObject.update(SQL);
+	public void updateStock(List<StockBO> sboL,String dbName){
+		try {
+			Connection con = jdbcTemplateObject.getDataSource().getConnection();
+			con.setAutoCommit(false);
+			Statement stmt = con.createStatement();
+			for (StockBO sbo : sboL) {
+				String SQL="update "+ dbName +".stock set "
+						+"`productId`='"+sbo.getProductID()+"',"	
+						+"`batch`='"+sbo.getBatch()+"',"
+						+"`manufacturing`='"+sbo.getMfgDt()+"',"
+						+"`expiry`='"+sbo.getExpDt()+"',"
+						+"`leftQty`='"+sbo.getLeftQty()+"',"
+						+"`buyQty`='"+sbo.getBuyQty()+"',"
+						+"`unitId`='"+sbo.getUnitID()+"',"
+						+"`price`='"+sbo.getPrice()+"',"
+						+"`active`='"+sbo.getActive()+"',"
+						+"`locator`='"+sbo.getLocator()+"' "				
+						+"where id='"+sbo.getStockID()+"'";
+				stmt.addBatch(SQL);
+			}
+			// Create an int[] to hold returned values
+			int[] count = stmt.executeBatch();
+
+			// Explicitly commit statements to apply changes
+			con.commit();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	
 	}
 	@Override
-	public void insertProduct(ProductBO pbo,String dbName){
-		String SQL="insert into `mrmed_master`.`product`"
-				+ " (`companyId`,`productName`,`type`,`composition`,`alternate`,"
-				+ "`potency`,`pricePerUnit`,`symptoms`) values ("
-				+"'"+pbo.getCompanyID()+"',"
-				+"'"+pbo.getProdName()+"',"
-				+"'"+pbo.getType()+"',"
-				+"'"+pbo.getComposition()+"',"
-				+"'"+pbo.getAlternate()+"',"
-				+"'"+pbo.getPotency()+"',"
-				+"'"+pbo.getPricePUnit()+"',"
-				+"'"+pbo.getSymp()+"'"
-				+ ")"	;
-		jdbcTemplateObject.update(SQL);
+	public void insertProduct(List<ProductBO> pboL,String dbName){
+		try {
+			Connection con = jdbcTemplateObject.getDataSource().getConnection();
+			con.setAutoCommit(false);
+			Statement stmt = con.createStatement();
+			for (ProductBO pbo : pboL) {
+				String SQL="insert into `mrmed_master`.`product`"
+						+ " (`companyId`,`productName`,`type`,`composition`,`alternate`,"
+						+ "`potency`,`pricePerUnit`,`symptoms`) values ("
+						+"'"+pbo.getCompanyID()+"',"
+						+"'"+pbo.getProdName()+"',"
+						+"'"+pbo.getType()+"',"
+						+"'"+pbo.getComposition()+"',"
+						+"'"+pbo.getAlternate()+"',"
+						+"'"+pbo.getPotency()+"',"
+						+"'"+pbo.getPricePUnit()+"',"
+						+"'"+pbo.getSymp()+"'"
+						+ ")"	;
+				stmt.addBatch(SQL);
+			}
+			// Create an int[] to hold returned values
+			int[] count = stmt.executeBatch();
+
+			// Explicitly commit statements to apply changes
+			con.commit();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	
+	
 	}
 	@Override
-	public void updateProduct(ProductBO pbo,String dbName){
-		String SQL="update `mrmed_master`.`product` set "
-				+"`companyId`='"+pbo.getCompanyID()+"',"	
-				+"`productName`='"+pbo.getProdName()+"',"
-				+"`type`='"+pbo.getType()+"',"
-				+"`composition`='"+pbo.getComposition()+"',"
-				+"`alternate`='"+pbo.getAlternate()+"',"
-				+"`potency`='"+pbo.getPotency()+"',"
-				+"`pricePerUnit`='"+pbo.getPricePUnit()+"',"
-				+"`symptoms`='"+pbo.getPricePUnit()+"' "
-				+"where `productId`='"+pbo.getProductID()+"'";
-		jdbcTemplateObject.update(SQL);
+	public void updateProduct(List<ProductBO> pboL,String dbName){
+		try {
+			Connection con = jdbcTemplateObject.getDataSource().getConnection();
+			con.setAutoCommit(false);
+			Statement stmt = con.createStatement();
+			for (ProductBO pbo : pboL) {
+				String SQL="update `mrmed_master`.`product` set "
+						+"`companyId`='"+pbo.getCompanyID()+"',"	
+						+"`productName`='"+pbo.getProdName()+"',"
+						+"`type`='"+pbo.getType()+"',"
+						+"`composition`='"+pbo.getComposition()+"',"
+						+"`alternate`='"+pbo.getAlternate()+"',"
+						+"`potency`='"+pbo.getPotency()+"',"
+						+"`pricePerUnit`='"+pbo.getPricePUnit()+"',"
+						+"`symptoms`='"+pbo.getPricePUnit()+"' "
+						+"where `productId`='"+pbo.getProductID()+"'";
+				stmt.addBatch(SQL);
+			}
+			// Create an int[] to hold returned values
+			int[] count = stmt.executeBatch();
+
+			// Explicitly commit statements to apply changes
+			con.commit();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	
+	
+	
 	}
 	@Override
 	public List<ProductBO> searchProduct(ProductBO pbo,String dbName){

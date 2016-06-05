@@ -129,16 +129,8 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Path("/save/user") /* Includes create and update */
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResObjUserList saveUser(ReqObjUserList reqparam) {
-
-		ResObjUserList res = new ResObjUserList();
-		ResStatus respStObj = new ResStatus();
-		serviceDelegator.saveUser(reqparam);
-		respStObj.setStatus("SUCCESS");
-		respStObj.setCode("SUCCESS");
-		respStObj.setMsg("NO error occured while processing this transation !");
-		res.setResStatus(respStObj);
-		return res;
+	public ResObjUserList saveUser(ReqObjUserList reqparam) {		
+		return serviceDelegator.saveUser(reqparam);
 	}
 
 	@Override
@@ -147,11 +139,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjUserList getUsers(ReqObjUserList reqparam) {
-		ResObjUserList res = serviceDelegator.getUsers(reqparam);
-		ResStatus resStatus = res.getResStatus();
-		resStatus.setStatus("SUCCESS");
-		resStatus.setCode("SUCCESS");
-		resStatus.setMsg("Users successfully fetched !");
+		ResObjUserList res = serviceDelegator.getUsers(reqparam);		
 		return res;
 	}
 

@@ -16,6 +16,8 @@ import org.presentation.entities.purchase.ResObjPurchaseList;
 import org.presentation.entities.sale.ReqObjSaleList;
 import org.presentation.entities.sale.ResObjSale;
 import org.presentation.entities.sale.ResObjSaleList;
+import org.presentation.entities.stock.ReqObjectStockList;
+import org.presentation.entities.stock.ResObjStockList;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplier;
 import org.presentation.entities.supplier.ResObjSupplierList;
@@ -55,19 +57,71 @@ public class ServiceDelegator {
 
 	}
 
-	public void saveUser(ReqObjUserList reqparam) {
-
+	public ResObjUserList saveUser(ReqObjUserList reqparam) {		
+		ResObjUserList res = new ResObjUserList();
+		ResStatus respStObj = new ResStatus();
 		repositoryDelegator.saveUser(reqparam);
-
-		return;
+		respStObj.setStatus("SUCCESS");
+		respStObj.setCode("SUCCESS");
+		respStObj.setMsg("NO error occured while processing this transation !");
+		res.setResStatus(respStObj);
+		return res;
 	}
+	
+	public ResObjStockList addStock(ReqObjectStockList reqList,String dbName){			
+		ResObjStockList res = new ResObjStockList();
+		ResStatus respStObj = new ResStatus();
+		repositoryDelegator.addStock(reqList, dbName);	
+		respStObj.setStatus("SUCCESS");
+		respStObj.setCode("SUCCESS");
+		respStObj.setMsg("NO error occured while processing this transation !");
+		res.setResStatus(respStObj);
+		return res;
+	}
+	
+	public ResObjStockList updateStock(ReqObjectStockList reqList,String dbName){		
+		ResObjStockList res = new ResObjStockList();
+		ResStatus respStObj = new ResStatus();
+		repositoryDelegator.updateStock(reqList, dbName);	
+		respStObj.setStatus("SUCCESS");
+		respStObj.setCode("SUCCESS");
+		respStObj.setMsg("NO error occured while processing this transation !");
+		res.setResStatus(respStObj);
+		return res;
+	}
+	
+	public ResObjStockList addProduct(ReqObjectStockList reqList,String dbName){		
+		ResObjStockList res = new ResObjStockList();
+		ResStatus respStObj = new ResStatus();
+		repositoryDelegator.addProduct(reqList, dbName);		
+		respStObj.setStatus("SUCCESS");
+		respStObj.setCode("SUCCESS");
+		respStObj.setMsg("NO error occured while processing this transation !");
+		res.setResStatus(respStObj);
+		return res;
+	}
+	
+	public ResObjStockList updateProduct(ReqObjectStockList reqList,String dbName){			
+		ResObjStockList res = new ResObjStockList();
+		ResStatus respStObj = new ResStatus();
+		repositoryDelegator.updateProduct(reqList, dbName);		
+		respStObj.setStatus("SUCCESS");
+		respStObj.setCode("SUCCESS");
+		respStObj.setMsg("NO error occured while processing this transation !");
+		res.setResStatus(respStObj);	
+		return res;
+	}
+	
 
 	public ResObjUserList getUsers(ReqObjUserList reqparam) {
 		res = new ResObjUserList();
 		List<ResObjUser> users = null;
-
 		users = repositoryDelegator.getUsers(reqparam, reqparam.getBid());
 		res.setUl(users);
+		ResStatus resStatus = res.getResStatus();
+		resStatus.setStatus("SUCCESS");
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Users successfully fetched !");
 		return res;
 	}
 

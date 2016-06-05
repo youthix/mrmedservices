@@ -14,6 +14,7 @@ import org.presentation.entities.purchase.ResObjPurchase;
 import org.presentation.entities.sale.ReqObjSale;
 import org.presentation.entities.sale.ReqObjSaleList;
 import org.presentation.entities.sale.ResObjSale;
+import org.presentation.entities.stock.ReqObjectStockList;
 import org.presentation.entities.supplier.ReqObjSupplier;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplier;
@@ -25,8 +26,10 @@ import org.presentation.entities.user.ResObjUser;
 import org.repository.BObjects.CompanyBO;
 import org.repository.BObjects.CustomerBO;
 import org.repository.BObjects.PaymentModeBO;
+import org.repository.BObjects.ProductBO;
 import org.repository.BObjects.PurchaseBO;
 import org.repository.BObjects.SaleBO;
+import org.repository.BObjects.StockBO;
 import org.repository.BObjects.SupplierBO;
 import org.repository.BObjects.TaxationBO;
 import org.repository.BObjects.UnitBO;
@@ -37,6 +40,8 @@ import org.repository.DAOInterface.UserDAOInterface;
 import org.repository.DomainConverter.DomainObjCompConverter;
 import org.repository.DomainConverter.DomainObjCustConverter;
 import org.repository.DomainConverter.DomainObjPaymentModeConverter;
+import org.repository.DomainConverter.DomainObjProdConverter;
+import org.repository.DomainConverter.DomainObjStockConverter;
 import org.repository.DomainConverter.DomainObjSuppConverter;
 import org.repository.DomainConverter.DomainObjTaxConverter;
 import org.repository.DomainConverter.DomainObjUnitConverter;
@@ -57,6 +62,8 @@ public class RepositoryDelegator {
 	private DomainObjSuppConverter domObjSuppConv;
 	private DomainObjUnitConverter domObjUnitConv;
 	private DomainObjCompConverter domObjCompConv;
+	private DomainObjStockConverter domObjStockConv;
+	private DomainObjProdConverter domObjProdConv;
 	private DomainObjPaymentModeConverter domObjPayModeConv;
 	private DomainObjTaxConverter domObjTaxConv;
 	private ConnectionFactory connectionFactory;
@@ -193,6 +200,30 @@ public class RepositoryDelegator {
 		}
 
 		return respObjPurls;
+	}
+	
+	public void addStock(ReqObjectStockList reqList,String dbName){				
+			List<StockBO> sboL= domObjStockConv.convertToBOList(reqList.getSl());
+			stdao.insertStock(sboL, dbName);		
+		return;
+	}
+	
+	public void updateStock(ReqObjectStockList reqList,String dbName){				
+		List<StockBO> sboL= domObjStockConv.convertToBOList(reqList.getSl());
+		stdao.updateStock(sboL, dbName);		
+	return;
+	}
+	
+	public void addProduct(ReqObjectStockList reqList,String dbName){				
+		List<ProductBO> pboL= domObjProdConv.convertToBOList(reqList.getSl());
+		stdao.insertProduct(pboL, dbName);		
+	return;
+	}
+	
+	public void updateProduct(ReqObjectStockList reqList,String dbName){				
+		List<ProductBO> pboL= domObjProdConv.convertToBOList(reqList.getSl());
+		stdao.updateProduct(pboL, dbName);		
+	return;
 	}
 	
 	@Cacheable(cacheName = "payModeCache", keyGenerator = @KeyGenerator(name = "HashCodeCacheKeyGenerator", properties = @Property(name = "includeMethod", value = "false") ) )
