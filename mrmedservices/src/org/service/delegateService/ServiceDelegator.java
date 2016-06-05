@@ -225,12 +225,18 @@ public class ServiceDelegator {
 	public ResObjPurchaseList getPurchaseInv(ReqObjPurchaseList reqparam) {
 
 		ResObjPurchaseList res = new ResObjPurchaseList();
+		
+		ResStatus resStobj = res.getResStatus();
 
 		List<ResObjPurchase> pl = null;
 
 		// sl = repositoryDelegator.getSupplier(reqparam);
 
 		res.setPl(pl);
+		
+		resStobj.setCode("SUCCESS");
+		resStobj.setMsg("Successful!!");
+		resStobj.setStatus("SUCCESS");
 
 		return res;
 	}
