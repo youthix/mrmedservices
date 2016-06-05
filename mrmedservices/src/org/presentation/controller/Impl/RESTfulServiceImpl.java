@@ -215,10 +215,8 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjSaleList getSaleInv(ReqObjSaleList reqparam) {
-
 		ResObjSaleList res = serviceDelegator.getSaleInv(reqparam);
-
-		return null;
+		return res;
 	}
 
 	@Override
@@ -279,10 +277,8 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjPayDetList getPayDet(ReqObjPayDetList reqparam) {
-
 		ResObjPayDetList res = serviceDelegator.getPaymentDet(reqparam);
-
-		return null;
+		return res;
 	}
 
 	@Override
@@ -293,9 +289,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	/* Includes create and update */
 	public ResObjPayDetList savePayDet(ReqObjPayDetList reqparam) {
 		ResObjPayDetList res = new ResObjPayDetList();
-
 		serviceDelegator.savePaymentDet(reqparam);
-
 		ResStatus resStatus = res.getResStatus();
 		resStatus.setStatus("SUCCESS");
 		resStatus.setCode("SUCCESS");
@@ -385,6 +379,16 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	public ResObjStockList saveProduct(ReqObjectStockList reqparam) {
 		ResObjStockList res = serviceDelegator.updateProduct(reqparam, reqparam.getBid());		
 		return res;
+	}
+	
+	@Override
+	@POST
+	@Path("/search/stock")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjStockList searchStock(ReqObjectStockList reqparam) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public ServiceDelegator getServiceDelegator() {
