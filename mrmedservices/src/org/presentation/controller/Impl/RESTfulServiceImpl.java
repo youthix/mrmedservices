@@ -9,12 +9,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.presentation.controller.Interface.RESTfulServiceInterface;
-import org.presentation.entities.RequestObj;
 import org.presentation.entities.ResStatus;
-import org.presentation.entities.ResponseObj;
 import org.presentation.entities.company.ResObjCompanyList;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomerList;
+import org.presentation.entities.payment.ReqObjPayDetList;
+import org.presentation.entities.payment.ResObjPayDetList;
 import org.presentation.entities.payment.ResObjPayModeList;
 import org.presentation.entities.purchase.ReqObjPurchaseList;
 import org.presentation.entities.purchase.ResObjPurchaseList;
@@ -308,14 +308,44 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 		return res;
 	}
 	
-	public ServiceDelegator getServiceDelegator() {
-		return serviceDelegator;
+	@Override
+	@POST
+	@Path("/get/payDet")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjPayDetList getPayDet(ReqObjPayDetList reqparam) {
+
+/*		ResObjSupplierList res = serviceDelegator.getSupplier(reqparam);
+
+		ResStatus resStatus = new ResStatus();
+		resStatus.setStatus("SUCCESS");
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Users successfully fetched !");
+		res.setResStatus(resStatus);*/
+
+		return null;
 	}
 
-	public void setServiceDelegator(ServiceDelegator serviceDelegator) {
-		this.serviceDelegator = serviceDelegator;
-	}
+	@Override
+	@POST
+	@Path("/save/payDet")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	/* Includes create and update */
+	public ResObjPayDetList savePayDet(ReqObjPayDetList reqparam) {
+		ResObjPayDetList res = new ResObjPayDetList();
 
+/*		serviceDelegator.saveSupplier(reqparam);
+
+		ResStatus resStatus = new ResStatus();
+		resStatus.setStatus("SUCCESS");
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Users successfully fetched !");
+		res.setResStatus(resStatus);*/
+
+		return res;
+	}	
+	
 	@Override
 	@GET
 	@Path("/get/payment/mode")
@@ -347,5 +377,13 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	public ResObjCompanyList getCompany(String busId) {
 		return serviceDelegator.getCompany(busId);
 	}	
+
+	public ServiceDelegator getServiceDelegator() {
+		return serviceDelegator;
+	}
+
+	public void setServiceDelegator(ServiceDelegator serviceDelegator) {
+		this.serviceDelegator = serviceDelegator;
+	}
 
 }

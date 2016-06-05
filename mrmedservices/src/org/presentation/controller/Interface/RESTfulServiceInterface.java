@@ -1,10 +1,10 @@
 package org.presentation.controller.Interface;
 
-import org.presentation.entities.RequestObj;
-import org.presentation.entities.ResponseObj;
 import org.presentation.entities.company.ResObjCompanyList;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomerList;
+import org.presentation.entities.payment.ReqObjPayDetList;
+import org.presentation.entities.payment.ResObjPayDetList;
 import org.presentation.entities.payment.ResObjPayModeList;
 import org.presentation.entities.purchase.ReqObjPurchaseList;
 import org.presentation.entities.purchase.ResObjPurchaseList;
@@ -46,6 +46,10 @@ public interface RESTfulServiceInterface {
 	ResObjPurchaseList getPurchaseInv(ReqObjPurchaseList reqparam);
 	
 	ResObjPurchaseList savePurchaseInv(ReqObjPurchaseList reqparam);
+	
+	ResObjPayDetList savePayDet(ReqObjPayDetList reqparam);
+	
+	ResObjPayDetList getPayDet(ReqObjPayDetList reqparam);
 	
 	ResObjPayModeList getPaymentMode(String busId);
 	
