@@ -2,13 +2,14 @@ package org.service.delegateService;
 
 import java.util.List;
 
-import net.sf.ehcache.CacheManager;
-
 import org.presentation.entities.ResStatus;
 import org.presentation.entities.company.ResObjCompanyList;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomer;
 import org.presentation.entities.customer.ResObjCustomerList;
+import org.presentation.entities.payment.ReqObjPayDetList;
+import org.presentation.entities.payment.ResObjPayDet;
+import org.presentation.entities.payment.ResObjPayDetList;
 import org.presentation.entities.payment.ResObjPayModeList;
 import org.presentation.entities.purchase.ReqObjPurchaseList;
 import org.presentation.entities.purchase.ResObjPurchase;
@@ -28,10 +29,11 @@ import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUser;
 import org.presentation.entities.user.ResObjUserList;
 import org.presentation.util.ServiceException;
-import org.repository.BObjects.StockBO;
 import org.repository.RepositoryDelegate.RepositoryDelegator;
 
 import com.googlecode.ehcache.annotations.Cacheable;
+
+import net.sf.ehcache.CacheManager;
 
 public class ServiceDelegator {
 
@@ -217,7 +219,7 @@ public class ServiceDelegator {
 
 	public void savePurchaseInv(ReqObjPurchaseList reqparam) {
 
-		// repositoryDelegator.saveSupplier(reqparam);
+		repositoryDelegator.savePurchaseInv(reqparam);
 
 		return;
 	}
@@ -228,11 +230,11 @@ public class ServiceDelegator {
 		
 		ResStatus resStobj = res.getResStatus();
 
-		List<ResObjPurchase> pl = null;
+		List<ResObjPurchase> pIli = null;
 
-		// sl = repositoryDelegator.getSupplier(reqparam);
+		pIli = repositoryDelegator.getPurchaseInv(reqparam);
 
-		res.setPl(pl);
+		res.setPl(pIli);
 		
 		resStobj.setCode("SUCCESS");
 		resStobj.setMsg("Successful!!");
@@ -240,6 +242,32 @@ public class ServiceDelegator {
 
 		return res;
 	}
+	
+	public void savePaymentDet(ReqObjPayDetList reqparam) {
+
+		// repositoryDelegator.saveSupplier(reqparam);
+
+		return;
+	}
+
+	public ResObjPayDetList getPaymentDet(ReqObjPayDetList reqparam) {
+
+		ResObjPayDetList res = new ResObjPayDetList();
+		
+		ResStatus resStobj = res.getResStatus();
+
+		List<ResObjPayDet> pdli = null;
+
+		// pdli = repositoryDelegator.getSupplier(reqparam);
+
+		res.setPdl(pdli);
+		
+		resStobj.setCode("SUCCESS");
+		resStobj.setMsg("Successful!!");
+		resStobj.setStatus("SUCCESS");
+
+		return res;
+	}	
 
 	public ResObjUserList doLogin(ReqObjUserList reqparam) {
 		res = new ResObjUserList();
