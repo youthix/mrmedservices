@@ -245,7 +245,7 @@ public class ServiceDelegator {
 	
 	public void savePaymentDet(ReqObjPayDetList reqparam) {
 
-		// repositoryDelegator.saveSupplier(reqparam);
+		repositoryDelegator.savePaymentDet(reqparam);
 
 		return;
 	}
@@ -258,7 +258,7 @@ public class ServiceDelegator {
 
 		List<ResObjPayDet> pdli = null;
 
-		// pdli = repositoryDelegator.getSupplier(reqparam);
+		pdli = repositoryDelegator.getPaymentDet(reqparam);
 
 		res.setPdl(pdli);
 		

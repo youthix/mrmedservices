@@ -7,6 +7,10 @@ import org.presentation.entities.company.ResObjCompany;
 import org.presentation.entities.customer.ReqObjCustomer;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomer;
+import org.presentation.entities.payment.ReqObjPayDet;
+import org.presentation.entities.payment.ReqObjPayDetList;
+import org.presentation.entities.payment.ResObjPayDet;
+import org.presentation.entities.payment.ResObjPayDetList;
 import org.presentation.entities.payment.ResObjPayMode;
 import org.presentation.entities.purchase.ReqObjPurchase;
 import org.presentation.entities.purchase.ReqObjPurchaseList;
@@ -25,6 +29,7 @@ import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUser;
 import org.repository.BObjects.CompanyBO;
 import org.repository.BObjects.CustomerBO;
+import org.repository.BObjects.PaymentBO;
 import org.repository.BObjects.PaymentModeBO;
 import org.repository.BObjects.ProductBO;
 import org.repository.BObjects.PurchaseBO;
@@ -201,6 +206,30 @@ public class RepositoryDelegator {
 
 		return respObjPurls;
 	}
+	
+	public void savePaymentDet(ReqObjPayDetList reqparam) {
+		for (ReqObjPayDet req : reqparam.getPdl()) {
+			// dao.saveSupplier(domObjSuppConv.convertToBO(req),
+			// "stockist_dummy");
+		}
+
+		return;
+	}
+
+	public List<ResObjPayDet> getPaymentDet(ReqObjPayDetList reqparam) {
+
+		List<PaymentBO> puBOLs = null;
+
+		List<ResObjPayDet> respObjPayDetls = new ArrayList<ResObjPayDet>();
+
+		for (ReqObjPayDet req : reqparam.getPdl()) {
+
+			// suppBOls = dao.getSupplier(domObjSuppConv.convertToBO(req));
+			// respObjSuppls.addAll(domObjSuppConv.convertFromBOList(custBOls));
+		}
+
+		return respObjPayDetls;
+	}	
 	
 	public void addStock(ReqObjectStockList reqList,String dbName){				
 			List<StockBO> sboL= domObjStockConv.convertToBOList(reqList.getSl());
