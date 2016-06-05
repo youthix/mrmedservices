@@ -9,7 +9,6 @@ import javax.sql.DataSource;
 
 import org.repository.BObjects.ProductBO;
 import org.repository.BObjects.StockBO;
-import org.repository.BObjects.UserBO;
 import org.repository.DAOInterface.StockDAOInterface;
 import org.repository.Mapper.ProductBOMapper;
 import org.repository.Mapper.StockBOMapper;
@@ -94,28 +93,61 @@ public class StockJDBCTemplate implements StockDAOInterface{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	
-	
+		}	
 	}
+	
 	@Override
-	public void insertProduct(List<ProductBO> pboL,String dbName){
-		for(ProductBO pbo : pboL) {
-			    checkDuplicateProd(pbo);
-				String SQL="insert into `mrmed_master`.`product`"
-				+ " (`companyId`,`productName`,`type`,`composition`,`alternate`,"
-				+ "`potency`,`pricePerUnit`,`symptoms`) values ("
-				+"'"+pbo.getCompanyID()+"',"
-				+"'"+pbo.getProdName()+"',"
-				+"'"+pbo.getType()+"',"
-				+"'"+pbo.getComposition()+"',"
-				+"'"+pbo.getAlternate()+"',"
-				+"'"+pbo.getPotency()+"',"
-				+"'"+pbo.getPricePUnit()+"',"
-				+"'"+pbo.getSymp()+"'"
-				+ ")"	;
+	public void updateStockQuantity(List<StockBO> sboL,String dbName){		
+			for (StockBO sbo : sboL) {				
+				String SQL;
+				checkQuantity(dbName, sbo);				
+				SQL="update "+ dbName +".stock set "
+						+"`leftQty`='"+sbo.getLeftQty()				
+						+"' where id='"+sbo.getStockID()+"'";
 				jdbcTemplateObject.update(SQL);
-	        }	
+			}
+	}
+	
+	private void checkQuantity(String dbName, StockBO sbo) {
+		String SQL="select * from "+dbName+".`stock` where id = '%"+sbo.getStockID()+"'";
+		List<StockBO> sL=jdbcTemplateObject.query(SQL, new StockBOMapper());
+		if(null != sL && null != sL.get(0) && Integer.parseInt(sL.get(0).getLeftQty())<Integer.parseInt(sbo.getLeftQty())){
+			//TODO :: throw exception for isufficient quantity
+		}
+	}
+	
+	@Override
+	public void insertProduct(List<ProductBO> pboL,String dbName){		
+		try {
+			Connection con = jdbcTemplateObject.getDataSource().getConnection();
+			con.setAutoCommit(false);
+			Statement stmt = con.createStatement();
+			for (ProductBO pbo : pboL) {
+			    checkDuplicateProd(pbo);
+					String SQL="insert into `mrmed_master`.`product`"
+					+ " (`companyId`,`productName`,`type`,`composition`,`alternate`,"
+					+ "`potency`,`pricePerUnit`,`symptoms`) values ("
+					+"'"+pbo.getCompanyID()+"',"
+					+"'"+pbo.getProdName()+"',"
+					+"'"+pbo.getType()+"',"
+					+"'"+pbo.getComposition()+"',"
+					+"'"+pbo.getAlternate()+"',"
+					+"'"+pbo.getPotency()+"',"
+					+"'"+pbo.getPricePUnit()+"',"
+					+"'"+pbo.getSymp()+"'"
+					+ ")"	;
+				stmt.addBatch(SQL);
+			}
+			// Create an int[] to hold returned values
+			int[] count = stmt.executeBatch();
+
+			// Explicitly commit statements to apply changes
+			con.commit();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void checkDuplicateProd(ProductBO pbo){
@@ -137,6 +169,7 @@ public class StockJDBCTemplate implements StockDAOInterface{
 			con.setAutoCommit(false);
 			Statement stmt = con.createStatement();
 			for (ProductBO pbo : pboL) {
+				checkDuplicateProd(pbo);
 				String SQL="update `mrmed_master`.`product` set "
 						+"`companyId`='"+pbo.getCompanyID()+"',"	
 						+"`productName`='"+pbo.getProdName()+"',"
@@ -159,11 +192,8 @@ public class StockJDBCTemplate implements StockDAOInterface{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-	
-	
-	
 	}
+	
 	@Override
 	public List<ProductBO> searchProduct(ProductBO pbo,String dbName){
 		String SQL="select * from `mrmed_master`.`product` where productName like '%"+pbo.getProdName()+"%'";

@@ -11,6 +11,8 @@ public interface StockDAOInterface {
 	
 	void updateStock(List<StockBO> sboL,String dbName);
 	
+	void updateStockQuantity(List<StockBO> sboL,String dbName);
+	
 	void insertProduct(List<ProductBO> pboL,String dbName);
 	
 	void updateProduct(List<ProductBO> pboL,String dbName);
