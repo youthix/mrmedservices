@@ -12,7 +12,9 @@ public class StockBO {
 	private String leftQty;
 	private String unitID;
 	private String price;
-	private String locator;
+	private String locator;	
+	private String dtCreated;
+	private String dtUpdated;
 	private String active;
 	public String getStockID() {
 		return stockID;
@@ -79,6 +81,17 @@ public class StockBO {
 	}
 	public void setLocator(String locator) {
 		this.locator = locator;
+	}
+	public String getDtCreated() {
+		return dtCreated;
+	}
+	public void setDtCreated(String dtCreated) {
+		this.dtCreated = dtCreated;
+	}
+	public String getDtUpdated() {
+		return dtUpdated;
+	}
+	public void setDtUpdated(String dtUpdated) {
+		this.dtUpdated = dtUpdated;
 	}	
-
 }

@@ -20,6 +20,8 @@ import org.presentation.entities.purchase.ReqObjPurchaseList;
 import org.presentation.entities.purchase.ResObjPurchaseList;
 import org.presentation.entities.sale.ReqObjSaleList;
 import org.presentation.entities.sale.ResObjSaleList;
+import org.presentation.entities.stock.ReqObjectStockList;
+import org.presentation.entities.stock.ResObjStockList;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplierList;
 import org.presentation.entities.tax.ResObjTaxList;
@@ -129,16 +131,8 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Path("/save/user") /* Includes create and update */
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResObjUserList saveUser(ReqObjUserList reqparam) {
-
-		ResObjUserList res = new ResObjUserList();
-		ResStatus respStObj = new ResStatus();
-		serviceDelegator.saveUser(reqparam);
-		respStObj.setStatus("SUCCESS");
-		respStObj.setCode("SUCCESS");
-		respStObj.setMsg("NO error occured while processing this transation !");
-		res.setResStatus(respStObj);
-		return res;
+	public ResObjUserList saveUser(ReqObjUserList reqparam) {		
+		return serviceDelegator.saveUser(reqparam);
 	}
 
 	@Override
@@ -147,11 +141,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjUserList getUsers(ReqObjUserList reqparam) {
-		ResObjUserList res = serviceDelegator.getUsers(reqparam);
-		ResStatus resStatus = res.getResStatus();
-		resStatus.setStatus("SUCCESS");
-		resStatus.setCode("SUCCESS");
-		resStatus.setMsg("Users successfully fetched !");
+		ResObjUserList res = serviceDelegator.getUsers(reqparam);		
 		return res;
 	}
 
@@ -377,6 +367,56 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	public ResObjCompanyList getCompany(String busId) {
 		return serviceDelegator.getCompany(busId);
 	}	
+	
+	@Override
+	@POST
+	@Path("/add/stock")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjStockList addStock(ReqObjectStockList reqparam) {
+		ResObjStockList res = serviceDelegator.addStock(reqparam, reqparam.getBid());		
+		return res;
+	}
+	
+	@Override
+	@POST
+	@Path("/save/stock")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjStockList saveStock(ReqObjectStockList reqparam) {
+		ResObjStockList res = serviceDelegator.updateStock(reqparam, reqparam.getBid());		
+		return res;
+	}
+	
+	@Override
+	@POST
+	@Path("/update/stockQty")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjStockList updateStockQty(ReqObjectStockList reqparam) {
+		ResObjStockList res = serviceDelegator.updateStockQuanity(reqparam, reqparam.getBid());		
+		return res;
+	}
+	
+	@Override
+	@POST
+	@Path("/add/product")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjStockList addProduct(ReqObjectStockList reqparam) {
+		ResObjStockList res = serviceDelegator.addProduct(reqparam, reqparam.getBid());		
+		return res;
+	}
+
+	@Override
+	@POST
+	@Path("/save/product")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjStockList saveProduct(ReqObjectStockList reqparam) {
+		ResObjStockList res = serviceDelegator.updateProduct(reqparam, reqparam.getBid());		
+		return res;
+	}
 
 	public ServiceDelegator getServiceDelegator() {
 		return serviceDelegator;

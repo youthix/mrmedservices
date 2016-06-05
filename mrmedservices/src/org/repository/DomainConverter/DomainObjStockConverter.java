@@ -57,6 +57,8 @@ public class DomainObjStockConverter {
 			resObj.setpID(sBObj.getProductID());
 			resObj.setsID(sBObj.getStockID());
 			resObj.setUnID(sBObj.getUnitID());
+			resObj.setDtCrt(sBObj.getDtCreated());
+			resObj.setDtUpd(sBObj.getDtUpdated());
 		  }
 		}
 		return;

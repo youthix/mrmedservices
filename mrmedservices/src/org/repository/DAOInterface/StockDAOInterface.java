@@ -6,14 +6,16 @@ import org.repository.BObjects.ProductBO;
 import org.repository.BObjects.StockBO;
 
 public interface StockDAOInterface {
+		
+	void insertStock(List<StockBO> sboL,String dbName);
 	
-	void insertStock(StockBO sbo,String dbName);
+	void updateStock(List<StockBO> sboL,String dbName);
 	
-	void updateStock(StockBO sbo,String dbName);
+	void updateStockQuantity(List<StockBO> sboL,String dbName);
 	
-	void insertProduct(ProductBO pbo,String dbName);
+	void insertProduct(List<ProductBO> pboL,String dbName);
 	
-	void updateProduct(ProductBO pbo,String dbName);
+	void updateProduct(List<ProductBO> pboL,String dbName);
 	
 	List<ProductBO> searchProduct(ProductBO pbo,String dbName);
 	

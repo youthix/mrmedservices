@@ -29,6 +29,9 @@
 	<bean id="sdao" class="org.repository.DAOImpl.SharedJDBCTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	<bean id="stdao" class="org.repository.DAOImpl.StockJDBCTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 
 	<bean id="connectionFactory" class="org.repository.dbUtilities.ConnectionFactory">
 		<property name="driverManagerDataSource" ref="dataSource" />
@@ -39,12 +42,16 @@
 		class="org.repository.RepositoryDelegate.RepositoryDelegator">
 		<property name="udao" ref="udao" />
 		<property name="sdao" ref="sdao" />
+		<property name="stdao" ref="stdao" />
 		<property name="domObjUserConv" ref="userObjConv" />
 		<property name="domObjCusConv" ref="custObjConv" />
 		<property name="domObjSuppConv" ref="suppObjConv" />
+		<property name="domObjCompConv" ref="compObjConv" />
 		<property name="domObjUnitConv" ref="unitObjConv" />
 		<property name="domObjPayModeConv" ref="payModeObjConv" />
 		<property name="domObjTaxConv" ref="taxObjConv" />
+		<property name="domObjStockConv" ref="stockObjConv" />
+		<property name="domObjProdConv" ref="prodObjConv" />
 		<property name="connectionFactory" ref="connectionFactory" />
 	</bean>
 	
@@ -60,6 +67,13 @@
 	</bean>
 	<bean id="unitObjConv" class="org.repository.DomainConverter.DomainObjUnitConverter">
 	</bean>
+	<bean id="compObjConv" class="org.repository.DomainConverter.DomainObjCompConverter">
+	</bean>
+	<bean id="stockObjConv" class="org.repository.DomainConverter.DomainObjStockConverter">
+	</bean>
+	<bean id="prodObjConv" class="org.repository.DomainConverter.DomainObjProdConverter">
+	</bean>
+	
 
 	<bean id="serviceDelegator" class="org.service.delegateService.ServiceDelegator">
 		<property name="repositoryDelegator" ref="repositoryDelegator" />
