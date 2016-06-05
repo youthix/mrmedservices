@@ -58,7 +58,7 @@ public class ServiceDelegator {
 
 	}
 
-	public ResObjUserList saveUser(ReqObjUserList reqparam) {		
+	public ResObjUserList saveUser(ReqObjUserList reqparam) {
 		ResObjUserList res = new ResObjUserList();
 		ResStatus respStObj = new ResStatus();
 		repositoryDelegator.saveUser(reqparam);
@@ -68,62 +68,61 @@ public class ServiceDelegator {
 		res.setResStatus(respStObj);
 		return res;
 	}
-	
-	public ResObjStockList addStock(ReqObjectStockList reqList,String dbName){			
+
+	public ResObjStockList addStock(ReqObjectStockList reqList, String dbName) {
 		ResObjStockList res = new ResObjStockList();
 		ResStatus respStObj = new ResStatus();
-		repositoryDelegator.addStock(reqList, dbName);	
+		repositoryDelegator.addStock(reqList, dbName);
 		respStObj.setStatus("SUCCESS");
 		respStObj.setCode("SUCCESS");
 		respStObj.setMsg("NO error occured while processing this transation !");
 		res.setResStatus(respStObj);
 		return res;
 	}
-	
-	public ResObjStockList updateStock(ReqObjectStockList reqList,String dbName){		
+
+	public ResObjStockList updateStock(ReqObjectStockList reqList, String dbName) {
 		ResObjStockList res = new ResObjStockList();
 		ResStatus respStObj = new ResStatus();
-		repositoryDelegator.updateStock(reqList, dbName);	
+		repositoryDelegator.updateStock(reqList, dbName);
 		respStObj.setStatus("SUCCESS");
 		respStObj.setCode("SUCCESS");
 		respStObj.setMsg("NO error occured while processing this transation !");
 		res.setResStatus(respStObj);
 		return res;
 	}
-	
-	public ResObjStockList updateStockQuanity(ReqObjectStockList reqList,String dbName){		
+
+	public ResObjStockList updateStockQuanity(ReqObjectStockList reqList, String dbName) {
 		ResObjStockList res = new ResObjStockList();
 		ResStatus respStObj = new ResStatus();
-		repositoryDelegator.updateStockQuantity(reqList, dbName);	
+		repositoryDelegator.updateStockQuantity(reqList, dbName);
 		respStObj.setStatus("SUCCESS");
 		respStObj.setCode("SUCCESS");
 		respStObj.setMsg("NO error occured while processing this transation !");
 		res.setResStatus(respStObj);
 		return res;
 	}
-	
-	public ResObjStockList addProduct(ReqObjectStockList reqList,String dbName){		
+
+	public ResObjStockList addProduct(ReqObjectStockList reqList, String dbName) {
 		ResObjStockList res = new ResObjStockList();
 		ResStatus respStObj = new ResStatus();
-		repositoryDelegator.addProduct(reqList, dbName);		
+		repositoryDelegator.addProduct(reqList, dbName);
 		respStObj.setStatus("SUCCESS");
 		respStObj.setCode("SUCCESS");
 		respStObj.setMsg("NO error occured while processing this transation !");
 		res.setResStatus(respStObj);
 		return res;
 	}
-	
-	public ResObjStockList updateProduct(ReqObjectStockList reqList,String dbName){			
+
+	public ResObjStockList updateProduct(ReqObjectStockList reqList, String dbName) {
 		ResObjStockList res = new ResObjStockList();
 		ResStatus respStObj = new ResStatus();
-		repositoryDelegator.updateProduct(reqList, dbName);		
+		repositoryDelegator.updateProduct(reqList, dbName);
 		respStObj.setStatus("SUCCESS");
 		respStObj.setCode("SUCCESS");
 		respStObj.setMsg("NO error occured while processing this transation !");
-		res.setResStatus(respStObj);	
+		res.setResStatus(respStObj);
 		return res;
 	}
-	
 
 	public ResObjUserList getUsers(ReqObjUserList reqparam) {
 		res = new ResObjUserList();
@@ -148,15 +147,22 @@ public class ServiceDelegator {
 
 		ResObjCustomerList res = new ResObjCustomerList();
 
+		ResStatus resStobj = res.getResStatus();
+
 		List<ResObjCustomer> customers = null;
 
 		customers = repositoryDelegator.getCustomer(reqparam);
 
 		res.setCl(customers);
 
+		resStobj.setCode("SUCCESS");
+		resStobj.setMsg("Successful!!");
+		resStobj.setStatus("SUCCESS");
+
 		return res;
+
 	}
-	
+
 	public void saveSupplier(ReqObjSupplierList reqparam) {
 
 		repositoryDelegator.saveSupplier(reqparam);
@@ -175,11 +181,11 @@ public class ServiceDelegator {
 		res.setSl(suppliers);
 
 		return res;
-	}	
-	
+	}
+
 	public void saveSaleInv(ReqObjSaleList reqparam) {
 
-		//repositoryDelegator.saveSupplier(reqparam);
+		// repositoryDelegator.saveSupplier(reqparam);
 
 		return;
 	}
@@ -190,16 +196,16 @@ public class ServiceDelegator {
 
 		List<ResObjSale> sl = null;
 
-		//sl = repositoryDelegator.getSupplier(reqparam);
-		
+		// sl = repositoryDelegator.getSupplier(reqparam);
+
 		res.setSl(sl);
 
 		return res;
 	}
-	
+
 	public void savePurchaseInv(ReqObjPurchaseList reqparam) {
 
-		//repositoryDelegator.saveSupplier(reqparam);
+		// repositoryDelegator.saveSupplier(reqparam);
 
 		return;
 	}
@@ -210,12 +216,12 @@ public class ServiceDelegator {
 
 		List<ResObjPurchase> pl = null;
 
-		//sl = repositoryDelegator.getSupplier(reqparam);
-		
+		// sl = repositoryDelegator.getSupplier(reqparam);
+
 		res.setPl(pl);
 
 		return res;
-	}	
+	}
 
 	public ResObjUserList doLogin(ReqObjUserList reqparam) {
 		res = new ResObjUserList();
@@ -236,10 +242,9 @@ public class ServiceDelegator {
 		}
 		return res;
 	}
-	
-	
+
 	public ResObjPayModeList getPaymentMode(String busId) {
-		resPM= new ResObjPayModeList();		
+		resPM = new ResObjPayModeList();
 		resStatus = resPM.getResStatus();
 		resPM.setPml(repositoryDelegator.getPaymentMode(busId));
 		resStatus.setCode("SUCCESS");
@@ -248,9 +253,8 @@ public class ServiceDelegator {
 		return resPM;
 	}
 
-	
 	public ResObjUnitList getUnit(String busId) {
-		resU= new ResObjUnitList();		
+		resU = new ResObjUnitList();
 		resStatus = resU.getResStatus();
 		resU.setUl(repositoryDelegator.getUnit(busId));
 		resStatus.setCode("SUCCESS");
@@ -259,9 +263,8 @@ public class ServiceDelegator {
 		return resU;
 	}
 
-	
 	public ResObjTaxList getTax(String busId) {
-		resT= new ResObjTaxList();		
+		resT = new ResObjTaxList();
 		resStatus = resT.getResStatus();
 		resT.setTl(repositoryDelegator.getTax(busId));
 		resStatus.setCode("SUCCESS");
@@ -269,9 +272,9 @@ public class ServiceDelegator {
 		resStatus.setStatus("SUCCESS");
 		return resT;
 	}
-	
+
 	public ResObjCompanyList getCompany(String busId) {
-		resCo= new ResObjCompanyList();		
+		resCo = new ResObjCompanyList();
 		resStatus = resCo.getResStatus();
 		resCo.setCl(repositoryDelegator.getCompany(busId));
 		resStatus.setCode("SUCCESS");

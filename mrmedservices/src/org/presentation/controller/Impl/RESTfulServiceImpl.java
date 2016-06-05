@@ -153,13 +153,6 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	public ResObjCustomerList getCustomer(ReqObjCustomerList reqparam) {
 
 		ResObjCustomerList res = serviceDelegator.getCustomer(reqparam);
-
-		ResStatus resStatus = new ResStatus();
-		resStatus.setStatus("SUCCESS");
-		resStatus.setCode("SUCCESS");
-		resStatus.setMsg("Users successfully fetched !");
-		res.setResStatus(resStatus);
-
 		return res;
 	}
 
@@ -174,10 +167,10 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 		serviceDelegator.saveCustomer(reqparam);
 
-		ResStatus resStatus = new ResStatus();
+		ResStatus resStatus = res.getResStatus();
 		resStatus.setStatus("SUCCESS");
 		resStatus.setCode("SUCCESS");
-		resStatus.setMsg("Users successfully fetched !");
+		resStatus.setMsg("Customer Successfully Saved!");
 		res.setResStatus(resStatus);
 
 		return res;
