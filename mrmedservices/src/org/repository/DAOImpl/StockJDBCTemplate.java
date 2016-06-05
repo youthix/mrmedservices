@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 
 import org.repository.BObjects.ProductBO;
 import org.repository.BObjects.StockBO;
-import org.repository.BObjects.TagPage;
+import org.repository.BObjects.UserBO;
 import org.repository.DAOInterface.StockDAOInterface;
 import org.repository.Mapper.ProductBOMapper;
 import org.repository.Mapper.StockBOMapper;
@@ -80,6 +80,7 @@ public class StockJDBCTemplate implements StockDAOInterface{
 						+"`unitId`='"+sbo.getUnitID()+"',"
 						+"`price`='"+sbo.getPrice()+"',"
 						+"`active`='"+sbo.getActive()+"',"
+						+"`dtUpdated`= CURRENT_TIMESTAMP,"
 						+"`locator`='"+sbo.getLocator()+"' "				
 						+"where id='"+sbo.getStockID()+"'";
 				stmt.addBatch(SQL);
@@ -99,39 +100,36 @@ public class StockJDBCTemplate implements StockDAOInterface{
 	}
 	@Override
 	public void insertProduct(List<ProductBO> pboL,String dbName){
-		try {
-			Connection con = jdbcTemplateObject.getDataSource().getConnection();
-			con.setAutoCommit(false);
-			Statement stmt = con.createStatement();
-			for (ProductBO pbo : pboL) {
+		for(ProductBO pbo : pboL) {
+			    checkDuplicateProd(pbo);
 				String SQL="insert into `mrmed_master`.`product`"
-						+ " (`companyId`,`productName`,`type`,`composition`,`alternate`,"
-						+ "`potency`,`pricePerUnit`,`symptoms`) values ("
-						+"'"+pbo.getCompanyID()+"',"
-						+"'"+pbo.getProdName()+"',"
-						+"'"+pbo.getType()+"',"
-						+"'"+pbo.getComposition()+"',"
-						+"'"+pbo.getAlternate()+"',"
-						+"'"+pbo.getPotency()+"',"
-						+"'"+pbo.getPricePUnit()+"',"
-						+"'"+pbo.getSymp()+"'"
-						+ ")"	;
-				stmt.addBatch(SQL);
-			}
-			// Create an int[] to hold returned values
-			int[] count = stmt.executeBatch();
-
-			// Explicitly commit statements to apply changes
-			con.commit();
-			con.setAutoCommit(true);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-	
-	
+				+ " (`companyId`,`productName`,`type`,`composition`,`alternate`,"
+				+ "`potency`,`pricePerUnit`,`symptoms`) values ("
+				+"'"+pbo.getCompanyID()+"',"
+				+"'"+pbo.getProdName()+"',"
+				+"'"+pbo.getType()+"',"
+				+"'"+pbo.getComposition()+"',"
+				+"'"+pbo.getAlternate()+"',"
+				+"'"+pbo.getPotency()+"',"
+				+"'"+pbo.getPricePUnit()+"',"
+				+"'"+pbo.getSymp()+"'"
+				+ ")"	;
+				jdbcTemplateObject.update(SQL);
+	        }	
 	}
+	
+	private void checkDuplicateProd(ProductBO pbo){
+		String SQL="select * from `mrmed_master`.`product` where"
+				+"`companyId`='"+pbo.getCompanyID()+"' AND"	
+				+"`productName`='"+pbo.getProdName()+"' AND"
+				+"`type`='"+pbo.getType()+"' AND"
+				+"`potency`='"+pbo.getPotency()+"'";
+		List<ProductBO> prods=jdbcTemplateObject.query(SQL, new ProductBOMapper());
+		if(null != prods && prods.size()>0){
+			//TODO :: throw Exception for duplicate products
+		}		
+	}
+	
 	@Override
 	public void updateProduct(List<ProductBO> pboL,String dbName){
 		try {
