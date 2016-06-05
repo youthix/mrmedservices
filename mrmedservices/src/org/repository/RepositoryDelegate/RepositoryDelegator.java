@@ -342,4 +342,20 @@ public class RepositoryDelegator {
 		this.domObjCompConv = domObjCompConv;
 	}
 
+	public DomainObjStockConverter getDomObjStockConv() {
+		return domObjStockConv;
+	}
+
+	public void setDomObjStockConv(DomainObjStockConverter domObjStockConv) {
+		this.domObjStockConv = domObjStockConv;
+	}
+
+	public DomainObjProdConverter getDomObjProdConv() {
+		return domObjProdConv;
+	}
+
+	public void setDomObjProdConv(DomainObjProdConverter domObjProdConv) {
+		this.domObjProdConv = domObjProdConv;
+	}
+
 }

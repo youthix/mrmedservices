@@ -10,6 +10,8 @@ import org.presentation.entities.purchase.ReqObjPurchaseList;
 import org.presentation.entities.purchase.ResObjPurchaseList;
 import org.presentation.entities.sale.ReqObjSaleList;
 import org.presentation.entities.sale.ResObjSaleList;
+import org.presentation.entities.stock.ReqObjectStockList;
+import org.presentation.entities.stock.ResObjStockList;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplierList;
 import org.presentation.entities.tax.ResObjTaxList;
@@ -58,5 +60,11 @@ public interface RESTfulServiceInterface {
 	ResObjTaxList getTax(String busId);
 	
 	ResObjCompanyList getCompany(String busId);
+	
+	ResObjStockList addStock(ReqObjectStockList reqparam);
+	ResObjStockList saveStock(ReqObjectStockList reqparam);
+	
+	ResObjStockList addProduct(ReqObjectStockList reqparam);
+	ResObjStockList saveProduct(ReqObjectStockList reqparam);
 
 }

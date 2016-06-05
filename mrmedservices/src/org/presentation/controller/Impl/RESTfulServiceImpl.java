@@ -20,6 +20,8 @@ import org.presentation.entities.purchase.ReqObjPurchaseList;
 import org.presentation.entities.purchase.ResObjPurchaseList;
 import org.presentation.entities.sale.ReqObjSaleList;
 import org.presentation.entities.sale.ResObjSaleList;
+import org.presentation.entities.stock.ReqObjectStockList;
+import org.presentation.entities.stock.ResObjStockList;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplierList;
 import org.presentation.entities.tax.ResObjTaxList;
@@ -365,6 +367,46 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	public ResObjCompanyList getCompany(String busId) {
 		return serviceDelegator.getCompany(busId);
 	}	
+	
+	@Override
+	@POST
+	@Path("/add/stock")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjStockList addStock(ReqObjectStockList reqparam) {
+		ResObjStockList res = serviceDelegator.addStock(reqparam, reqparam.getBid());		
+		return res;
+	}
+	
+	@Override
+	@POST
+	@Path("/save/stock")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjStockList saveStock(ReqObjectStockList reqparam) {
+		ResObjStockList res = serviceDelegator.updateStock(reqparam, reqparam.getBid());		
+		return res;
+	}
+	
+	@Override
+	@POST
+	@Path("/add/product")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjStockList addProduct(ReqObjectStockList reqparam) {
+		ResObjStockList res = serviceDelegator.addProduct(reqparam, reqparam.getBid());		
+		return res;
+	}
+
+	@Override
+	@POST
+	@Path("/save/product")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResObjStockList saveProduct(ReqObjectStockList reqparam) {
+		ResObjStockList res = serviceDelegator.updateProduct(reqparam, reqparam.getBid());		
+		return res;
+	}
 
 	public ServiceDelegator getServiceDelegator() {
 		return serviceDelegator;

@@ -22,6 +22,8 @@ public class ResObjStock {
 	private String pot;
 	private String ppUnit;
 	private String symp;
+	private String dtCrt;
+	private String dtUpd;
 	private String act;
 	public String getsID() {
 		return sID;
@@ -136,5 +138,17 @@ public class ResObjStock {
 	}
 	public void setAct(String act) {
 		this.act = act;
+	}
+	public String getDtCrt() {
+		return dtCrt;
+	}
+	public void setDtCrt(String dtCrt) {
+		this.dtCrt = dtCrt;
+	}
+	public String getDtUpd() {
+		return dtUpd;
+	}
+	public void setDtUpd(String dtUpd) {
+		this.dtUpd = dtUpd;
 	}
 }

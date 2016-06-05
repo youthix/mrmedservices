@@ -23,6 +23,8 @@ public class StockBOMapper implements RowMapper<StockBO>{
 		sbo.setLocator(rs.getString("locator"));
 		sbo.setStockID(rs.getString("stockId"));
 		sbo.setUnitID(rs.getString("unitId"));
+		sbo.setDtCreated(rs.getString("dtCreated"));
+		sbo.setDtUpdated(rs.getString("dtUpdated"));
 		return sbo;
 	}
 
