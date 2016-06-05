@@ -191,7 +191,7 @@ public class ServiceDelegator {
 
 	public void saveSaleInv(ReqObjSaleList reqparam) {
 
-		// repositoryDelegator.saveSupplier(reqparam);
+		repositoryDelegator.saveSaleInv(reqparam);
 
 		return;
 	}
@@ -199,12 +199,18 @@ public class ServiceDelegator {
 	public ResObjSaleList getSaleInv(ReqObjSaleList reqparam) {
 
 		ResObjSaleList res = new ResObjSaleList();
+		
+		ResStatus resStobj = res.getResStatus();
 
 		List<ResObjSale> sl = null;
 
-		// sl = repositoryDelegator.getSupplier(reqparam);
+		sl = repositoryDelegator.getSaleInv(reqparam);
 
 		res.setSl(sl);
+		
+		resStobj.setCode("SUCCESS");
+		resStobj.setMsg("Successful!!");
+		resStobj.setStatus("SUCCESS");
 
 		return res;
 	}

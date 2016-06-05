@@ -218,12 +218,6 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 
 		ResObjSaleList res = serviceDelegator.getSaleInv(reqparam);
 
-		ResStatus resStatus = new ResStatus();
-		resStatus.setStatus("SUCCESS");
-		resStatus.setCode("SUCCESS");
-		resStatus.setMsg("Users successfully fetched !");
-		res.setResStatus(resStatus);
-
 		return null;
 	}
 
