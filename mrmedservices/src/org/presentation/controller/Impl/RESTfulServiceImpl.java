@@ -216,13 +216,13 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResObjSaleList getSaleInv(ReqObjSaleList reqparam) {
 
-/*		ResObjSupplierList res = serviceDelegator.getSupplier(reqparam);
+		ResObjSaleList res = serviceDelegator.getSaleInv(reqparam);
 
 		ResStatus resStatus = new ResStatus();
 		resStatus.setStatus("SUCCESS");
 		resStatus.setCode("SUCCESS");
 		resStatus.setMsg("Users successfully fetched !");
-		res.setResStatus(resStatus);*/
+		res.setResStatus(resStatus);
 
 		return null;
 	}
@@ -236,13 +236,13 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	public ResObjSaleList saveSaleInv(ReqObjSaleList reqparam) {
 		ResObjSaleList res = new ResObjSaleList();
 
-/*		serviceDelegator.saveSupplier(reqparam);
+		serviceDelegator.saveSaleInv(reqparam);
 
-		ResStatus resStatus = new ResStatus();
+		ResStatus resStatus = res.getResStatus();
 		resStatus.setStatus("SUCCESS");
 		resStatus.setCode("SUCCESS");
 		resStatus.setMsg("Users successfully fetched !");
-		res.setResStatus(resStatus);*/
+		res.setResStatus(resStatus);
 
 		return res;
 	}	
