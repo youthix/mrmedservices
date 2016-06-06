@@ -211,7 +211,7 @@ public class StockJDBCTemplate implements StockDAOInterface{
 	
 	@Override
 	public List<StockBO> searchStock(String prodIds,String dbName){
-		String SQL="select * from "+dbName+".`stock` where WHERE FIND_IN_SET(productId,'" + prodIds + "')  and active='y'";
+		String SQL="select * from "+dbName+".`stock` where FIND_IN_SET(productId,'" + prodIds + "')  and active='y'";
 		List<StockBO> stocks=jdbcTemplateObject.query(SQL, new StockBOMapper());
 		return stocks;
 	}
