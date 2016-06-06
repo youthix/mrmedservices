@@ -113,6 +113,7 @@ public class StockJDBCTemplate implements StockDAOInterface{
 		List<StockBO> sL=jdbcTemplateObject.query(SQL, new StockBOMapper());
 		if(null != sL && null != sL.get(0) && Integer.parseInt(sL.get(0).getLeftQty())<Integer.parseInt(sbo.getLeftQty())){
 			//TODO :: throw exception for isufficient quantity
+			throw new RuntimeException("Insufficient Quantity");
 		}
 	}
 	
@@ -159,6 +160,7 @@ public class StockJDBCTemplate implements StockDAOInterface{
 		List<ProductBO> prods=jdbcTemplateObject.query(SQL, new ProductBOMapper());
 		if(null != prods && prods.size()>0){
 			//TODO :: throw Exception for duplicate products
+			throw new RuntimeException("Duplicate Products");
 		}		
 	}
 	
