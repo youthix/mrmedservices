@@ -246,12 +246,17 @@ public class RepositoryDelegator {
 	
 	public List<ResObjStock> searchStock(ReqObjectStockList reqList){		
 		List<ResObjStock> resList=new ArrayList<ResObjStock>();
-		List<ProductBO> pboL= domObjProdConv.convertToBOList(reqList.getSl());
-		pboL=stdao.searchProduct(pboL.get(0), reqList.getBid(),reqList.getSp());		
+		List<ProductBO> pboL= domObjProdConv.convertToBOList(reqList.getSl());		
+		pboL=stdao.searchProduct(pboL.get(0), reqList.getBid(),reqList.getSp());
+		if(null == pboL || pboL.size()<=0){
+			return resList;
+		}
+		else{
 		resList = domObjProdConv.convertFromBOList(resList, pboL);
 		List<StockBO> sboL= stdao.searchStock(getProductIds(pboL), reqList.getBid());
-		resList=domObjStockConv.convertFromBOList(resList, sboL);		
-	return resList;
+		resList=domObjStockConv.convertFromBOList(resList, sboL);	
+		}
+	  return resList;
 	}
 	
 	private String getProductIds(List<ProductBO> ls){

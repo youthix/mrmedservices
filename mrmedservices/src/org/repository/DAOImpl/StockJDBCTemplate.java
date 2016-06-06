@@ -198,7 +198,9 @@ public class StockJDBCTemplate implements StockDAOInterface{
 	public List<ProductBO> searchProduct(ProductBO pbo,String dbName,String filter){
 		String SQL="";
 		if(filter.equalsIgnoreCase("symp"))
-		SQL="select * from `mrmed_master`.`product` where symptoms like '%"+pbo.getProdName()+"%'";
+		SQL="select * from `mrmed_master`.`product` where symptoms like '%"+pbo.getSymp()+"%'";
+		else if(filter.equalsIgnoreCase("comp"))
+		SQL="select * from `mrmed_master`.`product` where companyId = '"+pbo.getCompanyID()+"'";
 		else
 		SQL="select * from `mrmed_master`.`product` where productName like '%"+pbo.getProdName()+"%'";
 		List<ProductBO> prods=jdbcTemplateObject.query(SQL, new ProductBOMapper());
