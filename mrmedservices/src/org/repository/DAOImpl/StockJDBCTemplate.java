@@ -81,7 +81,7 @@ public class StockJDBCTemplate implements StockDAOInterface{
 						+"`active`='"+sbo.getActive()+"',"
 						+"`dtUpdated`= CURRENT_TIMESTAMP,"
 						+"`locator`='"+sbo.getLocator()+"' "				
-						+"where id='"+sbo.getStockID()+"'";
+						+"where stockId='"+sbo.getStockID()+"'";
 				stmt.addBatch(SQL);
 			}
 			// Create an int[] to hold returned values
@@ -103,13 +103,13 @@ public class StockJDBCTemplate implements StockDAOInterface{
 				checkQuantity(dbName, sbo);				
 				SQL="update "+ dbName +".stock set "
 						+"`leftQty`='"+sbo.getLeftQty()				
-						+"' where id='"+sbo.getStockID()+"'";
+						+"' where stockId='"+sbo.getStockID()+"'";
 				jdbcTemplateObject.update(SQL);
 			}
 	}
 	
 	private void checkQuantity(String dbName, StockBO sbo) {
-		String SQL="select * from "+dbName+".`stock` where id = '%"+sbo.getStockID()+"'";
+		String SQL="select * from "+dbName+".`stock` where stockId = '"+sbo.getStockID()+"'";
 		List<StockBO> sL=jdbcTemplateObject.query(SQL, new StockBOMapper());
 		if(null != sL && null != sL.get(0) && Integer.parseInt(sL.get(0).getLeftQty())<Integer.parseInt(sbo.getLeftQty())){
 			//TODO :: throw exception for isufficient quantity
