@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.repository.BObjects.CatBO;
 import org.repository.BObjects.CompanyBO;
 import org.repository.BObjects.PaymentModeBO;
 import org.repository.BObjects.TaxationBO;
 import org.repository.BObjects.UnitBO;
 import org.repository.DAOInterface.SharedDAOInterface;
+import org.repository.Mapper.CatBOMapper;
 import org.repository.Mapper.CompanyBOMapper;
 import org.repository.Mapper.PaymentModeBOMapper;
 import org.repository.Mapper.TaxationBOMapper;
@@ -49,6 +51,13 @@ public class SharedJDBCTemplate implements SharedDAOInterface {
 		String SQL="select * from "+dbName+".unit where active='y'";
 		List<UnitBO> u=jdbcTemplateObject.query(SQL, new UnitBOMapper());
 		return u;
+	}
+	
+	@Override
+	public List<CatBO> getCat(String dbName) {
+		String SQL="select * from "+dbName+".category where active='y'";
+		List<CatBO> cat=jdbcTemplateObject.query(SQL, new CatBOMapper());
+		return cat;
 	}
 
 	@Override

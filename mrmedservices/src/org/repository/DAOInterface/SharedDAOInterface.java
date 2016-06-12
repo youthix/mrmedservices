@@ -2,6 +2,7 @@ package org.repository.DAOInterface;
 
 import java.util.List;
 
+import org.repository.BObjects.CatBO;
 import org.repository.BObjects.CompanyBO;
 import org.repository.BObjects.PaymentModeBO;
 import org.repository.BObjects.TaxationBO;
@@ -16,5 +17,7 @@ public interface SharedDAOInterface {
 	List<PaymentModeBO> getPaymentMode(String dbName);
 	
 	List<CompanyBO> getCompany(String dbName);
+	
+	List<CatBO> getCat(String dbName);
 	
 }

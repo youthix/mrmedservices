@@ -3,6 +3,7 @@ package org.repository.RepositoryDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.presentation.entities.category.ResObjCat;
 import org.presentation.entities.company.ResObjCompany;
 import org.presentation.entities.customer.ReqObjCustomer;
 import org.presentation.entities.customer.ReqObjCustomerList;
@@ -19,7 +20,6 @@ import org.presentation.entities.sale.ReqObjSaleList;
 import org.presentation.entities.sale.ResObjSale;
 import org.presentation.entities.stock.ReqObjectStockList;
 import org.presentation.entities.stock.ResObjStock;
-import org.presentation.entities.stock.ResObjStockList;
 import org.presentation.entities.supplier.ReqObjSupplier;
 import org.presentation.entities.supplier.ReqObjSupplierList;
 import org.presentation.entities.supplier.ResObjSupplier;
@@ -28,6 +28,7 @@ import org.presentation.entities.unit.ResObjUnit;
 import org.presentation.entities.user.ReqObjUser;
 import org.presentation.entities.user.ReqObjUserList;
 import org.presentation.entities.user.ResObjUser;
+import org.repository.BObjects.CatBO;
 import org.repository.BObjects.CompanyBO;
 import org.repository.BObjects.CustomerBO;
 import org.repository.BObjects.PaymentBO;
@@ -43,6 +44,7 @@ import org.repository.BObjects.UserBO;
 import org.repository.DAOInterface.SharedDAOInterface;
 import org.repository.DAOInterface.StockDAOInterface;
 import org.repository.DAOInterface.UserDAOInterface;
+import org.repository.DomainConverter.DomainObjCatConverter;
 import org.repository.DomainConverter.DomainObjCompConverter;
 import org.repository.DomainConverter.DomainObjCustConverter;
 import org.repository.DomainConverter.DomainObjPaymentModeConverter;
@@ -67,6 +69,7 @@ public class RepositoryDelegator {
 	private DomainObjCustConverter domObjCusConv;
 	private DomainObjSuppConverter domObjSuppConv;
 	private DomainObjUnitConverter domObjUnitConv;
+	private DomainObjCatConverter domObjCatConv;
 	private DomainObjCompConverter domObjCompConv;
 	private DomainObjStockConverter domObjStockConv;
 	private DomainObjProdConverter domObjProdConv;
@@ -302,6 +305,13 @@ public class RepositoryDelegator {
 		uBOls = sdao.getUnit(dbId);		
 		return domObjUnitConv.convertFromBOList(uBOls);
 	}
+	
+	@Cacheable(cacheName = "catCache", keyGenerator = @KeyGenerator(name = "HashCodeCacheKeyGenerator", properties = @Property(name = "includeMethod", value = "false") ) )
+	public List<ResObjCat> getCat(String dbId) {
+		List<CatBO> catBOls = null;		
+		catBOls = sdao.getCat(dbId);
+		return domObjCatConv.convertFromBOList(catBOls);
+	}
 
 	@Cacheable(cacheName = "taxCache", keyGenerator = @KeyGenerator(name = "HashCodeCacheKeyGenerator", properties = @Property(name = "includeMethod", value = "false") ) )
 	public List<ResObjTaxation> getTax(String dbId) {
@@ -421,4 +431,15 @@ public class RepositoryDelegator {
 		this.domObjProdConv = domObjProdConv;
 	}
 
+	public DomainObjCatConverter getDomObjCatConv() {
+		return domObjCatConv;
+	}
+
+	public void setDomObjCatConv(DomainObjCatConverter domObjCatConv) {
+		this.domObjCatConv = domObjCatConv;
+	}
+
+
+
+	
 }

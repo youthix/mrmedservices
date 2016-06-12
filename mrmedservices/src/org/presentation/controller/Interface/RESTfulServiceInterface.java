@@ -1,5 +1,6 @@
 package org.presentation.controller.Interface;
 
+import org.presentation.entities.category.ResObjCatList;
 import org.presentation.entities.company.ResObjCompanyList;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomerList;
@@ -69,5 +70,7 @@ public interface RESTfulServiceInterface {
 	ResObjStockList saveProduct(ReqObjectStockList reqparam);
 	
 	ResObjStockList searchStock(ReqObjectStockList reqparam);
+	
+	ResObjCatList getCat(String busId);
 
 }

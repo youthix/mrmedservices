@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.presentation.controller.Interface.RESTfulServiceInterface;
 import org.presentation.entities.ResStatus;
+import org.presentation.entities.category.ResObjCatList;
 import org.presentation.entities.company.ResObjCompanyList;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomerList;
@@ -395,7 +396,7 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 	@GET
 	@Path("/get/cat")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ResObjUnitList getCat(@QueryParam("bid") String busId) {		
+	public ResObjCatList getCat(@QueryParam("bid") String busId) {		
 		return serviceDelegator.getCat(busId);
 	}
 

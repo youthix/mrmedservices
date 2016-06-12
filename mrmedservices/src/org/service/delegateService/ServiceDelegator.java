@@ -3,6 +3,7 @@ package org.service.delegateService;
 import java.util.List;
 
 import org.presentation.entities.ResStatus;
+import org.presentation.entities.category.ResObjCatList;
 import org.presentation.entities.company.ResObjCompanyList;
 import org.presentation.entities.customer.ReqObjCustomerList;
 import org.presentation.entities.customer.ResObjCustomer;
@@ -328,6 +329,16 @@ public class ServiceDelegator {
 		resStatus.setMsg("Successful !!");
 		resStatus.setStatus("SUCCESS");
 		return resT;
+	}
+	
+	public ResObjCatList getCat(String busId) {
+		ResObjCatList res = new ResObjCatList();
+		resStatus = res.getResStatus();
+		res.setCatl(repositoryDelegator.getCat(busId));
+		resStatus.setCode("SUCCESS");
+		resStatus.setMsg("Successful !!");
+		resStatus.setStatus("SUCCESS");
+		return res;
 	}
 
 	public ResObjCompanyList getCompany(String busId) {
