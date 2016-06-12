@@ -13,6 +13,17 @@
            memoryStoreEvictionPolicy="LFU"
            statistics="true"
          />
+         
+    <cache name="catCache"
+           maxElementsInMemory="100"
+           maxElementsOnDisk="0"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="3600"
+           memoryStoreEvictionPolicy="LFU"
+           statistics="true"
+         />         
     <cache name="taxCache"
            maxElementsInMemory="100"
            maxElementsOnDisk="0"
