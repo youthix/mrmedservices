@@ -390,6 +390,14 @@ public class RESTfulServiceImpl implements RESTfulServiceInterface {
 		ResObjStockList res = serviceDelegator.searchStock(reqparam);		
 		return res;
 	}
+	
+	@Override
+	@GET
+	@Path("/get/cat")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResObjUnitList getCat(@QueryParam("bid") String busId) {		
+		return serviceDelegator.getCat(busId);
+	}
 
 	public ServiceDelegator getServiceDelegator() {
 		return serviceDelegator;
