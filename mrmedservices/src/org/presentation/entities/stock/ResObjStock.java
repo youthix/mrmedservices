@@ -24,6 +24,7 @@ public class ResObjStock {
 	private String symp;
 	private String dtCrt;
 	private String dtUpd;
+	private String catID;
 	private String act;
 	public String getsID() {
 		return sID;
@@ -151,4 +152,12 @@ public class ResObjStock {
 	public void setDtUpd(String dtUpd) {
 		this.dtUpd = dtUpd;
 	}
+	public String getCatID() {
+		return catID;
+	}
+	public void setCatID(String catID) {
+		this.catID = catID;
+	}
+	
+	
 }

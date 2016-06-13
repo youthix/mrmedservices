@@ -37,7 +37,7 @@ public class StockJDBCTemplate implements StockDAOInterface{
 			for (StockBO sbo : sboL) {
 				String SQL="insert into " + dbName +".stock"
 						+ " (`productId`,`batch`,`manufacturing`,`expiry`,`leftQty`,"
-						+ "`buyQty`,`unitId`,`price`,`locator`) values ("
+						+ "`buyQty`,`unitId`,`price`,`locator`,'catId') values ("
 						+"'"+sbo.getProductID()+"',"
 						+"'"+sbo.getBatch()+"',"
 						+"'"+sbo.getMfgDt()+"',"
@@ -46,7 +46,8 @@ public class StockJDBCTemplate implements StockDAOInterface{
 						+"'"+sbo.getBuyQty()+"',"
 						+"'"+sbo.getUnitID()+"',"
 						+"'"+sbo.getPrice()+"',"
-						+"'"+sbo.getLocator()+"'"
+						+"'"+sbo.getLocator()+"',"
+						+"'"+sbo.getCatID()+"'"
 						+ ")"	;
 				stmt.addBatch(SQL);
 			}
@@ -77,6 +78,7 @@ public class StockJDBCTemplate implements StockDAOInterface{
 						+"`leftQty`='"+sbo.getLeftQty()+"',"
 						+"`buyQty`='"+sbo.getBuyQty()+"',"
 						+"`unitId`='"+sbo.getUnitID()+"',"
+						+"`catId`='"+sbo.getCatID()+"',"
 						+"`price`='"+sbo.getPrice()+"',"
 						+"`active`='"+sbo.getActive()+"',"
 						+"`dtUpdated`= CURRENT_TIMESTAMP,"

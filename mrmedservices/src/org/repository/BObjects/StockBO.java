@@ -15,6 +15,7 @@ public class StockBO {
 	private String locator;	
 	private String dtCreated;
 	private String dtUpdated;
+	private String catID;
 	private String active;
 	public String getStockID() {
 		return stockID;
@@ -93,5 +94,13 @@ public class StockBO {
 	}
 	public void setDtUpdated(String dtUpdated) {
 		this.dtUpdated = dtUpdated;
+	}
+	public String getCatID() {
+		return catID;
+	}
+	public void setCatID(String catID) {
+		this.catID = catID;
 	}	
+	
+	
 }

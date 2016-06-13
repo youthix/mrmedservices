@@ -19,6 +19,7 @@ public class ReqObjStock {
 	private String pot;
 	private String ppUnit;
 	private String symp;
+	private String catID;
 	private String act;
 	public String getsID() {
 		return sID;
@@ -134,4 +135,12 @@ public class ReqObjStock {
 	public void setAct(String act) {
 		this.act = act;
 	}
+	public String getCatID() {
+		return catID;
+	}
+	public void setCatID(String catID) {
+		this.catID = catID;
+	}
+	
+	
 }

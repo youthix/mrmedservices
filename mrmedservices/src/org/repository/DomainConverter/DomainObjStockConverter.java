@@ -39,6 +39,7 @@ public class DomainObjStockConverter {
 		sbo.setProductID(req.getpID());
 		sbo.setStockID(req.getsID());
 		sbo.setUnitID(req.getUnID());
+		sbo.setCatID(req.getCatID());
 		return sbo;
 	}
 
@@ -59,6 +60,7 @@ public class DomainObjStockConverter {
 			resObj.setUnID(sBObj.getUnitID());
 			resObj.setDtCrt(sBObj.getDtCreated());
 			resObj.setDtUpd(sBObj.getDtUpdated());
+			resObj.setCatID(sBObj.getCatID());
 		  }
 		}
 		return;
