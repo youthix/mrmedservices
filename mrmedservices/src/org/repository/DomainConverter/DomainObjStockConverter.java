@@ -11,10 +11,11 @@ public class DomainObjStockConverter {
 
 
 	public List<ResObjStock> convertFromBOList(List<ResObjStock> resList,List<StockBO> sbols) {
+		List<ResObjStock> resListFinal=new ArrayList<ResObjStock>();
 		for (StockBO sbo : sbols) {
-			convertFromBO(resList,sbo);
+			convertFromBO(resListFinal,resList,sbo);
 		}
-		return resList;
+		return resListFinal;
 	}
 	
 	public List<StockBO> convertToBOList(List<ReqObjStock> reqList) {
@@ -43,7 +44,8 @@ public class DomainObjStockConverter {
 		return sbo;
 	}
 
-	public void convertFromBO(List<ResObjStock> resList,StockBO sBObj) {
+	public void convertFromBO(List<ResObjStock> resListFinal,List<ResObjStock> resList,StockBO sBObj) {
+		
 
 		for(ResObjStock resObj:resList){
 		if(resObj.getpID().equalsIgnoreCase(sBObj.getProductID())){
@@ -61,6 +63,7 @@ public class DomainObjStockConverter {
 			resObj.setDtCrt(sBObj.getDtCreated());
 			resObj.setDtUpd(sBObj.getDtUpdated());
 			resObj.setCatID(sBObj.getCatID());
+			resListFinal.add(resObj);
 		  }
 		}
 		return;
